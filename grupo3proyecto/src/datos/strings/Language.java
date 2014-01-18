@@ -36,7 +36,7 @@ public class Language {
     *        </language>
     *
     * Todos deben contener las mismas etiquetas para el correcto funcionamiento del programa, aunque
-    * es necesario que lleven el mismo orden.
+    * no es necesario que tengan el mismo orden.
     */
     
     private static Language instance;// unica instancia de la clase
