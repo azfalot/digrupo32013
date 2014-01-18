@@ -35,8 +35,8 @@ public class Language {
     *           <error1>Error al introducir los datos</error1>
     *        </language>
     *
-    * Todos deben contener las mismas etiquetas para el correcto funcionamiento del programa, aunque
-    * no es necesario que tengan el mismo orden.
+    * Todos deben contener las mismas etiquetas para el correcto funcionamiento del programa, aunque no
+    * es necesario que tengan el mismo orden.
     */
     
     private static Language instance;// unica instancia de la clase
@@ -47,7 +47,7 @@ public class Language {
     //CONSTRUCTOR (privado)
     private Language(String language) {
         /*
-        * El constructor tiene como parametro el idioma 
+        * El constructor tiene como parametro el idioma. 
         * El archivo.xml del idioma debe encontrarse en languages/strings/idioma.xml
         */
         this.language=language;
