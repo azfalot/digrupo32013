@@ -51,5 +51,12 @@ public class Datos {
         }
         return resultado;
     }
+    
+    public Connection getConnection(){
+        /*
+        * Devuelve la conexion con la base de datos (necesaria para generar informes)
+        */
+        return connection;
+    }
 
 }
