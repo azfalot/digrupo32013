@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package datos.strings;
 
 import java.io.File;
@@ -81,7 +77,7 @@ public class Language {
         * Si hay más de una etiqueta con el mismo nombre devolverá la primera mostrando
         * un mensaje por consola advirtiendo del conflicto.
         *
-        * Si no encuentra la etiqueta devolvera "#err" y mostrará un mensaje por consola
+        * Si no encuentra la etiqueta devolvera "#<nombreEtiqueta>" y mostrará un mensaje por consola
         * avisando del conflicto.
         */
         NodeList nodeList = doc.getElementsByTagName(text);
@@ -92,7 +88,7 @@ public class Language {
             return nodeList.item(0).getTextContent();
         } catch (NullPointerException e) {
             System.err.println("err.can't find any <"+text+"> item in "+language+".xml");
-            return "#err";
+            return "#<"+text+">";
         }
     }
 
