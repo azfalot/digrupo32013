@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="289.0" prefWidth="470.0" styleClass="fondopantalla" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaLoginController">
+  <children>
+    <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="470.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Close" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <ComboBox layoutX="287.0" layoutY="108.0" prefHeight="21.0" prefWidth="131.0" promptText="Seleccione usuario" styleClass="botones">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Button layoutX="322.0" layoutY="173.0" mnemonicParsing="false" styleClass="botones" text="Aceptar" />
+    <ImageView fitHeight="157.49997303849628" fitWidth="209.99996948242188" layoutX="34.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+  </children>
+  <stylesheets>
+    <URL value="@Estilos.css" />
+  </stylesheets>
+</AnchorPane>
