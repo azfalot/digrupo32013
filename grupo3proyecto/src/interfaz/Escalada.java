@@ -1,6 +1,7 @@
 
 package interfaz;
 
+import java.io.File;
 import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +56,7 @@ public class Escalada extends Application{
             Scene scene = new Scene(page);
             stage.setScene(scene);
             stage.setTitle(title);
-            stage.getIcons().add(new Image("file:resources\\icon.png"));
+            stage.getIcons().add(new Image("file:resources"+File.separator+"icon.png"));
             stage.setResizable(resizable);
             if (modal) {
                 stage.initModality(Modality.APPLICATION_MODAL);

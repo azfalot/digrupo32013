@@ -1,6 +1,7 @@
 
 package datos.conexionbd;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,7 +27,7 @@ public class Datos {
     private Datos() {
         try {
             Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:file:database/"+DATABASE);
+            connection = DriverManager.getConnection("jdbc:hsqldb:file:database"+File.separator+DATABASE);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

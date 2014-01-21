@@ -38,7 +38,7 @@ public class Language {
     private static Language instance;// unica instancia de la clase
     private Document doc;
     private final String language;
-    private final String xmlpath="languages/strings/"; //ruta por defecto de los xml de idioma
+    private final String xmlpath="languages"+File.separator+"strings"+File.separator; //ruta por defecto de los xml de idioma
     
     //CONSTRUCTOR (privado)
     private Language(String language) {
@@ -54,7 +54,7 @@ public class Language {
             if(!new File(xmlpath + this.language + ".xml").exists()){
                 throw new IllegalArgumentException(this.language+".xml not found");
             }
-            doc = dBuilder.parse("languages/strings/" + this.language + ".xml");
+            doc = dBuilder.parse(xmlpath + this.language + ".xml");
             doc.getDocumentElement().normalize();
         } catch (SAXException | ParserConfigurationException | IOException e) {
             e.printStackTrace();
