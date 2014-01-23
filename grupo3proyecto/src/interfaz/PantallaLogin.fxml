@@ -30,7 +30,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <ComboBox layoutX="287.0" layoutY="108.0" prefHeight="21.0" prefWidth="131.0" promptText="Seleccione usuario" styleClass="botones">
+    <ComboBox fx:id="comboUsuario" layoutX="287.0" layoutY="108.0" prefHeight="21.0" prefWidth="131.0" promptText="Seleccione usuario" styleClass="botones">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -39,8 +39,8 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <Button layoutX="322.0" layoutY="173.0" mnemonicParsing="false" styleClass="botones" text="Aceptar" />
-    <ImageView fitHeight="157.49997303849628" fitWidth="209.99996948242188" layoutX="34.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="botonAceptar" layoutX="322.0" layoutY="173.0" mnemonicParsing="false" styleClass="botones" text="Aceptar" />
+    <ImageView fx:id="imagenLogo" fitHeight="157.49997303849628" fitWidth="209.99996948242188" layoutX="34.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
   </children>
   <stylesheets>
     <URL value="@Estilos.css" />
