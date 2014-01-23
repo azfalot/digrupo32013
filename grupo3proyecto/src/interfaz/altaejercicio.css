@@ -1,0 +1,17 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+ background-color:  aqua;
+ 
+}
+.botones{
+  -fx-background-color: #ffff00;
+    -fx-font:  serif;  
+}
+.texto{
+     font-size:  16;
+      color:  #ffff00;
+       font-family:  sans-serif;
+}
