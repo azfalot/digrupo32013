@@ -55,6 +55,10 @@ public class Escalada extends Application {
     }
 
     private Initializable newSceneContent(String fxml, String title, boolean resizable, boolean modal, Stage stage) {
+        /*
+        * Cambia un stage recibiendo una serie de parametros, el xml, el titulo, si se puede redimensionar,
+        * si es modal y el stage que va a cambiar.
+        */
         FXMLLoader loader = new FXMLLoader();
         URL url = getClass().getResource(fxml);
         loader.setBuilderFactory(new JavaFXBuilderFactory());

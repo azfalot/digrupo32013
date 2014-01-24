@@ -40,6 +40,10 @@ public class Config implements Serializable {
     }
 
     private void generate() {
+        /*
+        * genera un nuevo archivo de configuracion en caso de que no exista o
+        * este dañado
+        */
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(new FileOutputStream("config.cfg"));
@@ -52,7 +56,10 @@ public class Config implements Serializable {
 
     }
 
-    public void save() {
+    private void save() {
+        /*
+        * guarda en el archivo la nueva configuracion
+        */
         ObjectOutputStream oos;
         try {
             oos = new ObjectOutputStream(new FileOutputStream("config.cfg"));
