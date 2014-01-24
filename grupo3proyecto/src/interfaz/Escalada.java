@@ -1,4 +1,3 @@
-
 package interfaz;
 
 import java.io.File;
@@ -18,40 +17,43 @@ import logica.Methods;
  *
  * @author Grupo 3
  */
-
-public class Escalada extends Application{
+public class Escalada extends Application {
     /*
-    * Clase principal de la aplicacion
-    */
-    
-    private Stage stage;
+     * Clase principal de la aplicacion
+     */
+
+    private Stage mainStage;
     private Methods m;
-    private String applicationName=""; //nombre de la aplicacion
+    private final String applicationName = "Escalator 3000"; //nombre de la aplicacion
+    private PantallaLoginController wLogin;//ventana de login, sera necesaria para que sea actualizada tras dar de alta un usuario
     
     @Override
     public void start(Stage stage) throws Exception {
-        this.stage=stage;
-        m=Methods.getInstance();
+        this.mainStage = stage;
+        m = Methods.getInstance();
         //goToMainStage();
-        goToLoginStage();
+        if(!m.getRemember()){
+            goToLoginStage();
+        }
     }
-    
-    public void goToLoginStage(){
-        PantallaLoginController wLogin= (PantallaLoginController) newSceneContent("PantallaLogin.fxml","Login",false,true,new Stage());
-        wLogin.builder(m);
+
+    public void goToLoginStage() {
+        Stage secondaryStage=new Stage();
+        wLogin = (PantallaLoginController) newSceneContent("PantallaLogin.fxml", m.write("login"), false, true, secondaryStage);
+        wLogin.builder(this,m,mainStage,secondaryStage);
     }
-    
+
     public static void main(String args[]) {
         /*
-        * Metodo main de la aplicacion
-        */
+         * Metodo main de la aplicacion
+         */
         launch(args);
     }
 
     public void setTitle(String titulo) {
-        stage.setTitle(titulo);
+        mainStage.setTitle(titulo);
     }
-    
+
     private Initializable newSceneContent(String fxml, String title, boolean resizable, boolean modal, Stage stage) {
         FXMLLoader loader = new FXMLLoader();
         URL url = getClass().getResource(fxml);
@@ -61,8 +63,12 @@ public class Escalada extends Application{
             Parent page = (Parent) loader.load();
             Scene scene = new Scene(page);
             stage.setScene(scene);
-            stage.setTitle(title);
-            stage.getIcons().add(new Image("file:resources"+File.separator+"icon.png"));
+            if ("".equals(title)) {
+                stage.setTitle(applicationName);
+            } else {
+                stage.setTitle(applicationName + " | " + title);
+            }
+            stage.getIcons().add(new Image("file:resources" + File.separator + "icon.png"));
             stage.setResizable(resizable);
             if (modal) {
                 stage.initModality(Modality.APPLICATION_MODAL);

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<language>
-<file>Archivo</file>
-<edit>Edición</edit>
-</language>
+<spanish>
+	<!--LANGUAGE-->
+		<language>es</language>
+		<language0></language0>
+		
+	<!--LOGIN WINDOW-->
+		<login>Login</login>
+		<acept>Aceptar</acept>
+		<cancel>Cancelar</cancel>
+		<new>Nuevo usuario</new>
+		<remember>Recuérdame</remember>
+		<new_user>Nuevo usuario</new_user>
+		
+		
+</spanish>
