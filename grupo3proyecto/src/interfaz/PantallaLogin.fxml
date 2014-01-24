@@ -8,29 +8,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="289.0" prefWidth="470.0" styleClass="fondopantalla" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaLoginController">
+<AnchorPane id="AnchorPane" minHeight="204.0" prefHeight="282.0" prefWidth="376.0" styleClass="fondopantalla" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaLoginController">
   <children>
-    <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="470.0">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Close" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Delete" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <ComboBox fx:id="comboUsuario" layoutX="287.0" layoutY="108.0" prefHeight="21.0" prefWidth="131.0" promptText="Seleccione usuario" styleClass="botones">
+    <ComboBox fx:id="comboUsuario" layoutX="210.0" layoutY="87.0" prefHeight="21.0" prefWidth="131.0" promptText="Seleccione usuario" styleClass="botones">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -39,8 +21,9 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <Button fx:id="botonAceptar" layoutX="322.0" layoutY="173.0" mnemonicParsing="false" styleClass="botones" text="Aceptar" />
-    <ImageView fx:id="imagenLogo" fitHeight="157.49997303849628" fitWidth="209.99996948242188" layoutX="34.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="botonAceptar" layoutX="245.0" layoutY="182.0" mnemonicParsing="false" styleClass="botones" text="Aceptar" />
+    <ImageView fx:id="imagenLogo" fitHeight="292.0001220703125" fitWidth="156.5" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
+    <Line endX="-119.0" endY="178.0" layoutX="276.0" layoutY="141.0" startX="-119.0" startY="-194.0" />
   </children>
   <stylesheets>
     <URL value="@Estilos.css" />

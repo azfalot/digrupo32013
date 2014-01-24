@@ -32,13 +32,13 @@ public class Escalada extends Application{
     public void start(Stage stage) throws Exception {
         this.stage=stage;
         m=Methods.getInstance();
-        m.getUsuarios();
         //goToMainStage();
         goToLoginStage();
     }
     
     public void goToLoginStage(){
         PantallaLoginController wLogin= (PantallaLoginController) newSceneContent("PantallaLogin.fxml","Login",false,true,new Stage());
+        wLogin.builder(m);
     }
     
     public static void main(String args[]) {
