@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -96,9 +94,9 @@ public class Methods {
             while(rs.next()){
                 usuarios.add(rs.getString("nombre"));
             }
-        } catch (SQLException ex) {                   
+        } catch (SQLException ex) { 
+            ex.printStackTrace();
         }
-        
         return usuarios;
     }
 }
