@@ -86,6 +86,9 @@ public class Methods {
         }
     }
     
+    /*
+    * Consultas
+    */
     public ArrayList getUsuarios(){
         ArrayList usuarios=new ArrayList();
         
