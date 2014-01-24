@@ -8,6 +8,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -81,5 +86,19 @@ public class Methods {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public ArrayList getUsuarios(){
+        ArrayList usuarios=new ArrayList();
+        
+        ResultSet rs=bd.consulta("select nombre as nombreusuario from escaladores");
+        try {
+            while(rs.next()){
+                usuarios.add(rs.getString("nombre"));
+            }
+        } catch (SQLException ex) {                   
+        }
+        
+        return usuarios;
     }
 }

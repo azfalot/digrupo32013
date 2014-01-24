@@ -25,6 +25,7 @@ public class Escalada extends Application{
     */
     
     private Stage stage;
+    private Stage loginStage;
     private Methods m;
     private String applicationName=""; //nombre de la aplicacion
     
@@ -32,7 +33,13 @@ public class Escalada extends Application{
     public void start(Stage stage) throws Exception {
         this.stage=stage;
         m=Methods.getInstance();
+        m.getUsuarios();
         //goToLoginStage();
+    }
+    
+    public void goToLoginStage(){
+        PantallaLoginController wLogin= (PantallaLoginController) newSceneContent("MainFrame.fxml","Login",false,true,loginStage);
+        
     }
     
     public static void main(String args[]) {
