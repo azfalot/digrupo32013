@@ -25,7 +25,6 @@ public class Escalada extends Application{
     */
     
     private Stage stage;
-    private Stage loginStage;
     private Methods m;
     private String applicationName=""; //nombre de la aplicacion
     
@@ -34,12 +33,12 @@ public class Escalada extends Application{
         this.stage=stage;
         m=Methods.getInstance();
         m.getUsuarios();
-        //goToLoginStage();
+        //goToMainStage();
+        goToLoginStage();
     }
     
     public void goToLoginStage(){
-        PantallaLoginController wLogin= (PantallaLoginController) newSceneContent("MainFrame.fxml","Login",false,true,loginStage);
-        
+        PantallaLoginController wLogin= (PantallaLoginController) newSceneContent("PantallaLogin.fxml","Login",false,true,new Stage());
     }
     
     public static void main(String args[]) {
@@ -75,6 +74,5 @@ public class Escalada extends Application{
             return null;
         }
     }
-    
-    
+
 }
