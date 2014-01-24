@@ -24,11 +24,11 @@ public class PantallaLoginController implements Initializable {
     @FXML ComboBox comboUsuario;
     @FXML ImageView imagenLogo;
     
-    public void setImage(){
+    @FXML public void setImage(){
         String ruta=null;
             File fichero=new File(".");
         try {
-            ruta=fichero.getCanonicalPath()+File.separator+"resources"+File.separator+"icon.png";
+            ruta=fichero.getCanonicalPath()+File.separator+"resources"+File.separator+"escalada-sombria.png";
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -36,9 +36,11 @@ public class PantallaLoginController implements Initializable {
         //muestro en el imageview la foto seleccionada
             imagenLogo.setImage(img);
     }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }
