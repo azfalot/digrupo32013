@@ -92,7 +92,7 @@ public class Methods {
         ResultSet rs=bd.consulta("select nombre as nombreusuario from escaladores");
         try {
             while(rs.next()){
-                usuarios.add(rs.getString("nombre"));
+                usuarios.add(rs.getString("nombreusuario"));
             }
         } catch (SQLException ex) { 
             ex.printStackTrace();
