@@ -42,7 +42,19 @@ public class Escalada extends Application {
         wLogin = (PantallaLoginController) newSceneContent("PantallaLogin.fxml", m.write("login"), false, true, secondaryStage);
         wLogin.builder(this,m,mainStage,secondaryStage);
     }
-
+    
+    public void goToMainStage(){
+        
+    }
+    
+    public void goToAltaUsuario(){
+        
+    }
+    
+    public void goToAltaEjercicio(){
+        
+    }
+    
     public static void main(String args[]) {
         /*
          * Metodo main de la aplicacion

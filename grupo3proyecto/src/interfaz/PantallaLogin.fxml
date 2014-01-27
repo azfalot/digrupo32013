@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" minHeight="204.0" prefHeight="282.0" prefWidth="376.0" styleClass="fondopantalla" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaLoginController">
   <children>
-    <ComboBox fx:id="comboUsuario" layoutX="179.0" layoutY="87.0" prefHeight="21.0" prefWidth="130.0" promptText="" styleClass="botones">
+    <ComboBox fx:id="comboUsuario" layoutX="177.0" layoutY="55.0" prefHeight="21.0" prefWidth="172.0" promptText="" styleClass="botones">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -21,12 +21,19 @@
         </FXCollections>
       </items>
     </ComboBox>
+    <CheckBox id="checkRecuerda" fx:id="checkRemember" layoutX="188.0" layoutY="83.0" mnemonicParsing="false" text="Recuerdame" />
+    <Pane layoutX="177.0" layoutY="125.0" prefHeight="79.0" prefWidth="185.00009999999747">
+      <children>
+        <Label fx:id="labelNombre" layoutX="14.0" layoutY="14.0" text="Nombre:" />
+        <TextField fx:id="tfNombre" layoutX="72.0" layoutY="11.0" prefWidth="86.0" />
+        <Button fx:id="botonAdd" layoutX="47.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleAdd" prefWidth="86.0" text="Nuevo" />
+        <ImageView fx:id="ivError" fitHeight="16.750000113790684" fitWidth="22.33333396911621" layoutX="158.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      </children>
+    </Pane>
     <Button fx:id="botonAceptar" layoutX="280.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleAceptar" styleClass="botones" text="Aceptar" />
+    <Button fx:id="botonCancelar" layoutX="198.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
     <ImageView fx:id="imagenLogo" fitHeight="292.0001220703125" fitWidth="156.5" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
     <Line endX="-119.0" endY="178.0" layoutX="276.0" layoutY="141.0" startX="-119.0" startY="-194.0" />
-    <CheckBox id="checkRecuerda" fx:id="checkRemember" layoutX="188.0" layoutY="130.0" mnemonicParsing="false" text="Recuerdame" />
-    <Button fx:id="botonCancelar" layoutX="198.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
-    <Button fx:id="botonAdd" layoutX="313.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleAdd" text="+" />
   </children>
   <stylesheets>
     <URL value="@Estilos.css" />

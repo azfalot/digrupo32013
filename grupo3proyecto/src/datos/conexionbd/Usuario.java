@@ -13,19 +13,14 @@ package datos.conexionbd;
 public class Usuario {
     private int id;
     private String nombre;
-    private int edad;
-    private float altura,peso;
 
     public Usuario() {
         this.id=0;
     }
     
-    public Usuario(int id, String nombre, int edad, float altura, float peso) {
+    public Usuario(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.edad = edad;
-        this.altura = altura;
-        this.peso = peso;
     }
 
     public int getId() {
@@ -34,20 +29,6 @@ public class Usuario {
 
     public String getNombre() {
         return nombre;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public float getAltura() {
-        return altura;
-    }
-
-    public float getPeso() {
-        return peso;
-    }
-    
-    
+    }    
 
 }

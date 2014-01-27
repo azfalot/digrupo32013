@@ -8,9 +8,13 @@
 		<login>Login</login>
 		<acept>Aceptar</acept>
 		<cancel>Cancelar</cancel>
-		<new>Nuevo usuario</new>
+		<name>Nombre</name>
+		<new>Nuevo</new>
 		<remember>Recuérdame</remember>
-		<new_user>Nuevo usuario</new_user>
-		
-		
+		<name_error_repeated>El nombre de usuario ya existe</name_error_repeated>
+		<name_error_space>El nombre de usuario no puede ser un campo vacío</name_error_space>
+		<tt_tfNombre>Nombre para el nuevo usuario</tt_tfNombre>
+		<tt_checkRemember>Marque esta casilla si desea que este usuario sea cargado automáticamente al arrancar el programa</tt_checkRemember>
+		<tt_comboUsuario>Lista de usuarios registrados</tt_comboUsuario>
+		<tt_botonAdd>Agrega un nuevo usuario</tt_botonAdd>
 </spanish>

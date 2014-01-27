@@ -1,11 +1,8 @@
 package logica;
 
-import datos.conexionbd.Datos;
 import datos.conexionbd.Usuario;
 import datos.config.Config;
 import datos.strings.Language;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +19,7 @@ public class Methods {
     private static Methods instance;
     private Config cfg;
     private Language lang;
-    private final Datos bd = Datos.getInstance();
+    private final Queries q=new Queries();
     private boolean remember;//indica si se guarda el usuario por defecto
     private Usuario user = new Usuario();
 
@@ -45,11 +42,15 @@ public class Methods {
     public boolean getRemember() {
         return remember;
     }
-
-    public Usuario getUser() {
-        return user;
+    
+    public int getUserId(){
+        return user.getId();
     }
 
+    public String getUserName(){
+        return user.getNombre();
+    }
+    
     public void setUser(Usuario user, boolean makeDefault) {
         /*
         * Permite seleccionar un usuario y ponerlo como por defecto o no
@@ -76,52 +77,23 @@ public class Methods {
 
     /*
      * Consultas
+     * Las consultas estan en la clase Queries, esta clase solo actua como comunicador.
+     * Esta forma de trabajar es por cuestion de orden.
      */
     public Usuario getUsuario(int id) {
-        /*
-         * Devuelve los datos del usuario indicado
-         */
-        ResultSet rs = bd.consulta("select * from escaladores where p_escaladores=" + id);
-        try {
-            while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getInt("edad"), rs.getFloat("altura"), rs.getFloat("peso"));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
+        return q.getUsuario(id);
     }
     
     public Usuario getUserFromUsername(String name) {
-        /*
-        * Devuelve los datos de un usuario a traves de su nombre, que es único
-        */
-        ResultSet rs = bd.consulta("select * from escaladores where nombre='" + name + "'");
-        try {
-            while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getInt("edad"), rs.getFloat("altura"), rs.getFloat("peso"));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
+        return q.getUserFromUsername(name);
     }
 
     public ArrayList getNombreUsuarios() {
-        /*
-        * Devuelve un arraylist con los nombres de los usuarios como string
-        */
-        ArrayList usuarios = new ArrayList();
-        ResultSet rs = bd.consulta("select nombre from escaladores");
-        try {
-            while (rs.next()) {
-                usuarios.add(rs.getString("nombre"));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return usuarios;
+        return q.getNombreUsuarios();
     }
-
+    
+    public int altaUsuario(String nombre){
+        return q.altaUsuario(nombre);
+    }
     
 }
