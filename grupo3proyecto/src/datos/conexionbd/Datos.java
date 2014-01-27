@@ -21,6 +21,7 @@ public class Datos {
     */
     private static Datos instance=new Datos();
     private Connection connection;
+    
     private final String DATABASE="escalada";//nombre de la base de datos
     
     //CONSTRUCTOR
