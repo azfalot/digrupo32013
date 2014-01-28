@@ -58,6 +58,8 @@ public class Methods {
         this.user = user;
         if (makeDefault) {
             cfg.setDefaultUser(user.getId());
+        }else{
+            cfg.setDefaultUser(0);
         }
     }
 

@@ -72,13 +72,7 @@ public class PantallaLoginController implements Initializable {
 
     @FXML
     private void handleAceptar() {;
-        boolean r;
-        if (checkRemember.isSelected()) {
-            r = true;
-        } else {
-            r = false;
-        }
-        m.setUser(m.getUserFromUsername(comboUsuario.getSelectionModel().getSelectedItem().toString()), r);
+        m.setUser(m.getUserFromUsername(comboUsuario.getSelectionModel().getSelectedItem().toString()), checkRemember.isSelected());
         stage.close();
     }
 

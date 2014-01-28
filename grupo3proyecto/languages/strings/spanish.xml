@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <spanish>
-	<!--LANGUAGE-->
+
+	<!--LANGUAGE from this list: http://www.oracle.com/technetwork/java/javase/locales-137662.html-->
 		<language>es</language>
 		<language0></language0>
 		
-	<!--LOGIN WINDOW-->
-		<login>Login</login>
+	<!--COMMON-->
 		<acept>Aceptar</acept>
 		<cancel>Cancelar</cancel>
 		<name>Nombre</name>
 		<new>Nuevo</new>
+		
+	<!--LOGIN WINDOW-->
+		<login>Login</login>
 		<remember>Recuérdame</remember>
 		<name_error_repeated>El nombre de usuario ya existe</name_error_repeated>
 		<name_error_space>El nombre de usuario no puede ser un campo vacío</name_error_space>
@@ -17,4 +20,5 @@
 		<tt_checkRemember>Marque esta casilla si desea que este usuario sea cargado automáticamente al arrancar el programa</tt_checkRemember>
 		<tt_comboUsuario>Lista de usuarios registrados</tt_comboUsuario>
 		<tt_botonAdd>Agrega un nuevo usuario</tt_botonAdd>
+		
 </spanish>
