@@ -54,6 +54,14 @@ public class Datos {
         return resultado;
     }
     
+    public void update(String update) throws SQLException{
+        /*
+        * Este metodo ejecuta un update a la base de datos pasado como string
+        * Si no se puede ejecutar el update lanza una SQLException
+        */
+        connection.createStatement().executeUpdate(update);
+    }
+    
     public Connection getConnection(){
         /*
         * Devuelve la conexion con la base de datos (necesaria para generar informes)
