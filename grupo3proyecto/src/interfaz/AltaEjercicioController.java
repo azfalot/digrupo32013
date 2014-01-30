@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -24,6 +25,7 @@ public class AltaEjercicioController implements Initializable {
     /**
      * Initializes the controller class.
      */
+
     @FXML
     Button buttonAlta;
     @FXML
@@ -35,9 +37,10 @@ public class AltaEjercicioController implements Initializable {
     @FXML
     ComboBox comboTipo;
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
 
 }

@@ -1,68 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="586.4998168945312" prefWidth="739.3331298828125" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaPrincipalController">
   <children>
-    <MenuBar prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Close" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Delete" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <SplitPane dividerPositions="0.49331103678929766" focusTraversable="true" prefHeight="376.0" prefWidth="600.0" rotate="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+    <AnchorPane id="pane" fx:id="desktop" minHeight="510.24993896484375" prefHeight="519.2499389648438" prefWidth="735.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+      <children>
+        <ImageView fx:id="wallpaper" fitHeight="554.4998168945312" fitWidth="739.3331599220624" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.67" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.5">
+          <image>
+            <Image url="@../../resources/wallpaper01.png" />
+          </image>
+        </ImageView>
+        <Button fx:id="button1" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" mnemonicParsing="false" onAction="#handleButton1" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Prueba" textAlignment="CENTER" underline="false" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="351.0">
+          <graphic>
+            <ImageView fx:id="ivIco1" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+              <image>
+                <Image url="@../../resources/wrong.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="button1" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButton1" prefHeight="88.99981689453125" prefWidth="102.00312988281246" text="button1" AnchorPane.leftAnchor="274.0" AnchorPane.topAnchor="64.0">
+          <graphic>
+            <ImageView id="ivIco1" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true" />
+          </graphic>
+        </Button>
+      </children>
+    </AnchorPane>
+    <ToolBar fx:id="toolBar" minHeight="14.0" prefHeight="32.0" prefWidth="735.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-          <children>
-            <TableView prefHeight="278.0" prefWidth="490.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="69.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="Column X" />
-                <TableColumn prefWidth="75.0" text="Column X" />
-              </columns>
-            </TableView>
-            <ToolBar prefHeight="69.0" prefWidth="398.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
-              <items>
-                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="80.0" text="Button" />
-                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="80.0" text="Button" />
-              </items>
-            </ToolBar>
-            <ToolBar maxHeight="32.0" prefHeight="32.0" prefWidth="392.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-              <items>
-                <TextField fx:id="tfFiltrar" prefWidth="200.0" />
-                <Button fx:id="botonFiltrar" mnemonicParsing="false" text="Filtrar" />
-                <ComboBox>
-                  <items>
-                    <FXCollections fx:factory="observableArrayList">
-                      <String fx:value="Item 1" />
-                      <String fx:value="Item 2" />
-                      <String fx:value="Item 3" />
-                    </FXCollections>
-                  </items>
-                </ComboBox>
-              </items>
-            </ToolBar>
-          </children>
-        </AnchorPane>
-        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="300.0" minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="300.0" />
+        <Button id="botonFullScreen" fx:id="botonExit" mnemonicParsing="false" onAction="#handleBotonExit" style="-fx-background-color: #ff3333;" text="" />
+        <Button fx:id="botonFullScreen" mnemonicParsing="false" onAction="#handleBotonFullScreen" style="-fx-background-color: #666666;" text="" />
+        <Label fx:id="labelHora" prefHeight="20.999900817871094" prefWidth="32.0" text="00:00" textAlignment="LEFT" />
       </items>
-    </SplitPane>
+    </ToolBar>
   </children>
+  <stylesheets>
+    <URL value="@PantallaPrincipalStyle.css" />
+  </stylesheets>
 </AnchorPane>

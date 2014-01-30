@@ -46,6 +46,7 @@ public class Escalada extends Application {
     
     public void goToPantallaPrincipal(){
          wPrincipal = (PantallaPrincipalController) newSceneContent("PantallaPrincipal.fxml", "Principal", true, false, mainStage);
+         wPrincipal.builder(mainStage);
          
     }
     
@@ -80,6 +81,7 @@ public class Escalada extends Application {
         try {
             Parent page = (Parent) loader.load();
             Scene scene = new Scene(page);
+            
             stage.setScene(scene);
             if ("".equals(title)) {
                 stage.setTitle(applicationName);
@@ -92,6 +94,7 @@ public class Escalada extends Application {
                 stage.initModality(Modality.APPLICATION_MODAL);
             }
             stage.show();
+            
             return (Initializable) loader.getController();
         } catch (Throwable e) {
             e.printStackTrace();
