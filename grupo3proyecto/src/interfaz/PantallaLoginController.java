@@ -103,6 +103,7 @@ public class PantallaLoginController implements Initializable {
     @FXML
     private void handleCancelar() {
         stage.close();
+        app.goToPantallaPrincipal();
     }
 
     @Override

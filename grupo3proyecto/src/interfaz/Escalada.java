@@ -26,6 +26,7 @@ public class Escalada extends Application {
     private Methods m;
     private final String applicationName = "Escalator 3000"; //nombre de la aplicacion
     private PantallaLoginController wLogin;//ventana de login, sera necesaria para que sea actualizada tras dar de alta un usuario
+    private PantallaPrincipalController wPrincipal;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -43,8 +44,9 @@ public class Escalada extends Application {
         wLogin.builder(this,m,mainStage,secondaryStage);
     }
     
-    public void goToMainStage(){
-        
+    public void goToPantallaPrincipal(){
+         wPrincipal = (PantallaPrincipalController) newSceneContent("PantallaPrincipal.fxml", "Principal", true, false, mainStage);
+         
     }
     
     public void goToAltaUsuario(){
