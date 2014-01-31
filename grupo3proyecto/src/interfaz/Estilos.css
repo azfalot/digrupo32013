@@ -15,7 +15,6 @@ and open the template in the editor.
 
 .botones{
     -fx-background-color: #ffff00;
-    -fx-font:  italic;
 }
 .botones:hover{
     -fx-background-color: #ffff99;

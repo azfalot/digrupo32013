@@ -46,7 +46,7 @@ public class Escalada extends Application {
     
     public void goToPantallaPrincipal(){
          wPrincipal = (PantallaPrincipalController) newSceneContent("PantallaPrincipal.fxml", "Principal", true, false, mainStage);
-         wPrincipal.builder(mainStage);
+         wPrincipal.builder(mainStage,m);
          
     }
     

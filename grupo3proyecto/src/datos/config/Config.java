@@ -5,6 +5,7 @@
  */
 package datos.config;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class Config implements Serializable {
 
     private String language;
     private int defaultUser;
+    private String wallpaper;
 
     public Config() {
         ObjectInputStream ois = null;
@@ -29,14 +31,16 @@ public class Config implements Serializable {
             c = (Config) ois.readObject();
             this.language = c.getLanguage();
             this.defaultUser = c.getDefaultUser();
+            this.wallpaper=c.getWallpaper();
         } catch (IOException | ClassNotFoundException ex) {
             generate();
         }
     }
 
-    public Config(String language, int defaultUser) {
+    public Config(String language, int defaultUser,String wallpaper) {
         this.language = language;
         this.defaultUser = defaultUser;
+        this.wallpaper=wallpaper;
     }
 
     private void generate() {
@@ -47,7 +51,7 @@ public class Config implements Serializable {
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(new FileOutputStream("config.cfg"));
-            Config defaultConfig=new Config("spanish", 0);//CAMBIAR POR english
+            Config defaultConfig=new Config("spanish", 0,"resources" + File.separator + "wallpaper01.png");
             oos.writeObject(defaultConfig); 
             this.language=defaultConfig.getLanguage();
             this.defaultUser=defaultConfig.getDefaultUser();
@@ -84,6 +88,14 @@ public class Config implements Serializable {
     public void setDefaultUser(int defaultUser) {
         this.defaultUser = defaultUser;
         save();
+    }
+
+    public String getWallpaper() {
+        return wallpaper;
+    }
+
+    public void setWallpaper(String wallpaper) {
+        this.wallpaper = wallpaper;
     }
 
 }

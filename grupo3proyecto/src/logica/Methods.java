@@ -46,6 +46,10 @@ public class Methods {
     public int getUserId(){
         return user.getId();
     }
+    
+    public String getWallpaper(){
+        return cfg.getWallpaper();
+    }
 
     public String getUserName(){
         return user.getNombre();
