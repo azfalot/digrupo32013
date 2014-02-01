@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -83,6 +84,7 @@ public class PantallaPrincipalController implements Initializable {
 
     Methods m;
     Stage stage;
+    SimpleDateFormat tituloConsulta=new SimpleDateFormat("dd/MM/yy hh:mm");
     
     String ttNotFullscreen="Pantalla completa";
     String ttFullscreen="Salir del modo pantalla completa";
@@ -98,7 +100,8 @@ public class PantallaPrincipalController implements Initializable {
      */
     @FXML
     private void handleIconoConsulta() {
-
+        final Window w = new Window();
+        addWindow("PantallaConsulta.fxml", "Consulta "+tituloConsulta.format(new Date()), 600, 400, "resources" + File.separator + "icons"+File.separator+"consulta.png", w);
     }
 
     @FXML
@@ -129,7 +132,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleButton2() {
         final Window w = new Window();
-        addWindow("AltaEjercicio.fxml", "alta entrenamiento " + (++cEntrenamiento), 400, 400, false, "resources" + File.separator + "tick.png", w);
+        addWindow("AltaEjercicio.fxml", "alta entrenamiento " + (++cEntrenamiento), 400, 400, "resources" + File.separator + "tick.png", w);
 
     }
 
@@ -216,7 +219,7 @@ public class PantallaPrincipalController implements Initializable {
         ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
     }
 
-    private Initializable addWindow(String fxml, String title, int height, int width, boolean resizable, String imgPath, final Window w) {
+    private Initializable addWindow(String fxml, String title, int height, int width, String imgPath, final Window w) {
         /*
          * Este metodo lanza una ventana al escritorio, hay que pasarle el archivo fxml, el titulo que llevara, el tamaño, el icono y la ventana
          * Funciona igual que el newSceneContent de la clase Escalada, pero para ventanas en el escritorio.
@@ -231,10 +234,6 @@ public class PantallaPrincipalController implements Initializable {
         //Se definen las propiedades de la ventana
         w.setTitle(title);
         w.setPrefSize(height, width);
-        if (!resizable) {
-            w.setMinSize(height, width);
-            w.setMaxSize(height, width);
-        }
         w.setContentPane(cmdPane);
         w.getRightIcons().add(new MinimizeIcon(w));
         w.getRightIcons().add(new CloseIcon(w));

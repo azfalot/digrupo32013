@@ -16,7 +16,7 @@
       <children>
         <ImageView fx:id="wallpaper" fitHeight="554.4998168945312" fitWidth="739.3331599220624" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.5" AnchorPane.leftAnchor="-0.67" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <image>
-            <Image url="@../../resources/wallpaper01.png" />
+            <Image url="@../../resources/defaultwallpaper.png" />
           </image>
         </ImageView>
         <Button id="button1" fx:id="button2" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButton2" prefHeight="109.24990844726562" prefWidth="103.0" styleClass="icono" text="toolbar&#10;prueba" AnchorPane.leftAnchor="636.0" AnchorPane.topAnchor="0.0">
