@@ -7,9 +7,9 @@ package logica;
 
 import datos.conexionbd.Datos;
 import datos.conexionbd.Usuario;
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +27,7 @@ class Queries {
         ResultSet rs = bd.consulta("select * from escaladores where p_escaladores=" + id);
         try {
             while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"));
+                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"),rs.getString("wallpaper"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -42,7 +42,7 @@ class Queries {
         ResultSet rs = bd.consulta("select * from escaladores where nombre='" + name + "'");
         try {
             while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"));
+                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"),rs.getString("wallpaper"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -72,26 +72,21 @@ class Queries {
          * asignada.
          * Si devuelve 0 es que el nombre ya esta cogido
          */
-        
+
         //comprueba que el nombre esta libre
-        for(String n:(ArrayList<String>)getNombreUsuarios()){
-            if(n.equals(nombre)){
+        for (String n : (ArrayList<String>) getNombreUsuarios()) {
+            if (n.equals(nombre)) {
                 return 0;
             }
         }
-        Statement statement;
-        int id=1;
-        try {
-            statement = bd.getConnection().createStatement();
-            while (true) {
-                try {
-                    statement.executeUpdate("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE) VALUES ("+id+",'"+nombre +"')");
-                    break;
-                } catch (SQLException ex) {
-                    id++;
-                }
+        int id = 1;
+        while (true) {
+            try {
+                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','"+ "resources" + File.separator + "defaultwallpaper.png"+"')");
+                break;
+            } catch (SQLException ex) {
+                id++;
             }
-        } catch (SQLException ex) {
         }
         return id;
     }

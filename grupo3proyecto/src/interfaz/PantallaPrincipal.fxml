@@ -19,19 +19,7 @@
             <Image url="@../../resources/wallpaper01.png" />
           </image>
         </ImageView>
-        <Button fx:id="button1" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" mnemonicParsing="false" onAction="#handleButton1" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Prueba" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" AnchorPane.leftAnchor="558.0" AnchorPane.topAnchor="38.0">
-          <font>
-            <Font name="System Bold" size="12.0" />
-          </font>
-          <graphic>
-            <ImageView fx:id="ivIco1" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
-              <image>
-                <Image url="@../../resources/wrong.png" />
-              </image>
-            </ImageView>
-          </graphic>
-        </Button>
-        <Button id="button1" fx:id="button2" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButton2" prefHeight="109.24990844726562" prefWidth="103.0" styleClass="icono" text="toolbar&#10;prueba" AnchorPane.leftAnchor="558.0" AnchorPane.topAnchor="152.0">
+        <Button id="button1" fx:id="button2" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButton2" prefHeight="109.24990844726562" prefWidth="103.0" styleClass="icono" text="toolbar&#10;prueba" AnchorPane.leftAnchor="636.0" AnchorPane.topAnchor="0.0">
           <graphic>
             <ImageView id="ivIco1" fx:id="ivIco2" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
               <image>
@@ -40,12 +28,85 @@
             </ImageView>
           </graphic>
         </Button>
+        <Button id="button1" fx:id="iconoConsulta" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" layoutX="119.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleIconoConsulta" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Consulta" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
+          <font>
+            <Font name="System Bold" size="12.0" fx:id="x1" />
+          </font>
+          <graphic>
+            <ImageView id="ivIco1" fx:id="ivIconoConsulta" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+              <image>
+                <Image url="@../../resources/icons/consulta.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="button1" fx:id="iconoEntrenamiento" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="307.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleIconoEntrenamiento" prefHeight="89.0" prefWidth="126.0" styleClass="icono" text="Entrenamiento" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
+          <graphic>
+            <ImageView id="ivIco1" fx:id="ivIconoEntrenamiento" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+              <image>
+                <Image url="@../../resources/icons/entrenamiento.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="button1" fx:id="iconoItinerario" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="506.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleIconoItinerario" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Itinerario" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
+          <graphic>
+            <ImageView id="ivIco1" fx:id="ivIconoItinerario" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+              <image>
+                <Image url="@../../resources/icons/itinerario.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="button1" fx:id="iconoPerfil" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="119.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleIconoPerfil" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Perfil" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="false">
+          <graphic>
+            <ImageView id="ivIco1" fx:id="ivIconoPerfil" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+              <image>
+                <Image url="@../../resources/icons/perfil.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="button1" fx:id="iconoConfiguracion" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="307.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleIconoConfiguracion" prefHeight="89.0" prefWidth="126.0" styleClass="icono" text="Configuración" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
+          <graphic>
+            <ImageView id="ivIco1" fx:id="ivIconoConfiguracion" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+              <image>
+                <Image url="@../../resources/icons/settings.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="button1" fx:id="iconoImprimir" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="506.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleIconoImprimir" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Imprimir" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
+          <graphic>
+            <ImageView id="ivIco1" fx:id="ivIconoImprimir" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+              <image>
+                <Image url="@../../resources/icons/imprimir.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
       </children>
     </AnchorPane>
     <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="735.0" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <items>
-        <Button id="botonFullScreen" fx:id="botonExit" mnemonicParsing="false" onAction="#handleBotonExit" style="-fx-background-color: #ff3333;" text="" />
-        <Button fx:id="botonFullScreen" mnemonicParsing="false" onAction="#handleBotonFullScreen" style="-fx-background-color: #666666;" text="" />
+        <Button id="botonFullScreen" fx:id="botonExit" focusTraversable="false" minWidth="35.0" mnemonicParsing="false" onAction="#handleBotonExit" prefWidth="35.0" style="" styleClass="taskbaricons" text="">
+          <graphic>
+            <ImageView fx:id="ivBotonExit" fitHeight="21.0" fitWidth="28.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../../resources/icons/off.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonFullScreen" focusTraversable="false" minWidth="35.0" mnemonicParsing="false" onAction="#handleBotonFullScreen" prefWidth="35.0" style="" styleClass="taskbaricons" text="">
+          <graphic>
+            <ImageView fx:id="ivBotonFullScreen" fitHeight="21.0" fitWidth="28.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../../resources/icons/fullscreen.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
         <Label fx:id="labelHora" alignment="CENTER" focusTraversable="false" prefHeight="21.0" prefWidth="46.0" text="00:00" textAlignment="CENTER" textFill="WHITE" underline="false" visible="true">
           <font>
             <Font size="12.0" />

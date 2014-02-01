@@ -26,6 +26,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToolBar;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -56,11 +57,25 @@ public class PantallaPrincipalController implements Initializable {
     Button botonFullScreen;
     @FXML
     Button botonExit;
+    @FXML
+    Button iconoPerfil;
+    @FXML
+    ImageView ivBotonExit;
+    @FXML
+    ImageView ivBotonFullScreen;
+    @FXML
+    ImageView ivIconoConsulta;
+    @FXML
+    ImageView ivIconoEntrenamiento;
+    @FXML
+    ImageView ivIconoItinerario;
+    @FXML
+    ImageView ivIconoPerfil;
+    @FXML
+    ImageView ivIconoConfiguracion;
+    @FXML
+    ImageView ivIconoImprimir;
 
-    @FXML
-    ImageView ivIco1;
-    @FXML
-    Button button1;
     @FXML
     ImageView ivIco2;
     @FXML
@@ -68,22 +83,53 @@ public class PantallaPrincipalController implements Initializable {
 
     Methods m;
     Stage stage;
+    
+    String ttNotFullscreen="Pantalla completa";
+    String ttFullscreen="Salir del modo pantalla completa";
 
     /*
      * contadores de pantallas
      */
     int cEntrenamiento = 0;
+    int cItinerario = 0;
+
+    /*
+     * Iconos, handles
+     */
+    @FXML
+    private void handleIconoConsulta() {
+
+    }
 
     @FXML
-    private void handleButton1() {
-        //Window wAlta = new Window();
-        //addWindow("AltaEjercicio.fxml", "alta entrenamiento", 600, 400, wAlta);
+    private void handleIconoEntrenamiento() {
+
+    }
+
+    @FXML
+    private void handleIconoItinerario() {
+
+    }
+
+    @FXML
+    private void handleIconoPerfil() {
+
+    }
+
+    @FXML
+    private void handleIconoConfiguracion() {
+
+    }
+
+    @FXML
+    private void handleIconoImprimir() {
+
     }
 
     @FXML
     private void handleButton2() {
         final Window w = new Window();
-        addWindow("AltaEjercicio.fxml", "alta entrenamiento " + (++cEntrenamiento), 600, 600, false, "resources" + File.separator + "tick.png", w);
+        addWindow("AltaEjercicio.fxml", "alta entrenamiento " + (++cEntrenamiento), 400, 400, false, "resources" + File.separator + "tick.png", w);
 
     }
 
@@ -91,8 +137,10 @@ public class PantallaPrincipalController implements Initializable {
     private void handleBotonFullScreen() {
         if (!stage.isFullScreen()) {
             stage.setFullScreen(true);
+            botonFullScreen.setTooltip(new Tooltip(ttFullscreen));      
         } else {
             stage.setFullScreen(false);
+            botonFullScreen.setTooltip(new Tooltip(ttNotFullscreen));
         }
     }
 
@@ -105,22 +153,26 @@ public class PantallaPrincipalController implements Initializable {
         this.stage = stage;
         this.m = m;
         setDesktop();
+        iconoPerfil.setText(m.getUserName());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setClock();
         setIcons();
-        setButtonsProperties();
-        
 
+    }
+    
+    private void setToolTips(){
+        botonExit.setTooltip(new Tooltip("Desconectar"));
+        botonFullScreen.setTooltip(new Tooltip(ttNotFullscreen));
     }
 
     private void setClock() {
         /*
          * metodo para poner el marcha el reloj
          */
-        final SimpleDateFormat fHora=new SimpleDateFormat("HH:mm");
+        final SimpleDateFormat fHora = new SimpleDateFormat("HH:mm");
         final Timeline timeline;
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
@@ -133,15 +185,6 @@ public class PantallaPrincipalController implements Initializable {
         timeline.play();
     }
 
-    private void setButtonsProperties() {
-        /*
-         * este metodo hace que no se pueda tener el focus sobre ciertos botones, como los iconos
-         */
-        botonExit.setFocusTraversable(false);
-        botonFullScreen.setFocusTraversable(false);
-        button1.setFocusTraversable(false);
-        button2.setFocusTraversable(false);
-    }
 
     private void setDesktop() {
         /*
@@ -161,9 +204,16 @@ public class PantallaPrincipalController implements Initializable {
         /*
          * carga la imagen de los iconos
          */
-        ivIco1.setImage(new Image("file:resources" + File.separator + "wrong.png"));
         ivIco2.setImage(new Image("file:resources" + File.separator + "tick.png"));
-
+        
+        ivBotonExit.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "off.png"));
+        ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
+        ivIconoConfiguracion.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "settings.png"));
+        ivIconoConsulta.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "consulta.png"));
+        ivIconoEntrenamiento.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "entrenamiento.png"));
+        ivIconoImprimir.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "imprimir.png"));
+        ivIconoItinerario.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "itinerario.png"));
+        ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
     }
 
     private Initializable addWindow(String fxml, String title, int height, int width, boolean resizable, String imgPath, final Window w) {

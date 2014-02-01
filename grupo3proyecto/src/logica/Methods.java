@@ -20,7 +20,6 @@ public class Methods {
     private Config cfg;
     private Language lang;
     private final Queries q=new Queries();
-    private boolean remember;//indica si se guarda el usuario por defecto
     private Usuario user = new Usuario();
 
     private Methods() {
@@ -38,19 +37,15 @@ public class Methods {
          */
         return lang.write(text);
     }
-
-    public boolean getRemember() {
-        return remember;
-    }
     
     public int getUserId(){
         return user.getId();
     }
     
     public String getWallpaper(){
-        return cfg.getWallpaper();
+        return user.getWallpaper();
     }
-
+    
     public String getUserName(){
         return user.getNombre();
     }
@@ -74,10 +69,7 @@ public class Methods {
         cfg = new Config();
         lang = Language.getInstance(cfg.getLanguage());
         if (cfg.getDefaultUser() != 0) {
-            remember = true;
             this.user = getUsuario(cfg.getDefaultUser());
-        } else {
-            remember = false;
         }
     }
 

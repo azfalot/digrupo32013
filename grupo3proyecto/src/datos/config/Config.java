@@ -21,7 +21,6 @@ public class Config implements Serializable {
 
     private String language;
     private int defaultUser;
-    private String wallpaper;
 
     public Config() {
         ObjectInputStream ois = null;
@@ -31,16 +30,14 @@ public class Config implements Serializable {
             c = (Config) ois.readObject();
             this.language = c.getLanguage();
             this.defaultUser = c.getDefaultUser();
-            this.wallpaper=c.getWallpaper();
         } catch (IOException | ClassNotFoundException ex) {
             generate();
         }
     }
 
-    public Config(String language, int defaultUser,String wallpaper) {
+    public Config(String language, int defaultUser) {
         this.language = language;
         this.defaultUser = defaultUser;
-        this.wallpaper=wallpaper;
     }
 
     private void generate() {
@@ -51,7 +48,7 @@ public class Config implements Serializable {
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(new FileOutputStream("config.cfg"));
-            Config defaultConfig=new Config("spanish", 0,"resources" + File.separator + "wallpaper01.png");
+            Config defaultConfig=new Config("spanish", 0);
             oos.writeObject(defaultConfig); 
             this.language=defaultConfig.getLanguage();
             this.defaultUser=defaultConfig.getDefaultUser();
@@ -79,7 +76,7 @@ public class Config implements Serializable {
     public int getDefaultUser() {
         return defaultUser;
     }
-
+    
     public void setLanguage(String language) {
         this.language = language;
         save();
@@ -89,13 +86,5 @@ public class Config implements Serializable {
         this.defaultUser = defaultUser;
         save();
     }
-
-    public String getWallpaper() {
-        return wallpaper;
-    }
-
-    public void setWallpaper(String wallpaper) {
-        this.wallpaper = wallpaper;
-    }
-
+    
 }

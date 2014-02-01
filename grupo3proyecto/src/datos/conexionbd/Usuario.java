@@ -11,16 +11,18 @@ package datos.conexionbd;
  * @author Daniel Plaza
  */
 public class Usuario {
-    private int id;
+    private final int id;
     private String nombre;
+    private String wallpaper;
 
     public Usuario() {
         this.id=0;
     }
     
-    public Usuario(int id, String nombre) {
+    public Usuario(int id, String nombre,String wallpaper) {
         this.id = id;
         this.nombre = nombre;
+        this.wallpaper=wallpaper;
     }
 
     public int getId() {
@@ -29,6 +31,10 @@ public class Usuario {
 
     public String getNombre() {
         return nombre;
-    }    
+    }
+
+    public String getWallpaper() {
+        return wallpaper;
+    }
 
 }
