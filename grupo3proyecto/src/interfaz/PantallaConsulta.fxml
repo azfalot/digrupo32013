@@ -6,36 +6,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaConsultaController">
+<AnchorPane id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaConsultaController">
   <children>
-    <Accordion layoutX="396.0" layoutY="0.0" prefHeight="400.0">
-      <expandedPane>
-        <TitledPane fx:id="x1" animated="false" text="untitled">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="281.0" prefWidth="200.0" />
-          </content>
-        </TitledPane>
-      </expandedPane>
-      <panes>
-        <TitledPane animated="false" text="untitled">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-          </content>
-        </TitledPane>
-        <fx:reference source="x1" />
-      </panes>
-    </Accordion>
-    <ToolBar layoutX="0.0" layoutY="371.0" prefWidth="396.0">
-      <items>
-        <TextField prefWidth="255.0" />
-        <Button mnemonicParsing="false" prefWidth="115.0" text="Button" />
-      </items>
-    </ToolBar>
-    <TableView layoutX="0.0" layoutY="0.0" prefHeight="371.0" prefWidth="398.0">
+    <TableView prefHeight="400.0" prefWidth="407.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="0.0">
       <columns>
         <TableColumn prefWidth="75.0" text="Column X" />
         <TableColumn prefWidth="75.0" text="Column X" />
       </columns>
     </TableView>
+    <TabPane prefHeight="400.0" prefWidth="193.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <tabs>
+        <Tab text="Detalle">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+        </Tab>
+        <Tab text="Filtro">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
   </children>
 </AnchorPane>

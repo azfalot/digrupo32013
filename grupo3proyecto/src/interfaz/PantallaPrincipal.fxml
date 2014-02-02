@@ -12,79 +12,90 @@
 
 <AnchorPane id="AnchorPane" prefHeight="586.4998168945312" prefWidth="739.3331298828125" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaPrincipalController">
   <children>
-    <AnchorPane id="pane" fx:id="desktop" minHeight="510.24993896484375" prefHeight="519.2499389648438" prefWidth="735.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+    <AnchorPane id="pane" fx:id="desktop" minHeight="510.24993896484375" prefHeight="554.4998168945312" prefWidth="739.3331298828125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.67" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.5">
       <children>
         <ImageView fx:id="wallpaper" fitHeight="554.4998168945312" fitWidth="739.3331599220624" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.5" AnchorPane.leftAnchor="-0.67" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <image>
             <Image url="@../../resources/defaultwallpaper.png" />
           </image>
         </ImageView>
-        <Button id="button1" fx:id="button2" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButton2" prefHeight="109.24990844726562" prefWidth="103.0" styleClass="icono" text="toolbar&#10;prueba" AnchorPane.leftAnchor="636.0" AnchorPane.topAnchor="0.0">
-          <graphic>
-            <ImageView id="ivIco1" fx:id="ivIco2" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
-              <image>
-                <Image url="@../../resources/tick.png" />
-              </image>
-            </ImageView>
-          </graphic>
-        </Button>
-        <Button id="button1" fx:id="iconoConsulta" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" layoutX="119.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleIconoConsulta" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Consulta" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
-          <font>
-            <Font name="System Bold" size="12.0" fx:id="x1" />
-          </font>
-          <graphic>
-            <ImageView id="ivIco1" fx:id="ivIconoConsulta" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
-              <image>
-                <Image url="@../../resources/icons/consulta.png" />
-              </image>
-            </ImageView>
-          </graphic>
-        </Button>
-        <Button id="button1" fx:id="iconoEntrenamiento" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="307.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleIconoEntrenamiento" prefHeight="89.0" prefWidth="126.0" styleClass="icono" text="Entrenamiento" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
-          <graphic>
-            <ImageView id="ivIco1" fx:id="ivIconoEntrenamiento" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
-              <image>
-                <Image url="@../../resources/icons/entrenamiento.png" />
-              </image>
-            </ImageView>
-          </graphic>
-        </Button>
-        <Button id="button1" fx:id="iconoItinerario" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="506.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleIconoItinerario" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Itinerario" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
-          <graphic>
-            <ImageView id="ivIco1" fx:id="ivIconoItinerario" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
-              <image>
-                <Image url="@../../resources/icons/itinerario.png" />
-              </image>
-            </ImageView>
-          </graphic>
-        </Button>
-        <Button id="button1" fx:id="iconoPerfil" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="119.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleIconoPerfil" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Perfil" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="false">
-          <graphic>
-            <ImageView id="ivIco1" fx:id="ivIconoPerfil" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
-              <image>
-                <Image url="@../../resources/icons/perfil.png" />
-              </image>
-            </ImageView>
-          </graphic>
-        </Button>
-        <Button id="button1" fx:id="iconoConfiguracion" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="307.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleIconoConfiguracion" prefHeight="89.0" prefWidth="126.0" styleClass="icono" text="Configuración" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
-          <graphic>
-            <ImageView id="ivIco1" fx:id="ivIconoConfiguracion" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
-              <image>
-                <Image url="@../../resources/icons/settings.png" />
-              </image>
-            </ImageView>
-          </graphic>
-        </Button>
-        <Button id="button1" fx:id="iconoImprimir" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" layoutX="506.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleIconoImprimir" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Imprimir" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true">
-          <graphic>
-            <ImageView id="ivIco1" fx:id="ivIconoImprimir" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
-              <image>
-                <Image url="@../../resources/icons/imprimir.png" />
-              </image>
-            </ImageView>
-          </graphic>
-        </Button>
+        <GridPane prefHeight="555.0" prefWidth="740.0030517578125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+          <children>
+            <Button id="button1" fx:id="iconoConsulta" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" mnemonicParsing="false" onAction="#handleIconoConsulta" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Consulta" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+              <font>
+                <Font name="System Bold" size="12.0" fx:id="x1" />
+              </font>
+              <graphic>
+                <ImageView id="ivIco1" fx:id="ivIconoConsulta" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+                  <image>
+                    <Image url="@../../resources/icons/consulta.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button id="button1" fx:id="iconoEntrenamiento" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" mnemonicParsing="false" onAction="#handleIconoEntrenamiento" prefHeight="84.0" prefWidth="134.0" styleClass="icono" text="Entrenamiento" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+              <graphic>
+                <ImageView id="ivIco1" fx:id="ivIconoEntrenamiento" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+                  <image>
+                    <Image url="@../../resources/icons/entrenamiento.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button id="button1" fx:id="iconoItinerario" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" mnemonicParsing="false" onAction="#handleIconoItinerario" prefHeight="88.99981689453125" prefWidth="103.00312988281252" styleClass="icono" text="Itinerario" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+              <graphic>
+                <ImageView id="ivIco1" fx:id="ivIconoItinerario" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+                  <image>
+                    <Image url="@../../resources/icons/itinerario.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button id="button1" fx:id="iconoPerfil" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" mnemonicParsing="false" onAction="#handleIconoPerfil" prefHeight="88.99981689453125" prefWidth="103.00312988281252" styleClass="icono" text="Perfil" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+              <graphic>
+                <ImageView id="ivIco1" fx:id="ivIconoPerfil" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+                  <image>
+                    <Image url="@../../resources/icons/perfil.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button id="button1" fx:id="iconoConfiguracion" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" mnemonicParsing="false" onAction="#handleIconoConfiguracion" prefHeight="84.0" prefWidth="134.0" styleClass="icono" text="Configuración" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+              <graphic>
+                <ImageView id="ivIco1" fx:id="ivIconoConfiguracion" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+                  <image>
+                    <Image url="@../../resources/icons/settings.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button id="button1" fx:id="iconoImprimir" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" font="$x1" mnemonicParsing="false" onAction="#handleIconoImprimir" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Imprimir" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+              <graphic>
+                <ImageView id="ivIco1" fx:id="ivIconoImprimir" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+                  <image>
+                    <Image url="@../../resources/icons/imprimir.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="89.0" minWidth="10.0" percentWidth="14.0" prefWidth="89.0" />
+            <ColumnConstraints fillWidth="true" halignment="CENTER" hgrow="NEVER" maxWidth="89.0" minWidth="10.0" percentWidth="14.0" prefWidth="125.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="86.0" minWidth="10.0" percentWidth="14.0" prefWidth="86.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="174.0" minWidth="10.0" percentWidth="20.0" prefWidth="125.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="100.0" minWidth="10.0" percentWidth="14.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="171.0" minWidth="10.0" percentWidth="14.0" prefWidth="125.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="91.0" minWidth="7.0" percentWidth="14.0" prefWidth="91.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" percentHeight="34.0" prefHeight="30.0" vgrow="ALWAYS" />
+          </rowConstraints>
+        </GridPane>
       </children>
     </AnchorPane>
     <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="735.0" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

@@ -45,7 +45,7 @@ import logica.Methods;
  * @author Grupo 3
  */
 public class PantallaPrincipalController implements Initializable {
-
+    
     @FXML
     AnchorPane desktop;
     @FXML
@@ -77,17 +77,13 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     ImageView ivIconoImprimir;
 
-    @FXML
-    ImageView ivIco2;
-    @FXML
-    Button button2;
-
     Methods m;
     Stage stage;
-    SimpleDateFormat tituloConsulta=new SimpleDateFormat("dd/MM/yy hh:mm");
-    
-    String ttNotFullscreen="Pantalla completa";
-    String ttFullscreen="Salir del modo pantalla completa";
+    SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
+
+
+    String ttNotFullscreen = "Pantalla completa";
+    String ttFullscreen = "Salir del modo pantalla completa";
 
     /*
      * contadores de pantallas
@@ -101,7 +97,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoConsulta() {
         final Window w = new Window();
-        addWindow("PantallaConsulta.fxml", "Consulta "+tituloConsulta.format(new Date()), 600, 400, "resources" + File.separator + "icons"+File.separator+"consulta.png", w);
+        addWindow("PantallaConsulta.fxml", "Consulta " + tituloConsulta.format(new Date()), 600, 400, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", w);
     }
 
     @FXML
@@ -128,19 +124,12 @@ public class PantallaPrincipalController implements Initializable {
     private void handleIconoImprimir() {
 
     }
-
-    @FXML
-    private void handleButton2() {
-        final Window w = new Window();
-        addWindow("AltaEjercicio.fxml", "alta entrenamiento " + (++cEntrenamiento), 400, 400, "resources" + File.separator + "tick.png", w);
-
-    }
-
+    
     @FXML
     private void handleBotonFullScreen() {
         if (!stage.isFullScreen()) {
             stage.setFullScreen(true);
-            botonFullScreen.setTooltip(new Tooltip(ttFullscreen));      
+            botonFullScreen.setTooltip(new Tooltip(ttFullscreen));
         } else {
             stage.setFullScreen(false);
             botonFullScreen.setTooltip(new Tooltip(ttNotFullscreen));
@@ -163,10 +152,11 @@ public class PantallaPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setClock();
         setIcons();
-
+        //toolBar.get
+        
     }
-    
-    private void setToolTips(){
+
+    private void setToolTips() {
         botonExit.setTooltip(new Tooltip("Desconectar"));
         botonFullScreen.setTooltip(new Tooltip(ttNotFullscreen));
     }
@@ -188,7 +178,6 @@ public class PantallaPrincipalController implements Initializable {
         timeline.play();
     }
 
-
     private void setDesktop() {
         /*
          * Establece el fondo de pantalla ajustado a la ventana
@@ -207,8 +196,6 @@ public class PantallaPrincipalController implements Initializable {
         /*
          * carga la imagen de los iconos
          */
-        ivIco2.setImage(new Image("file:resources" + File.separator + "tick.png"));
-        
         ivBotonExit.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "off.png"));
         ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
         ivIconoConfiguracion.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "settings.png"));
@@ -219,7 +206,7 @@ public class PantallaPrincipalController implements Initializable {
         ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
     }
 
-    private Initializable addWindow(String fxml, String title, int height, int width, String imgPath, final Window w) {
+    private Initializable addWindow(String fxml, String title, int height, int width, boolean resizable, String imgPath, final Window w) {
         /*
          * Este metodo lanza una ventana al escritorio, hay que pasarle el archivo fxml, el titulo que llevara, el tamaño, el icono y la ventana
          * Funciona igual que el newSceneContent de la clase Escalada, pero para ventanas en el escritorio.
@@ -230,11 +217,15 @@ public class PantallaPrincipalController implements Initializable {
         try {
             cmdPane = (Pane) fxmlLoader.load();
         } catch (IOException ex) {
-        }
+        }        
         //Se definen las propiedades de la ventana
         w.setTitle(title);
-        w.setPrefSize(height, width);
+        w.setPrefSize(height + 4, width + 30);//se suman los valores ya que el size se refiere a la totalidad de la ventana con bordes
         w.setContentPane(cmdPane);
+        if(resizable){
+            w.setResizableWindow(true);
+            //w.getLeftIcons().add(new MaximizeIcon(w));
+        }
         w.getRightIcons().add(new MinimizeIcon(w));
         w.getRightIcons().add(new CloseIcon(w));
         //Se agrega al escritorio
@@ -242,12 +233,17 @@ public class PantallaPrincipalController implements Initializable {
         //Se crea el boton de la barra de tareas
         final Button button = new Button(title, new ImageView(new Image("file:" + imgPath, 15, 15, false, false)));
         toolBar.getItems().add(button);
-        //Con la propiedad de mover la ventana debajo de el
+        /*
+         * el boton hara que la ventana se coloque debajo de el en la barra de tareas
+         * se coloque sobre todas las ventanas y se maximize si estaba minimizada
+         */
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 w.setLayoutX(button.getLayoutX());
                 w.setLayoutY(0);
+                w.setMinimized(false);
+                w.toFront();
             }
         });
         button.setFocusTraversable(false);

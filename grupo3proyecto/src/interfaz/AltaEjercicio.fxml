@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="390.0" prefWidth="380.0" styleClass="fondo" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.AltaEjercicioController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" minHeight="-1.0" minWidth="-1.0" prefHeight="390.0" prefWidth="380.0" styleClass="fondo" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.AltaEjercicioController">
   <children>
     <Label id="texto" layoutX="29.0" layoutY="63.0" text="Fecha sesion" />
     <Label id="texto" layoutX="29.0" layoutY="104.0" text="Hora comienzo" />
