@@ -19,7 +19,7 @@
             <Image url="@../../resources/defaultwallpaper.png" />
           </image>
         </ImageView>
-        <GridPane prefHeight="555.0" prefWidth="740.0030517578125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+        <GridPane prefHeight="554.9998168945312" prefWidth="741.0031298828125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
           <children>
             <Button id="button1" fx:id="iconoConsulta" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" mnemonicParsing="false" onAction="#handleIconoConsulta" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Consulta" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
               <font>

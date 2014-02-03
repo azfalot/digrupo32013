@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import interfaz.util.MyMinimizeIcon;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
@@ -45,7 +46,7 @@ import logica.Methods;
  * @author Grupo 3
  */
 public class PantallaPrincipalController implements Initializable {
-    
+
     @FXML
     AnchorPane desktop;
     @FXML
@@ -81,7 +82,6 @@ public class PantallaPrincipalController implements Initializable {
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
 
-
     String ttNotFullscreen = "Pantalla completa";
     String ttFullscreen = "Salir del modo pantalla completa";
 
@@ -96,8 +96,7 @@ public class PantallaPrincipalController implements Initializable {
      */
     @FXML
     private void handleIconoConsulta() {
-        final Window w = new Window();
-        addWindow("PantallaConsulta.fxml", "Consulta " + tituloConsulta.format(new Date()), 600, 400, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", w);
+        addWindow("PantallaConsulta.fxml", "Consulta " + tituloConsulta.format(new Date()), 600, 400, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", new Window());
     }
 
     @FXML
@@ -124,7 +123,7 @@ public class PantallaPrincipalController implements Initializable {
     private void handleIconoImprimir() {
 
     }
-    
+
     @FXML
     private void handleBotonFullScreen() {
         if (!stage.isFullScreen()) {
@@ -146,14 +145,13 @@ public class PantallaPrincipalController implements Initializable {
         this.m = m;
         setDesktop();
         iconoPerfil.setText(m.getUserName());
+        setToolTips();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setClock();
         setIcons();
-        //toolBar.get
-        
     }
 
     private void setToolTips() {
@@ -217,17 +215,19 @@ public class PantallaPrincipalController implements Initializable {
         try {
             cmdPane = (Pane) fxmlLoader.load();
         } catch (IOException ex) {
-        }        
+        }
+        //se establece el contenido
+        w.setContentPane(cmdPane);
         //Se definen las propiedades de la ventana
         w.setTitle(title);
         w.setPrefSize(height + 4, width + 30);//se suman los valores ya que el size se refiere a la totalidad de la ventana con bordes
-        w.setContentPane(cmdPane);
-        if(resizable){
+        if (resizable) {
             w.setResizableWindow(true);
-            //w.getLeftIcons().add(new MaximizeIcon(w));
+            //w.getLeftIcons().add(new MaximizeIcon(w));//boton para maximizar
         }
-        w.getRightIcons().add(new MinimizeIcon(w));
-        w.getRightIcons().add(new CloseIcon(w));
+        //w.getRightIcons().add(new MinimizeIcon(w));//boton que para minimizar deja la barra superior de la ventana
+        w.getRightIcons().add(new MyMinimizeIcon(w));//boton que para minimizar hace desparecer la ventana
+        w.getRightIcons().add(new CloseIcon(w));//boton para cerrar
         //Se agrega al escritorio
         desktop.getChildren().add(w);
         //Se crea el boton de la barra de tareas
@@ -235,11 +235,12 @@ public class PantallaPrincipalController implements Initializable {
         toolBar.getItems().add(button);
         /*
          * el boton hara que la ventana se coloque debajo de el en la barra de tareas
-         * se coloque sobre todas las ventanas y se maximize si estaba minimizada
+         * sobre todas las ventanas (y se maximize si estaba minimizada)
          */
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+                w.setVisible(true);
                 w.setLayoutX(button.getLayoutX());
                 w.setLayoutY(0);
                 w.setMinimized(false);
@@ -249,7 +250,7 @@ public class PantallaPrincipalController implements Initializable {
         button.setFocusTraversable(false);
         //Se crea un menu con la opcion de cerrar la ventana y el boton
         ContextMenu cm = new ContextMenu();
-        MenuItem mi = new MenuItem("Cerrar", new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
+        MenuItem mi = new MenuItem("Cerrar ventana", new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
         mi.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
