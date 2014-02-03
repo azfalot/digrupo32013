@@ -8,25 +8,11 @@
 
 <AnchorPane id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaConsultaController">
   <children>
-    <TableView prefHeight="400.0" prefWidth="407.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="0.0">
+    <TableView disable="false" focusTraversable="false" prefHeight="400.0" prefWidth="407.0" tableMenuButtonVisible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="0.0">
       <columns>
-        <TableColumn prefWidth="75.0" text="Column X" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="75.0" text="Column X" />
         <TableColumn prefWidth="75.0" text="Column X" />
       </columns>
     </TableView>
-    <TabPane prefHeight="400.0" prefWidth="193.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <tabs>
-        <Tab text="Detalle">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-          </content>
-        </Tab>
-        <Tab text="Filtro">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-          </content>
-        </Tab>
-      </tabs>
-    </TabPane>
   </children>
 </AnchorPane>

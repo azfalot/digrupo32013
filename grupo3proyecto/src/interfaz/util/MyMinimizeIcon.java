@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz;
+
+package interfaz.util;
 
 import java.io.File;
 import javafx.event.ActionEvent;
@@ -14,28 +15,20 @@ import jfxtras.labs.scene.control.window.Window;
 
 /**
  *
- * @author Daniel Plaza
+ * @author USUARIO
  */
-public class MaximizeIcon extends MinimizeIcon {
+public class MyMinimizeIcon extends MinimizeIcon {
     
     private Window w;
     
-    public MaximizeIcon(final Window w) {
+    public MyMinimizeIcon(final Window w) {
         super(w);
-        setStyle("-fx-background-image: url('resources" + File.separator + "maximize.png'); -fx-background-position: center center;");
-
         setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                AnchorPane desktop = (AnchorPane) w.getParent();
-                w.toFront();
-                w.setLayoutX(0);
-                w.setLayoutY(0);
-                w.setPrefSize(desktop.getWidth(), desktop.getHeight());
+                w.setVisible(false);
             }
         });
     }
     
     }
-
-
