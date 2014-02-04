@@ -66,6 +66,12 @@ public class AltaEntrenamientoController implements Initializable {
         for(int i=0;i<24;i++){
         comboHoraFinal.getItems().add(i);
                 }
+        comboHoraInicio.getSelectionModel().select(1);
+        comboMinInicio.getSelectionModel().select(1);
+        comboHoraFinal.getSelectionModel().select(1);
+        comboMinFinal.getSelectionModel().select(1);
+        comboTipo.getSelectionModel().select(1);
+        
     }
 
 }
