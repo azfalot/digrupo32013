@@ -101,7 +101,7 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoEntrenamiento() {
-
+        addWindow("AltaEntrenamiento.fxml", "Alta entrenamiento " , 374, 400, false,"resources" + File.separator + "icons" + File.separator + "entrenamiento.png", new Window());
     }
 
     @FXML
