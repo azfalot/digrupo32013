@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="399.9999000000025" prefWidth="374.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.AltaEntrenamientoController">
+<AnchorPane id="AnchorPane" prefHeight="400.00049999998737" prefWidth="450.000732421875" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.AltaEntrenamientoController">
   <children>
     <Label id="texto" layoutX="37.0" layoutY="60.0" text="Fecha sesion" />
     <Label id="texto" layoutX="37.0" layoutY="107.0" prefWidth="60.0" text="Hora inicio:" />
     <Label id="texto" layoutX="37.0" layoutY="146.0" prefWidth="54.0" text="Hora final" />
     <Label id="texto" layoutX="37.0" layoutY="189.0" text="Tipo" />
     <Label id="texto" layoutX="34.0" layoutY="238.0" text="descripcion" />
-    <ComboBox id="Estilos.css" fx:id="comboTipo" layoutX="118.0" layoutY="184.0" prefWidth="140.0">
+    <ComboBox id="Estilos.css" fx:id="comboTipo" layoutX="163.0" layoutY="184.0" prefWidth="140.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -25,10 +25,10 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <TextArea fx:id="textAreaDescripcion" layoutX="118.0" layoutY="238.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" />
-    <TextField id="textFielFecha" fx:id="textFieldFecha" layoutX="118.0" layoutY="60.0" prefWidth="200.0" />
-    <Button id="botones" fx:id="buttonAlta" layoutX="161.0" layoutY="355.0" mnemonicParsing="false" prefWidth="97.0" text="dar alta" />
-    <ComboBox fx:id="comboHoraInicio" layoutX="118.0" layoutY="102.0" minWidth="42.999900000002526" prefHeight="21.0" prefWidth="42.999900000002526">
+    <TextArea fx:id="textAreaDescripcion" layoutX="163.0" layoutY="238.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" />
+    <TextField id="textFielFecha" fx:id="textFieldFecha" layoutX="163.0" layoutY="60.0" prefWidth="200.0" />
+    <Button id="botones" fx:id="buttonAlta" layoutX="206.0" layoutY="355.0" mnemonicParsing="false" prefWidth="97.0" text="dar alta" />
+    <ComboBox fx:id="comboHoraInicio" layoutX="163.0" layoutY="102.0" minWidth="42.999900000002526" prefHeight="21.0" prefWidth="54.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -37,7 +37,7 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <ComboBox fx:id="comboMinInicio" layoutX="175.0" layoutY="103.0" minWidth="33.0" prefHeight="21.0" prefWidth="43.0">
+    <ComboBox fx:id="comboMinInicio" layoutX="233.0" layoutY="101.0" minWidth="33.0" prefHeight="21.0" prefWidth="60.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -46,8 +46,8 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <Label layoutX="167.0" layoutY="106.0" text=":" />
-    <ComboBox fx:id="comboHoraFinal" layoutX="118.0" layoutY="144.0" minWidth="43.0" prefHeight="21.0" prefWidth="43.0">
+    <Label layoutX="224.0" layoutY="106.0" text=":" />
+    <ComboBox fx:id="comboHoraFinal" layoutX="163.0" layoutY="144.0" minWidth="43.0" prefHeight="21.0" prefWidth="54.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -56,7 +56,7 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <ComboBox fx:id="comboMinFinal" layoutX="175.0" layoutY="145.0" minWidth="43.0" prefHeight="21.0" prefWidth="43.0">
+    <ComboBox fx:id="comboMinFinal" layoutX="233.0" layoutY="142.0" minWidth="43.0" prefHeight="22.0" prefWidth="60.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -65,7 +65,7 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <Label layoutX="167.0" layoutY="148.0" text=":" />
+    <Label layoutX="224.0" layoutY="147.0" text=":" />
   </children>
   <stylesheets>
     <URL value="@altaejercicio.css" />
