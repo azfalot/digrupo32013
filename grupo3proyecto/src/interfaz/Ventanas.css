@@ -9,6 +9,25 @@ and open the template in the editor.
 */
 
 #AnchorPane{
-    -fx-background-color:#ffffff;
+    -fx-background-color:white;
 }
 
+.label{
+    -fx-font-size: 12px;
+}
+
+.combo-box{
+    -fx-font-size: 12px;
+}
+
+.button{
+    -fx-font-size: 12px;
+}
+
+.text-field{
+    -fx-font-size: 12px;
+}
+
+.text-area{
+    -fx-font-size: 12px;
+}

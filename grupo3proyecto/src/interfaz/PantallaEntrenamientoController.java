@@ -6,6 +6,7 @@
 package interfaz;
 
 import eu.schudt.javafx.controls.calendar.DatePicker;
+import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -95,12 +96,13 @@ public class PantallaEntrenamientoController implements Initializable {
     private void setDatePicker(){
         datePicker = new DatePicker(new Locale("es",""));
         datePicker.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
-        datePicker.setPromptText("dd/mm/yyyy");
+        datePicker.setPromptText("-- / -- / ----");
         datePicker.getCalendarView().todayButtonTextProperty().set("Hoy");
         datePicker.getCalendarView().setShowWeeks(false);
         datePicker.getStylesheets().add("interfaz/DatePicker.css");
-        gridPane.add(datePicker, 1, 5);
-        
+        gridPane.add(datePicker, 0, 0);
+        ((TextField)datePicker.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField)datePicker.getChildren().get(0)).setEditable(false);//el textfield no sera editable
     }
 
 }

@@ -28,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -48,7 +49,7 @@ import logica.Methods;
  * @author Grupo 3
  */
 public class PantallaPrincipalController implements Initializable {
-
+    
     @FXML
     AnchorPane desktop;
     @FXML
@@ -105,8 +106,9 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoEntrenamiento() {
         Window w = new Window();
-        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento "+cEntrenamiento++, 430, 380, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
+        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento "+cEntrenamiento++, 340, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
         wEntrenamiento.builder(m);
+        
     }
 
     @FXML
@@ -164,7 +166,6 @@ public class PantallaPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setClock();
         setIcons();
-
     }
 
     private void setToolTips() {
@@ -230,11 +231,15 @@ public class PantallaPrincipalController implements Initializable {
         } catch (IOException ex) {
         }
         
+        //se suman los valores ya que el size se refiere a la totalidad de la ventana con bordes
+        height=height + 4;
+        width=width + 30;
+        
         //se establece el contenido
         w.setContentPane(cmdPane);
         //Se definen las propiedades de la ventana
         w.setTitle(title);
-        w.setPrefSize(height + 4, width + 30);//se suman los valores ya que el size se refiere a la totalidad de la ventana con bordes
+        w.setPrefSize(height, width);
         w.setResizableWindow(resizable);
         //w.getRightIcons().add(new MinimizeIcon(w));//boton que para minimizar deja la barra superior de la ventana
         w.getRightIcons().add(new MyMinimizeIcon(w));//boton que para minimizar hace desparecer la ventana      
@@ -282,7 +287,12 @@ public class PantallaPrincipalController implements Initializable {
                 toolBar.getItems().remove(button);
             }
         });
+        
+        //se coloca la ventana en el centro
+        w.setLayoutX((desktop.getWidth()/2)-(width/2));
+        w.setLayoutY((desktop.getHeight()/2)-(height/2));
 
+        
         return fxmlLoader.getController();
     }
 
