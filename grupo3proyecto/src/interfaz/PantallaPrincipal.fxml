@@ -19,7 +19,7 @@
             <Image url="@../../resources/defaultwallpaper.png" />
           </image>
         </ImageView>
-        <GridPane prefHeight="554.9998168945312" prefWidth="741.0031298828125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+        <GridPane prefHeight="554.9998168945312" prefWidth="742.0031298828125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
           <children>
             <Button id="button1" fx:id="iconoConsulta" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" mnemonicParsing="false" onAction="#handleIconoConsulta" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Consulta" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
               <font>
@@ -99,6 +99,9 @@
       </children>
     </AnchorPane>
     <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="735.0" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <contextMenu>
+        <ContextMenu fx:id="barMenu" />
+      </contextMenu>
       <items>
         <Button id="botonFullScreen" fx:id="botonExit" focusTraversable="false" minWidth="35.0" mnemonicParsing="false" onAction="#handleBotonExit" prefWidth="35.0" style="" styleClass="taskbaricons" text="">
           <graphic>

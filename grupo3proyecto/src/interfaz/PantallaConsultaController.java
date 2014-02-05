@@ -9,17 +9,22 @@ package interfaz;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import logica.Methods;
 
 /**
  * FXML Controller class
  *
- * @author plantaNieves
+ * @author Grupo 3
  */
 public class PantallaConsultaController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    Methods m;
+    
+    
+    public void builder(Methods m){
+        this.m=m;
+        
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

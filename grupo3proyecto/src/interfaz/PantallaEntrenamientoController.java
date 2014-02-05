@@ -5,7 +5,10 @@
  */
 package interfaz;
 
+import eu.schudt.javafx.controls.calendar.DatePicker;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,13 +16,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import logica.Methods;
 
 /**
  * FXML Controller class
  *
- * @author Angel
+ * @author Grupo 3
  */
-public class AltaEntrenamientoController implements Initializable {
+public class PantallaEntrenamientoController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -40,10 +45,24 @@ public class AltaEntrenamientoController implements Initializable {
     TextArea textAreaDescripcion;
     @FXML
     ComboBox comboTipo;
+    @FXML
+    private GridPane gridPane;
     
+    private DatePicker datePicker;
+    private Methods m;
+    
+    public void builder(Methods m){
+        this.m=m;
+        setDatePicker();
+        setCombos();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         
+    }
+    
+    private void setCombos(){
         comboTipo.getItems().clear();
         comboTipo.getItems().addAll(
                 "Fisico",
@@ -71,6 +90,16 @@ public class AltaEntrenamientoController implements Initializable {
         comboHoraFinal.getSelectionModel().select(1);
         comboMinFinal.getSelectionModel().select(1);
         comboTipo.getSelectionModel().select(1);
+    }
+    
+    private void setDatePicker(){
+        datePicker = new DatePicker(new Locale("es",""));
+        datePicker.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
+        datePicker.setPromptText("dd/mm/yyyy");
+        datePicker.getCalendarView().todayButtonTextProperty().set("Hoy");
+        datePicker.getCalendarView().setShowWeeks(false);
+        datePicker.getStylesheets().add("interfaz/DatePicker.css");
+        gridPane.add(datePicker, 1, 5);
         
     }
 

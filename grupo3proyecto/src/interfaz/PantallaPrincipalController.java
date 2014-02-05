@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,6 +39,7 @@ import javafx.util.Duration;
 import jfxtras.labs.scene.control.window.CloseIcon;
 import jfxtras.labs.scene.control.window.MinimizeIcon;
 import jfxtras.labs.scene.control.window.Window;
+import jfxtras.labs.scene.control.window.WindowIcon;
 import logica.Methods;
 
 /**
@@ -77,31 +79,34 @@ public class PantallaPrincipalController implements Initializable {
     ImageView ivIconoConfiguracion;
     @FXML
     ImageView ivIconoImprimir;
+    @FXML
+    ContextMenu barMenu;
 
     Methods m;
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
-
-    String ttNotFullscreen = "Pantalla completa";
-    String ttFullscreen = "Salir del modo pantalla completa";
-
+    
     /*
      * contadores de pantallas
      */
-    int cEntrenamiento = 0;
-    int cItinerario = 0;
+    int cEntrenamiento = 1;
+    int cItinerario = 1;
 
     /*
-     * Iconos, handles
+     * handles de botones e iconos
      */
     @FXML
     private void handleIconoConsulta() {
-        addWindow("PantallaConsulta.fxml", "Consulta " + tituloConsulta.format(new Date()), 600, 400, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", new Window());
+        Window w=new Window();
+        PantallaConsultaController wConsulta=(PantallaConsultaController)addWindow("PantallaConsulta.fxml", "Consulta " + tituloConsulta.format(new Date()), 600, 400, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", w);
+        wConsulta.builder(m);
     }
 
     @FXML
     private void handleIconoEntrenamiento() {
-        addWindow("AltaEntrenamiento.fxml", "Alta entrenamiento " , 400, 450, false,"resources" + File.separator + "icons" + File.separator + "entrenamiento.png", new Window());
+        Window w = new Window();
+        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento "+cEntrenamiento++, 430, 380, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
+        wEntrenamiento.builder(m);
     }
 
     @FXML
@@ -128,10 +133,8 @@ public class PantallaPrincipalController implements Initializable {
     private void handleBotonFullScreen() {
         if (!stage.isFullScreen()) {
             stage.setFullScreen(true);
-            botonFullScreen.setTooltip(new Tooltip(ttFullscreen));
         } else {
             stage.setFullScreen(false);
-            botonFullScreen.setTooltip(new Tooltip(ttNotFullscreen));
         }
     }
 
@@ -146,17 +149,27 @@ public class PantallaPrincipalController implements Initializable {
         setDesktop();
         iconoPerfil.setText(m.getUserName());
         setToolTips();
+        MenuItem botonCerrarTodo = new MenuItem("Cerrar todas las ventanas", new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
+        botonCerrarTodo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                toolBar.getItems().remove(4, toolBar.getItems().size());
+                desktop.getChildren().remove(2, desktop.getChildren().size());
+            }
+        });
+        barMenu.getItems().add(botonCerrarTodo);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setClock();
         setIcons();
+
     }
 
     private void setToolTips() {
         botonExit.setTooltip(new Tooltip("Desconectar"));
-        botonFullScreen.setTooltip(new Tooltip(ttNotFullscreen));
+        botonFullScreen.setTooltip(new Tooltip("Modo pantalla completa"));
     }
 
     private void setClock() {
@@ -216,18 +229,17 @@ public class PantallaPrincipalController implements Initializable {
             cmdPane = (Pane) fxmlLoader.load();
         } catch (IOException ex) {
         }
+        
         //se establece el contenido
         w.setContentPane(cmdPane);
         //Se definen las propiedades de la ventana
         w.setTitle(title);
         w.setPrefSize(height + 4, width + 30);//se suman los valores ya que el size se refiere a la totalidad de la ventana con bordes
-        if (resizable) {
-            w.setResizableWindow(true);
-            //w.getLeftIcons().add(new MaximizeIcon(w));//boton para maximizar
-        }
+        w.setResizableWindow(resizable);
         //w.getRightIcons().add(new MinimizeIcon(w));//boton que para minimizar deja la barra superior de la ventana
-        w.getRightIcons().add(new MyMinimizeIcon(w));//boton que para minimizar hace desparecer la ventana
+        w.getRightIcons().add(new MyMinimizeIcon(w));//boton que para minimizar hace desparecer la ventana      
         w.getRightIcons().add(new CloseIcon(w));//boton para cerrar
+
         //Se agrega al escritorio
         desktop.getChildren().add(w);
         //Se crea el boton de la barra de tareas
