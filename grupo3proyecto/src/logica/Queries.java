@@ -10,7 +10,9 @@ import datos.conexionbd.Usuario;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -27,7 +29,7 @@ class Queries {
         ResultSet rs = bd.consulta("select * from escaladores where p_escaladores=" + id);
         try {
             while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"),rs.getString("wallpaper"));
+                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -42,7 +44,7 @@ class Queries {
         ResultSet rs = bd.consulta("select * from escaladores where nombre='" + name + "'");
         try {
             while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"),rs.getString("wallpaper"));
+                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -82,12 +84,27 @@ class Queries {
         int id = 1;
         while (true) {
             try {
-                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','"+ "resources" + File.separator + "defaultwallpaper.png"+"')");
+                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','" + "resources" + File.separator + "defaultwallpaper.png" + "')");
                 break;
             } catch (SQLException ex) {
                 id++;
             }
         }
         return id;
+    }
+
+    public void altaEntrenamiento(int userId,int horaIni,int minIni,int horaFin,int minFin,Date fechaSesion,String tipo) {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        int id = 0;
+        
+        while (true) {
+            try {
+                bd.update("INSERT INTO SESION_ENTRENAMIENTOS( P_SESION_ENTRENAMIENTOS, A_ESCALADORES, HORA_INICIO, HORA_FIN, FECHA, TIPO) "
+                        + "VALUES ( "+userId+","+id+",TIME'"+horaIni+":"+minIni+":00' ,TIME'"+horaFin+":"+minFin+":00',DATE'"+sdf.format(fechaSesion)+"' , '"+tipo+"')");
+                break;
+            } catch (SQLException ex) {
+                id++;
+            }
+        }
     }
 }

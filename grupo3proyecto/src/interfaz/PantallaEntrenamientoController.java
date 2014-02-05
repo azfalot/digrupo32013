@@ -6,7 +6,6 @@
 package interfaz;
 
 import eu.schudt.javafx.controls.calendar.DatePicker;
-import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -18,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import jfxtras.labs.scene.control.window.Window;
 import logica.Methods;
 
 /**
@@ -31,9 +31,7 @@ public class PantallaEntrenamientoController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    Button buttonAlta;
-    @FXML
-    TextField textFieldFecha;
+    Button botonAlta;
     @FXML
     ComboBox comboHoraInicio;
     @FXML
@@ -48,61 +46,77 @@ public class PantallaEntrenamientoController implements Initializable {
     ComboBox comboTipo;
     @FXML
     private GridPane gridPane;
-    
+
     private DatePicker datePicker;
     private Methods m;
-    
-    public void builder(Methods m){
-        this.m=m;
+    private Window w;
+
+    public void builder(Methods m,Window w) {
+        this.m = m;
+        this.w=w;
         setDatePicker();
         setCombos();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         
+
     }
     
-    private void setCombos(){
+    @FXML
+    private void handleBotonAceptar(){
+        m.altaEntrenamiento(Integer.parseInt(comboHoraInicio.getSelectionModel().getSelectedItem().toString()), Integer.parseInt(comboMinInicio.getSelectionModel().getSelectedItem().toString()), Integer.parseInt(comboHoraFinal.getSelectionModel().getSelectedItem().toString()), Integer.parseInt(comboMinFinal.getSelectionModel().getSelectedItem().toString()),datePicker.getSelectedDate(), comboTipo.getSelectionModel().getSelectedItem().toString());
+        w.close();
+    }
+
+    private void setCombos() {
         comboTipo.getItems().clear();
         comboTipo.getItems().addAll(
                 "Fisico",
                 "Rocódromo",
                 "Roca"
-                );
+        );
         comboMinInicio.getItems().clear();
-        for(int i=0;i<60;i++){
-        comboMinInicio.getItems().add(i);
-                }
         comboMinFinal.getItems().clear();
-        for(int i=0;i<60;i++){
-        comboMinFinal.getItems().add(i);
-                }
         comboHoraInicio.getItems().clear();
-        for(int i=0;i<24;i++){
-        comboHoraInicio.getItems().add(i);
-                }
         comboHoraFinal.getItems().clear();
-        for(int i=0;i<24;i++){
-        comboHoraFinal.getItems().add(i);
-                }
-        comboHoraInicio.getSelectionModel().select(1);
-        comboMinInicio.getSelectionModel().select(1);
-        comboHoraFinal.getSelectionModel().select(1);
-        comboMinFinal.getSelectionModel().select(1);
-        comboTipo.getSelectionModel().select(1);
+        
+        for (int i = 0; i < 24; i++) {
+            if(i<10){
+                comboHoraInicio.getItems().add("0"+i);
+                comboHoraFinal.getItems().add("0"+i);
+                comboMinInicio.getItems().add("0"+i);
+                comboMinFinal.getItems().add("0"+i);
+            }else{
+                comboHoraInicio.getItems().add(i);
+                comboHoraFinal.getItems().add(i);
+                comboMinInicio.getItems().add(i);
+                comboMinFinal.getItems().add(i);
+            }
+        }
+        
+        for (int i = 24; i < 60; i++) {
+            comboMinInicio.getItems().add(i);
+            comboMinFinal.getItems().add(i);
+        } 
+        
+        comboHoraInicio.getSelectionModel().select(0);
+        comboMinInicio.getSelectionModel().select(0);
+        comboHoraFinal.getSelectionModel().select(0);
+        comboMinFinal.getSelectionModel().select(0);
+        comboTipo.getSelectionModel().select(0);
     }
-    
-    private void setDatePicker(){
-        datePicker = new DatePicker(new Locale("es",""));
+
+    private void setDatePicker() {
+        datePicker = new DatePicker(new Locale("es", ""));
         datePicker.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
         datePicker.setPromptText("-- / -- / ----");
         datePicker.getCalendarView().todayButtonTextProperty().set("Hoy");
         datePicker.getCalendarView().setShowWeeks(false);
-        datePicker.getStylesheets().add("interfaz/DatePicker.css");
+        datePicker.getStylesheets().add("interfaz/util/DatePicker.css");
         gridPane.add(datePicker, 0, 0);
-        ((TextField)datePicker.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
-        ((TextField)datePicker.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+        ((TextField) datePicker.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePicker.getChildren().get(0)).setEditable(false);//el textfield no sera editable
     }
 
 }

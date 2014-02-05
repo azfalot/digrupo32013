@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
-import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,7 +27,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -38,9 +36,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import jfxtras.labs.scene.control.window.CloseIcon;
-import jfxtras.labs.scene.control.window.MinimizeIcon;
 import jfxtras.labs.scene.control.window.Window;
-import jfxtras.labs.scene.control.window.WindowIcon;
 import logica.Methods;
 
 /**
@@ -106,8 +102,8 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoEntrenamiento() {
         Window w = new Window();
-        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento "+cEntrenamiento++, 340, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
-        wEntrenamiento.builder(m);
+        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento "+cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
+        wEntrenamiento.builder(m,w);
         
     }
 
@@ -288,9 +284,9 @@ public class PantallaPrincipalController implements Initializable {
             }
         });
         
-        //se coloca la ventana en el centro
-        w.setLayoutX((desktop.getWidth()/2)-(width/2));
-        w.setLayoutY((desktop.getHeight()/2)-(height/2));
+        //se coloca la ventana en el centro del escritorio
+        w.setLayoutX((desktop.getWidth()/2)-(height/2));
+        w.setLayoutY((desktop.getHeight()/2)-(width/2));
 
         
         return fxmlLoader.getController();

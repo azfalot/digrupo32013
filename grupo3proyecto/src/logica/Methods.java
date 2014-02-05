@@ -4,6 +4,7 @@ import datos.conexionbd.Usuario;
 import datos.config.Config;
 import datos.strings.Language;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -92,6 +93,10 @@ public class Methods {
     
     public int altaUsuario(String nombre){
         return q.altaUsuario(nombre);
+    }
+    
+    public void altaEntrenamiento(int horaIni,int minIni,int horaFin,int minFin,Date fechaSesion,String tipo) {
+        q.altaEntrenamiento(getUserId(),horaIni,minIni,horaFin,minFin,fechaSesion,tipo);
     }
     
 }
