@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package datos.conexionbd;
+package datos.conexionbd.POJOS;
 
 /**
  *

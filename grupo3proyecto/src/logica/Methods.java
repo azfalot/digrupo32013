@@ -1,6 +1,6 @@
 package logica;
 
-import datos.conexionbd.Usuario;
+import datos.conexionbd.POJOS.Usuario;
 import datos.config.Config;
 import datos.strings.Language;
 import java.util.ArrayList;
@@ -95,8 +95,8 @@ public class Methods {
         return q.altaUsuario(nombre);
     }
     
-    public void altaEntrenamiento(int horaIni,int minIni,int horaFin,int minFin,Date fechaSesion,String tipo) {
-        q.altaEntrenamiento(getUserId(),horaIni,minIni,horaFin,minFin,fechaSesion,tipo);
+    public void altaEntrenamiento(String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,String tipo,String descripcion) {
+        q.altaEntrenamiento(getUserId(),horaIni,minIni,horaFin,minFin,fechaSesion,tipo,descripcion);
     }
     
 }

@@ -6,7 +6,7 @@
 package logica;
 
 import datos.conexionbd.Datos;
-import datos.conexionbd.Usuario;
+import datos.conexionbd.POJOS.Usuario;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -93,14 +93,17 @@ class Queries {
         return id;
     }
 
-    public void altaEntrenamiento(int userId,int horaIni,int minIni,int horaFin,int minFin,Date fechaSesion,String tipo) {
+    public void altaEntrenamiento(int userId,String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,String tipo,String descripcion) {
+        /*
+        * Alta de entrenamiento
+        */
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         int id = 0;
         
         while (true) {
             try {
-                bd.update("INSERT INTO SESION_ENTRENAMIENTOS( P_SESION_ENTRENAMIENTOS, A_ESCALADORES, HORA_INICIO, HORA_FIN, FECHA, TIPO) "
-                        + "VALUES ( "+userId+","+id+",TIME'"+horaIni+":"+minIni+":00' ,TIME'"+horaFin+":"+minFin+":00',DATE'"+sdf.format(fechaSesion)+"' , '"+tipo+"')");
+                bd.update("INSERT INTO SESION_ENTRENAMIENTOS( P_SESION_ENTRENAMIENTOS, A_ESCALADORES, HORA_INICIO, HORA_FIN, FECHA, TIPO,DESCRIPCION) "
+                        + "VALUES ( "+id+","+userId+",TIME'"+horaIni+":"+minIni+":00' ,TIME'"+horaFin+":"+minFin+":00',DATE'"+sdf.format(fechaSesion)+"' , '"+tipo+"','"+descripcion+"')");
                 break;
             } catch (SQLException ex) {
                 id++;

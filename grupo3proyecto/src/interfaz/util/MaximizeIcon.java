@@ -22,8 +22,7 @@ public class MaximizeIcon extends MinimizeIcon {
     
     public MaximizeIcon(final Window w) {
         super(w);
-        setStyle("-fx-background-image: url('resources" + File.separator + "maximize.png'); -fx-background-position: center center;");
-
+        
         setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {

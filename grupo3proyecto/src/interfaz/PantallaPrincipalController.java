@@ -214,7 +214,7 @@ public class PantallaPrincipalController implements Initializable {
         ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
     }
 
-    private Initializable addWindow(String fxml, String title, int height, int width, boolean resizable, String imgPath, final Window w) {
+    private Initializable addWindow(String fxml, String title, int width, int height, boolean resizable, String imgPath, final Window w) {
         /*
          * Este metodo lanza una ventana al escritorio, hay que pasarle el archivo fxml, el titulo que llevara, el tamaño, el icono y la ventana
          * Funciona igual que el newSceneContent de la clase Escalada, pero para ventanas en el escritorio.
@@ -228,14 +228,14 @@ public class PantallaPrincipalController implements Initializable {
         }
         
         //se suman los valores ya que el size se refiere a la totalidad de la ventana con bordes
-        height=height + 4;
-        width=width + 30;
+        width=width + 4;
+        height=height + 30;
         
         //se establece el contenido
         w.setContentPane(cmdPane);
         //Se definen las propiedades de la ventana
         w.setTitle(title);
-        w.setPrefSize(height, width);
+        w.setPrefSize(width, height);
         w.setResizableWindow(resizable);
         //w.getRightIcons().add(new MinimizeIcon(w));//boton que para minimizar deja la barra superior de la ventana
         w.getRightIcons().add(new MyMinimizeIcon(w));//boton que para minimizar hace desparecer la ventana      
@@ -285,8 +285,8 @@ public class PantallaPrincipalController implements Initializable {
         });
         
         //se coloca la ventana en el centro del escritorio
-        w.setLayoutX((desktop.getWidth()/2)-(height/2));
-        w.setLayoutY((desktop.getHeight()/2)-(width/2));
+        w.setLayoutX((desktop.getWidth()/2)-(width/2));
+        w.setLayoutY((desktop.getHeight()/2)-(height/2));
 
         
         return fxmlLoader.getController();

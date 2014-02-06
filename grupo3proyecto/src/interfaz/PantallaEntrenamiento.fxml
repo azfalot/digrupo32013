@@ -54,8 +54,8 @@
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
       <stylesheets>
-        <URL value="@DatePicker.css" />
         <URL value="@Ventanas.css" />
+        <URL value="@util/DatePicker.css" />
       </stylesheets>
     </GridPane>
     <ComboBox fx:id="comboHoraInicio" layoutX="116.0" layoutY="63.0" minWidth="42.999900000002526" prefHeight="21.0" prefWidth="54.0">

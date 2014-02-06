@@ -51,21 +51,21 @@ public class PantallaEntrenamientoController implements Initializable {
     private Methods m;
     private Window w;
 
-    public void builder(Methods m,Window w) {
+    public void builder(Methods m, Window w) {
         this.m = m;
-        this.w=w;
+        this.w = w;
         setDatePicker();
         setCombos();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
     
     @FXML
-    private void handleBotonAceptar(){
-        m.altaEntrenamiento(Integer.parseInt(comboHoraInicio.getSelectionModel().getSelectedItem().toString()), Integer.parseInt(comboMinInicio.getSelectionModel().getSelectedItem().toString()), Integer.parseInt(comboHoraFinal.getSelectionModel().getSelectedItem().toString()), Integer.parseInt(comboMinFinal.getSelectionModel().getSelectedItem().toString()),datePicker.getSelectedDate(), comboTipo.getSelectionModel().getSelectedItem().toString());
+    private void handleBotonAceptar() {
+        m.altaEntrenamiento(comboHoraInicio.getSelectionModel().getSelectedItem().toString(), comboMinInicio.getSelectionModel().getSelectedItem().toString(), comboHoraFinal.getSelectionModel().getSelectedItem().toString(), comboMinFinal.getSelectionModel().getSelectedItem().toString(), datePicker.getSelectedDate(), comboTipo.getSelectionModel().getSelectedItem().toString(), textAreaDescripcion.getText());
         w.close();
     }
 
@@ -80,26 +80,26 @@ public class PantallaEntrenamientoController implements Initializable {
         comboMinFinal.getItems().clear();
         comboHoraInicio.getItems().clear();
         comboHoraFinal.getItems().clear();
-        
+
         for (int i = 0; i < 24; i++) {
-            if(i<10){
-                comboHoraInicio.getItems().add("0"+i);
-                comboHoraFinal.getItems().add("0"+i);
-                comboMinInicio.getItems().add("0"+i);
-                comboMinFinal.getItems().add("0"+i);
-            }else{
+            if (i < 10) {
+                comboHoraInicio.getItems().add("0" + i);
+                comboHoraFinal.getItems().add("0" + i);
+                comboMinInicio.getItems().add("0" + i);
+                comboMinFinal.getItems().add("0" + i);
+            } else {
                 comboHoraInicio.getItems().add(i);
                 comboHoraFinal.getItems().add(i);
                 comboMinInicio.getItems().add(i);
                 comboMinFinal.getItems().add(i);
             }
         }
-        
+
         for (int i = 24; i < 60; i++) {
             comboMinInicio.getItems().add(i);
             comboMinFinal.getItems().add(i);
-        } 
-        
+        }
+
         comboHoraInicio.getSelectionModel().select(0);
         comboMinInicio.getSelectionModel().select(0);
         comboHoraFinal.getSelectionModel().select(0);
@@ -108,6 +108,10 @@ public class PantallaEntrenamientoController implements Initializable {
     }
 
     private void setDatePicker() {
+        /*
+         * Este metodo asigna el componente calendario al gridpane
+         * Aparecera un textfield donde haciendo click se desplegara el calendario
+         */
         datePicker = new DatePicker(new Locale("es", ""));
         datePicker.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
         datePicker.setPromptText("-- / -- / ----");
