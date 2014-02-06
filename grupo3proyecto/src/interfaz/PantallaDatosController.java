@@ -16,7 +16,7 @@ import logica.Methods;
  *
  * @author Grupo 3
  */
-public class PantallaConsultaController implements Initializable {
+public class PantallaDatosController implements Initializable {
 
     Methods m;
     

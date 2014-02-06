@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package interfaz;
 
+import interfaz.util.MaximizeIcon;
 import interfaz.util.MyMinimizeIcon;
+import interfaz.util.MyWindow;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
@@ -27,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -36,7 +35,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import jfxtras.labs.scene.control.window.CloseIcon;
-import jfxtras.labs.scene.control.window.Window;
 import logica.Methods;
 
 /**
@@ -45,7 +43,7 @@ import logica.Methods;
  * @author Grupo 3
  */
 public class PantallaPrincipalController implements Initializable {
-    
+
     @FXML
     AnchorPane desktop;
     @FXML
@@ -65,7 +63,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     ImageView ivBotonFullScreen;
     @FXML
-    ImageView ivIconoConsulta;
+    ImageView ivIconoDatos;
     @FXML
     ImageView ivIconoEntrenamiento;
     @FXML
@@ -78,11 +76,13 @@ public class PantallaPrincipalController implements Initializable {
     ImageView ivIconoImprimir;
     @FXML
     ContextMenu barMenu;
+    @FXML
+    TextField tfRendimiento;
 
     Methods m;
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
-    
+
     /*
      * contadores de pantallas
      */
@@ -93,18 +93,18 @@ public class PantallaPrincipalController implements Initializable {
      * handles de botones e iconos
      */
     @FXML
-    private void handleIconoConsulta() {
-        Window w=new Window();
-        PantallaConsultaController wConsulta=(PantallaConsultaController)addWindow("PantallaConsulta.fxml", "Consulta " + tituloConsulta.format(new Date()), 600, 400, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", w);
+    private void handleIconoDatos() {
+        MyWindow w = new MyWindow();
+        PantallaDatosController wConsulta = (PantallaDatosController) addWindow("PantallaDatos.fxml", "Consulta " + tituloConsulta.format(new Date()), 600, 400, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", w);
         wConsulta.builder(m);
     }
 
     @FXML
     private void handleIconoEntrenamiento() {
-        Window w = new Window();
-        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento "+cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
-        wEntrenamiento.builder(m,w);
-        
+        MyWindow w = new MyWindow();
+        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento " + cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
+        wEntrenamiento.builder(m, w);
+
     }
 
     @FXML
@@ -151,8 +151,8 @@ public class PantallaPrincipalController implements Initializable {
         botonCerrarTodo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                toolBar.getItems().remove(4, toolBar.getItems().size());
-                desktop.getChildren().remove(2, desktop.getChildren().size());
+                toolBar.getItems().remove(4, toolBar.getItems().size());//cierra todos los botones
+                desktop.getChildren().remove(2, desktop.getChildren().size());//cierra todas las ventanas
             }
         });
         barMenu.getItems().add(botonCerrarTodo);
@@ -207,14 +207,14 @@ public class PantallaPrincipalController implements Initializable {
         ivBotonExit.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "off.png"));
         ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
         ivIconoConfiguracion.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "settings.png"));
-        ivIconoConsulta.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "consulta.png"));
+        ivIconoDatos.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "consulta.png"));
         ivIconoEntrenamiento.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "entrenamiento.png"));
         ivIconoImprimir.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "imprimir.png"));
         ivIconoItinerario.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "itinerario.png"));
         ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
     }
 
-    private Initializable addWindow(String fxml, String title, int width, int height, boolean resizable, String imgPath, final Window w) {
+    private Initializable addWindow(String fxml, String title, int width, int height, boolean resizable, String imgPath, final MyWindow w) {
         /*
          * Este metodo lanza una ventana al escritorio, hay que pasarle el archivo fxml, el titulo que llevara, el tamaño, el icono y la ventana
          * Funciona igual que el newSceneContent de la clase Escalada, pero para ventanas en el escritorio.
@@ -226,17 +226,25 @@ public class PantallaPrincipalController implements Initializable {
             cmdPane = (Pane) fxmlLoader.load();
         } catch (IOException ex) {
         }
-        
         //se suman los valores ya que el size se refiere a la totalidad de la ventana con bordes
-        width=width + 4;
-        height=height + 30;
-        
+        width = width + 4;
+        height = height + 30;
         //se establece el contenido
         w.setContentPane(cmdPane);
         //Se definen las propiedades de la ventana
         w.setTitle(title);
         w.setPrefSize(width, height);
-        w.setResizableWindow(resizable);
+        //se coloca la ventana en el centro del escritorio
+        w.setLayoutX((desktop.getWidth() / 2) - (width / 2));
+        w.setLayoutY((desktop.getHeight() / 2) - (height / 2));
+        //Si es resizable se agrega el boton de maximizar
+        if(resizable){
+            w.setResizableWindow(resizable);
+            w.getLeftIcons().add(new MaximizeIcon(w));
+            
+        }else{
+            w.setResizableWindow(false);
+        }
         //w.getRightIcons().add(new MinimizeIcon(w));//boton que para minimizar deja la barra superior de la ventana
         w.getRightIcons().add(new MyMinimizeIcon(w));//boton que para minimizar hace desparecer la ventana      
         w.getRightIcons().add(new CloseIcon(w));//boton para cerrar
@@ -248,16 +256,20 @@ public class PantallaPrincipalController implements Initializable {
         toolBar.getItems().add(button);
         /*
          * el boton hara que la ventana se coloque debajo de el en la barra de tareas
-         * sobre todas las ventanas (y se maximize si estaba minimizada)
+         * sobre todas las ventanas (y se muestre si estaba minimizada)
          */
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                w.setVisible(true);
-                w.setLayoutX(button.getLayoutX());
-                w.setLayoutY(0);
-                w.setMinimized(false);
-                w.toFront();
+                if (!w.isVisible()) {
+                    w.setVisible(true);
+                    w.setLayoutX(button.getLayoutX());
+                    w.setLayoutY(0);
+                    w.setMinimized(false);
+                    w.toFront();
+                } else {
+                    w.setVisible(false);
+                }
             }
         });
         button.setFocusTraversable(false);
@@ -283,11 +295,6 @@ public class PantallaPrincipalController implements Initializable {
                 toolBar.getItems().remove(button);
             }
         });
-        
-        //se coloca la ventana en el centro del escritorio
-        w.setLayoutX((desktop.getWidth()/2)-(width/2));
-        w.setLayoutY((desktop.getHeight()/2)-(height/2));
-
         
         return fxmlLoader.getController();
     }

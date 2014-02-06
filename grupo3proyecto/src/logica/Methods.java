@@ -95,7 +95,7 @@ public class Methods {
         return q.altaUsuario(nombre);
     }
     
-    public void altaEntrenamiento(String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,String tipo,String descripcion) {
+    public void altaEntrenamiento(String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,int tipo,String descripcion) {
         q.altaEntrenamiento(getUserId(),horaIni,minIni,horaFin,minFin,fechaSesion,tipo,descripcion);
     }
     

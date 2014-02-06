@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logica;
 
 import datos.conexionbd.Datos;
@@ -93,9 +89,10 @@ class Queries {
         return id;
     }
 
-    public void altaEntrenamiento(int userId,String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,String tipo,String descripcion) {
+    public void altaEntrenamiento(int userId,String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,int tipo,String descripcion) {
         /*
         * Alta de entrenamiento
+        * Las horas y minutos se reciben como string
         */
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         int id = 0;
@@ -103,7 +100,7 @@ class Queries {
         while (true) {
             try {
                 bd.update("INSERT INTO SESION_ENTRENAMIENTOS( P_SESION_ENTRENAMIENTOS, A_ESCALADORES, HORA_INICIO, HORA_FIN, FECHA, TIPO,DESCRIPCION) "
-                        + "VALUES ( "+id+","+userId+",TIME'"+horaIni+":"+minIni+":00' ,TIME'"+horaFin+":"+minFin+":00',DATE'"+sdf.format(fechaSesion)+"' , '"+tipo+"','"+descripcion+"')");
+                        + "VALUES ( "+id+","+userId+",TIME'"+horaIni+":"+minIni+":00' ,TIME'"+horaFin+":"+minFin+":00',DATE'"+sdf.format(fechaSesion)+"' , "+tipo+",'"+descripcion+"')");
                 break;
             } catch (SQLException ex) {
                 id++;

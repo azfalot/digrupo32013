@@ -5,7 +5,6 @@
  */
 package datos.config;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,7 +14,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Daniel Plaza
+ * @author Grupo 3
  */
 public class Config implements Serializable {
 

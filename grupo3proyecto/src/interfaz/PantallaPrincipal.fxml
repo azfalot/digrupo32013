@@ -21,12 +21,12 @@
         </ImageView>
         <GridPane prefHeight="554.9998168945312" prefWidth="742.0031298828125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
           <children>
-            <Button id="button1" fx:id="iconoConsulta" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" mnemonicParsing="false" onAction="#handleIconoConsulta" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Consulta" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+            <Button id="button1" fx:id="iconoDatos" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" mnemonicParsing="false" onAction="#handleIconoDatos" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Datos" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
               <font>
                 <Font name="System Bold" size="12.0" fx:id="x1" />
               </font>
               <graphic>
-                <ImageView id="ivIco1" fx:id="ivIconoConsulta" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
+                <ImageView id="ivIco1" fx:id="ivIconoDatos" disable="false" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="false" smooth="true">
                   <image>
                     <Image url="@../../resources/icons/consulta.png" />
                   </image>
@@ -89,16 +89,16 @@
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="91.0" minWidth="7.0" percentWidth="14.0" prefWidth="91.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" percentHeight="34.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="183.14993957519533" minHeight="10.0" percentHeight="33.0" prefHeight="183.14993957519533" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="183.14993957519533" minHeight="10.0" percentHeight="33.0" prefHeight="183.14993957519533" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="188.69993774414064" minHeight="10.0" percentHeight="34.0" prefHeight="188.69993774414064" vgrow="ALWAYS" />
           </rowConstraints>
         </GridPane>
       </children>
     </AnchorPane>
-    <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="735.0" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="598.0" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="141.33" AnchorPane.topAnchor="0.0">
       <contextMenu>
         <ContextMenu fx:id="barMenu" />
       </contextMenu>
@@ -127,6 +127,12 @@
           </font>
         </Label>
         <Separator orientation="VERTICAL" prefHeight="21.0" />
+      </items>
+    </ToolBar>
+    <ToolBar prefHeight="32.0" prefWidth="143.3331298828125" styleClass="barra" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+      <items>
+        <Label prefWidth="77.66998291015625" text="Rendimiento" textAlignment="RIGHT" textFill="WHITE" underline="false" wrapText="false" />
+        <TextField fx:id="tfRendimiento" editable="false" focusTraversable="false" prefWidth="38.0" styleClass="rendimiento" text="3,87" />
       </items>
     </ToolBar>
   </children>

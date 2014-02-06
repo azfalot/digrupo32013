@@ -5,7 +5,7 @@ and open the template in the editor.
 */
 /* 
     Created on : Jan 30, 2014, 4:54:28 PM
-    Author     : Daniel Plaza
+    Author     : Grupo 3
 */
 
 .icono{
@@ -54,4 +54,9 @@ and open the template in the editor.
 
 .taskbaricons{
     -fx-background-color: transparent;
+}
+
+.rendimiento{
+    -fx-background-color: #82ac86;
+    -fx-font-family: "Verdana";
 }

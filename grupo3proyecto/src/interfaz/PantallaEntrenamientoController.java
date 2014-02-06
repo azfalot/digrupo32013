@@ -6,16 +6,21 @@
 package interfaz;
 
 import eu.schudt.javafx.controls.calendar.DatePicker;
+import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import jfxtras.labs.scene.control.window.Window;
 import logica.Methods;
@@ -30,6 +35,8 @@ public class PantallaEntrenamientoController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @FXML
+    ImageView ivError;
     @FXML
     Button botonAlta;
     @FXML
@@ -61,20 +68,44 @@ public class PantallaEntrenamientoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        /*
+        * Limitamos el texto del TextArea a 255
+        */
+        textAreaDescripcion.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> ov, String t, String t1) {
+                if (t1.length() > 255) {
+                    textAreaDescripcion.setText(t);
+                }
+            }
+        });
+        /*
+        * ivError: Se le asigna una imagen y se oculta
+        */
+        ivError.setImage(new Image("file:resources" + File.separator + "wrong.png"));
+        ivError.setVisible(false);
     }
     
     @FXML
     private void handleBotonAceptar() {
-        m.altaEntrenamiento(comboHoraInicio.getSelectionModel().getSelectedItem().toString(), comboMinInicio.getSelectionModel().getSelectedItem().toString(), comboHoraFinal.getSelectionModel().getSelectedItem().toString(), comboMinFinal.getSelectionModel().getSelectedItem().toString(), datePicker.getSelectedDate(), comboTipo.getSelectionModel().getSelectedItem().toString(), textAreaDescripcion.getText());
-        w.close();
+        try{
+            ivError.setVisible(false);
+            m.altaEntrenamiento(comboHoraInicio.getSelectionModel().getSelectedItem().toString(), comboMinInicio.getSelectionModel().getSelectedItem().toString(), comboHoraFinal.getSelectionModel().getSelectedItem().toString(), comboMinFinal.getSelectionModel().getSelectedItem().toString(), datePicker.getSelectedDate(), comboTipo.getSelectionModel().getSelectedIndex(), textAreaDescripcion.getText());
+            w.close();
+        }catch(NullPointerException e){
+            ivError.setVisible(true);
+        }
     }
-
+    
     private void setCombos() {
+        /*
+        * Este metodo rellena los ComboBox
+        */
         comboTipo.getItems().clear();
         comboTipo.getItems().addAll(
-                "Fisico",
-                "Rocódromo",
-                "Roca"
+                "Físico",
+                "Roca",
+                "Rocódromo"
         );
         comboMinInicio.getItems().clear();
         comboMinFinal.getItems().clear();
@@ -99,7 +130,7 @@ public class PantallaEntrenamientoController implements Initializable {
             comboMinInicio.getItems().add(i);
             comboMinFinal.getItems().add(i);
         }
-
+        //Se selecciona el primer valor por defecto
         comboHoraInicio.getSelectionModel().select(0);
         comboMinInicio.getSelectionModel().select(0);
         comboHoraFinal.getSelectionModel().select(0);

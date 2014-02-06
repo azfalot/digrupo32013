@@ -5,32 +5,26 @@
  */
 package interfaz.util;
 
-import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.AnchorPane;
-import jfxtras.labs.scene.control.window.MinimizeIcon;
-import jfxtras.labs.scene.control.window.Window;
+import jfxtras.labs.scene.control.window.WindowIcon;
 
 /**
  *
  * @author Daniel Plaza
  */
-public class MaximizeIcon extends MinimizeIcon {
+public class MaximizeIcon extends WindowIcon {
+    /*
+    * Esta clase es un icono para maximizar ya que no esta implementado en jfxtras
+    */
+    private MyWindow w;
     
-    private Window w;
-    
-    public MaximizeIcon(final Window w) {
-        super(w);
-        
+    public MaximizeIcon(final MyWindow w) {
+        this.w=w;
         setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                AnchorPane desktop = (AnchorPane) w.getParent();
-                w.toFront();
-                w.setLayoutX(0);
-                w.setLayoutY(0);
-                w.setPrefSize(desktop.getWidth(), desktop.getHeight());
+                w.maximize();
             }
         });
     }
