@@ -32,7 +32,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import jfxtras.labs.scene.control.window.CloseIcon;
 import logica.Methods;
@@ -229,6 +231,31 @@ public class PantallaPrincipalController implements Initializable {
     
     
     /*
+    * FILECHOOSER
+    */
+    private File seleccionarArchivo() {
+        //abre el filechoooser y guarda un File
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar imagen");
+        fileChooser.getExtensionFilters();
+        FileChooser.ExtensionFilter exjpg = new FileChooser.ExtensionFilter("JPEG (*.jpg)", "*.jpg", "*.jpeg");
+        FileChooser.ExtensionFilter expng = new FileChooser.ExtensionFilter("PNG (*.png)", "*.png");
+        FileChooser.ExtensionFilter exbmp = new FileChooser.ExtensionFilter("Mapa de bits"+"(*.bmp)", "*.bmp");
+        FileChooser.ExtensionFilter exall = new FileChooser.ExtensionFilter("Archivos de imagen", "*.jpg", "*.jpeg", "*.png", "*.bmp");
+        fileChooser.getExtensionFilters().add(exall);
+        fileChooser.getExtensionFilters().add(exbmp);
+        fileChooser.getExtensionFilters().add(exjpg);
+        fileChooser.getExtensionFilters().add(expng);
+        
+        try {
+            return fileChooser.showOpenDialog(new Stage());
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+    
+    
+    /*
     * CARGAR VENTANAS
     */
     private Initializable addWindow(String fxml, String title, int width, int height, boolean resizable, String imgPath, final MyWindow w) {
@@ -314,5 +341,5 @@ public class PantallaPrincipalController implements Initializable {
         });
         return fxmlLoader.getController();
     }
-
+    
 }
