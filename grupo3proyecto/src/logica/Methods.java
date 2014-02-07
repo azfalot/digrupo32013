@@ -75,7 +75,8 @@ public class Methods {
     }
 
     /*
-     * Consultas
+     * CONSULTAS
+     *
      * Las consultas estan en la clase Queries, esta clase solo actua como comunicador.
      * Esta forma de trabajar es por cuestion de orden.
      */
@@ -97,6 +98,10 @@ public class Methods {
     
     public void altaEntrenamiento(String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,int tipo,String descripcion) {
         q.altaEntrenamiento(getUserId(),horaIni,minIni,horaFin,minFin,fechaSesion,tipo,descripcion);
+    }
+    
+    public void modificarRegistro(String tabla,int id,String campo,String nuevoValor){
+        q.modificarRegistro(tabla, id, campo, nuevoValor);
     }
     
 }

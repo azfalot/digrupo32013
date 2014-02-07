@@ -1,4 +1,3 @@
-
 package logica;
 
 import datos.conexionbd.Datos;
@@ -89,22 +88,41 @@ class Queries {
         return id;
     }
 
-    public void altaEntrenamiento(int userId,String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,int tipo,String descripcion) {
+    public void altaEntrenamiento(int userId, String horaIni, String minIni, String horaFin, String minFin, Date fechaSesion, int tipo, String descripcion) {
         /*
-        * Alta de entrenamiento
-        * Las horas y minutos se reciben como string
-        */
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+         * Alta de entrenamiento
+         * Las horas y minutos se reciben como string
+         */
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int id = 0;
-        
+
         while (true) {
             try {
                 bd.update("INSERT INTO SESION_ENTRENAMIENTOS( P_SESION_ENTRENAMIENTOS, A_ESCALADORES, HORA_INICIO, HORA_FIN, FECHA, TIPO,DESCRIPCION) "
-                        + "VALUES ( "+id+","+userId+",TIME'"+horaIni+":"+minIni+":00' ,TIME'"+horaFin+":"+minFin+":00',DATE'"+sdf.format(fechaSesion)+"' , "+tipo+",'"+descripcion+"')");
+                        + "VALUES ( " + id + "," + userId + ",TIME'" + horaIni + ":" + minIni + ":00' ,TIME'" + horaFin + ":" + minFin + ":00',DATE'" + sdf.format(fechaSesion) + "' , " + tipo + ",'" + descripcion + "')");
                 break;
             } catch (SQLException ex) {
                 id++;
             }
+        }
+    }
+
+    public boolean modificarRegistro(String tabla,int id,String campo,String nuevoValor) {
+        /*
+        * Metodo que modifica un registro en la tabla indicada.
+        * En caso de error devolvera false, indicando asi que no se ha podido 
+        * realizar el update a la base de datos.
+        *
+        * Hay que tener en cuenta que hay que pasarle el valor en HSQL, por ejemplo
+        * una fecha se pasaria como DATE'0000-00-00' al parametro nuevoValor, y un 
+        * varchar se pasaria 'nuevo valor' con las comillas simples incluidas.
+        * De este modo se tiene un metodo para cambiar registros estandarizado.
+        */
+        try {
+            bd.update("UPDATE "+tabla+" SET "+campo+"="+nuevoValor+" WHERE p_"+tabla+"="+id);
+            return true;
+        } catch (SQLException ex) {
+            return false;
         }
     }
 }
