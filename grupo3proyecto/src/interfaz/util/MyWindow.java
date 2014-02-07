@@ -30,11 +30,13 @@ public class MyWindow extends Window{
     
     public void maximize() {
         if(!maximized){
+            //Si no estaba maximizado guarda las propiedades de tamaño y situacion
             maximized=true;
             oldLayoutX=this.getLayoutX();
             oldLayoutY=this.getLayoutY();
             oldHeight=this.getHeight();
             oldWidth=this.getWidth();
+            //Se fijan los bordes al parent
             AnchorPane.setTopAnchor(this,0.0);
             AnchorPane.setBottomAnchor(this,0.0);
             AnchorPane.setRightAnchor(this,0.0);
@@ -45,6 +47,7 @@ public class MyWindow extends Window{
             this.setMovable(false);
             this.setResizableWindow(false);
         }else{
+            //si estaba maximizado vuelve a tomar las propiedades guardadas
             maximized=false;
             AnchorPane.clearConstraints(this);
             setResizableWindow(true);
@@ -55,6 +58,5 @@ public class MyWindow extends Window{
             setMovable(true); 
         }
     }
-    
     
 }

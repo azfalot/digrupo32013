@@ -82,15 +82,30 @@ public class PantallaPrincipalController implements Initializable {
     Methods m;
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
-
-    /*
-     * contadores de pantallas
-     */
+    //contadores de pantallas
     int cEntrenamiento = 1;
     int cItinerario = 1;
-
+    
     /*
-     * handles de botones e iconos
+    * INTIALIZE
+    */
+    public void builder(Stage stage, Methods m) {
+        this.stage = stage;
+        this.m = m;
+        setDesktop();
+        iconoPerfil.setText(m.getUserName());
+        setToolTips();
+        setToolBarProperty();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        setClock();
+        setIcons();
+    }
+    
+    /*
+     * HANDLES
      */
     @FXML
     private void handleIconoDatos() {
@@ -104,7 +119,6 @@ public class PantallaPrincipalController implements Initializable {
         MyWindow w = new MyWindow();
         PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento " + cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
         wEntrenamiento.builder(m, w);
-
     }
 
     @FXML
@@ -140,13 +154,14 @@ public class PantallaPrincipalController implements Initializable {
     private void handleBotonExit() {
         System.exit(0);
     }
-
-    public void builder(Stage stage, Methods m) {
-        this.stage = stage;
-        this.m = m;
-        setDesktop();
-        iconoPerfil.setText(m.getUserName());
-        setToolTips();
+    
+    /*
+    * SETTINGS
+    */
+    private void setToolBarProperty(){
+        /*
+        * Agrega a la barra de tareas la opcion de cerrar todas las ventanas abiertas pulsando boton derecho sobre ella
+        */
         MenuItem botonCerrarTodo = new MenuItem("Cerrar todas las ventanas", new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
         botonCerrarTodo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -158,13 +173,10 @@ public class PantallaPrincipalController implements Initializable {
         barMenu.getItems().add(botonCerrarTodo);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        setClock();
-        setIcons();
-    }
-
     private void setToolTips() {
+        /*
+        * Se establecen los tooltips para todos los elementos
+        */
         botonExit.setTooltip(new Tooltip("Desconectar"));
         botonFullScreen.setTooltip(new Tooltip("Modo pantalla completa"));
     }
@@ -204,6 +216,7 @@ public class PantallaPrincipalController implements Initializable {
         /*
          * carga la imagen de los iconos
          */
+        //getClass().getClassLoader().getResource("interfaz/util/off.png");
         ivBotonExit.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "off.png"));
         ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
         ivIconoConfiguracion.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "settings.png"));
@@ -213,7 +226,11 @@ public class PantallaPrincipalController implements Initializable {
         ivIconoItinerario.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "itinerario.png"));
         ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
     }
-
+    
+    
+    /*
+    * CARGAR VENTANAS
+    */
     private Initializable addWindow(String fxml, String title, int width, int height, boolean resizable, String imgPath, final MyWindow w) {
         /*
          * Este metodo lanza una ventana al escritorio, hay que pasarle el archivo fxml, el titulo que llevara, el tamaño, el icono y la ventana
@@ -295,7 +312,6 @@ public class PantallaPrincipalController implements Initializable {
                 toolBar.getItems().remove(button);
             }
         });
-        
         return fxmlLoader.getController();
     }
 
