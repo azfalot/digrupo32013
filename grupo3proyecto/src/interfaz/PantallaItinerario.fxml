@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="390.9998779296875" prefWidth="400.9998779296875" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaItinerarioController">
+  <children>
+    <Label id="texto" layoutX="30.0" layoutY="154.0" prefWidth="97.0" text="Fecha resolución">
+      <stylesheets>
+        <URL value="@Ventanas.css" />
+      </stylesheets>
+    </Label>
+    <Label id="texto" layoutX="30.0" layoutY="31.0" prefWidth="77.0" text="Nombre:">
+      <stylesheets>
+        <URL value="@Ventanas.css" />
+      </stylesheets>
+    </Label>
+    <Label id="texto" layoutX="30.0" layoutY="55.0" prefWidth="77.0" text="Localización:">
+      <stylesheets>
+        <URL value="@Ventanas.css" />
+      </stylesheets>
+    </Label>
+    <Label id="texto" layoutX="30.0" layoutY="92.0" prefWidth="77.0" text="Tipo">
+      <stylesheets>
+        <URL value="@Ventanas.css" />
+      </stylesheets>
+    </Label>
+    <Label id="texto" layoutX="30.0" layoutY="181.0" prefWidth="77.0" text="Fotografia">
+      <stylesheets>
+        <URL value="@Ventanas.css" />
+      </stylesheets>
+    </Label>
+    <GridPane fx:id="gridPane" layoutX="127.0" layoutY="147.0" prefWidth="77.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+      <stylesheets>
+        <URL value="@Ventanas.css" />
+        <URL value="@util/DatePicker.css" />
+      </stylesheets>
+    </GridPane>
+    <ComboBox id="Estilos.css" fx:id="comboTipo" layoutX="116.0" layoutY="79.0" prefWidth="140.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+      <stylesheets>
+        <URL value="@Ventanas.css" />
+      </stylesheets>
+    </ComboBox>
+    <Button id="botones" fx:id="botonAceptar" layoutX="138.0" layoutY="333.0" mnemonicParsing="false" onAction="#handleBotonAceptar" prefWidth="97.0" text="Aceptar">
+      <stylesheets>
+        <URL value="@Ventanas.css" />
+      </stylesheets>
+    </Button>
+    <ImageView fx:id="ivError" fitHeight="20.0" fitWidth="20.0" layoutX="223.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../../resources/wrong.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="30.0" layoutY="123.0" prefWidth="77.0" text="Dificultad" />
+    <ComboBox fx:id="comboDificultad" layoutX="116.0" layoutY="115.0" prefHeight="21.0" prefWidth="140.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <TextField id="textTitulo" fx:id="textNombre" layoutX="116.0" layoutY="22.0" prefWidth="140.0" />
+    <TextField id="textTitulo" fx:id="textLoca" layoutX="116.0" layoutY="49.0" prefWidth="140.0" />
+    <TextField id="textTitulo" fx:id="textRutaFoto" layoutX="116.0" layoutY="175.0" prefWidth="140.0" />
+    <Button id="Examinar" fx:id="botonExaminar" layoutX="263.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleBotonExaminarAction" prefHeight="22.0" prefWidth="89.0" text="Examinar" />
+    <ImageView fx:id="imageView" fitHeight="109.5" fitWidth="146.0" layoutX="116.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
+  </children>
+  <stylesheets>
+    <URL value="@Ventanas.css" />
+  </stylesheets>
+</AnchorPane>

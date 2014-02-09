@@ -125,7 +125,9 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoItinerario() {
-
+MyWindow w = new MyWindow();
+        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cEntrenamiento++, 400, 391, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
+    wItinerario.builder(m,w);
     }
 
     @FXML
