@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -124,5 +126,21 @@ class Queries {
         } catch (SQLException ex) {
             return false;
         }
+    }
+    
+    public ObservableList getLocalizaciones(int userId){
+        /*
+        * Devuelve un ArrayList con las localizaciones
+        */
+        ObservableList data = FXCollections.observableArrayList();
+        ResultSet rs = bd.consulta("select i.localizacion from itinerario i,esc_it ei where i.p_itinerario=ei.a_itinerario and ei.a_escaladores="+userId);
+        try {
+            while (rs.next()) {
+                data.add(rs.getString("localizacion"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return data;
     }
 }

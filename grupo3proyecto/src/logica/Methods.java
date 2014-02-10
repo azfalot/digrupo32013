@@ -5,6 +5,8 @@ import datos.config.Config;
 import datos.strings.Language;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -103,5 +105,10 @@ public class Methods {
     public void modificarRegistro(String tabla,int id,String campo,String nuevoValor){
         q.modificarRegistro(tabla, id, campo, nuevoValor);
     }
+    
+    public ObservableList getLocalizaciones(){
+        return q.getLocalizaciones(getUserId());
+    }
+
     
 }

@@ -34,7 +34,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import jfxtras.labs.scene.control.window.CloseIcon;
 import logica.Methods;
@@ -84,6 +83,7 @@ public class PantallaPrincipalController implements Initializable {
     Methods m;
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
+    
     //contadores de pantallas
     int cEntrenamiento = 1;
     int cItinerario = 1;
@@ -125,9 +125,9 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoItinerario() {
-MyWindow w = new MyWindow();
-        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cEntrenamiento++, 400, 391, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
-    wItinerario.builder(m,w);
+        MyWindow w = new MyWindow();
+        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cItinerario++, 400, 391, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
+        wItinerario.builder(m,w);
     }
 
     @FXML

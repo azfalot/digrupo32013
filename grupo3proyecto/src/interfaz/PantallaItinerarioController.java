@@ -28,6 +28,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import jfxtras.labs.scene.control.window.Window;
 import logica.Methods;
+import np.com.ngopal.control.AutoFillTextBox;
 
 /**
  * FXML Controller class
@@ -48,8 +49,6 @@ public class PantallaItinerarioController implements Initializable {
     @FXML
     TextField textNombre;
     @FXML
-    TextField textLoca;
-    @FXML
     ComboBox comboDificultad;
     @FXML
     Button botonExaminar;
@@ -59,17 +58,22 @@ public class PantallaItinerarioController implements Initializable {
     ComboBox comboTipo;
     @FXML
     private GridPane gridPane;
+    @FXML
+    GridPane gridPaneAutoFill;
     File file;
 
     private DatePicker datePicker;
     private Methods m;
     private Window w;
+    private AutoFillTextBox textLoca;
 
     public void builder(Methods m, Window w) {
         this.m = m;
         this.w = w;
         setDatePicker();
         setCombos();
+        textLoca = new AutoFillTextBox(m.getLocalizaciones());
+        gridPaneAutoFill.getChildren().add(textLoca);
     }
 
     @Override

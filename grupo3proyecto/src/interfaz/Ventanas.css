@@ -39,5 +39,8 @@ and open the template in the editor.
 .tab-header-area {
     -fx-padding: 0.0em 0.0em 0.0em 0.0em;
 }
+.autofill-text {
+    -fx-skin: "np.com.ngopal.control.AutoFillTextBoxSkin";
+}
 
 
