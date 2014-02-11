@@ -1,4 +1,3 @@
-
 package interfaz;
 
 import interfaz.util.MaximizeIcon;
@@ -74,7 +73,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     ImageView ivIconoConfiguracion;
     @FXML
-    ImageView ivIconoImprimir;
+    ImageView ivIconoAyuda;
     @FXML
     ContextMenu barMenu;
     @FXML
@@ -83,14 +82,14 @@ public class PantallaPrincipalController implements Initializable {
     Methods m;
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
-    
+
     //contadores de pantallas
     int cEntrenamiento = 1;
     int cItinerario = 1;
-    
+
     /*
-    * INTIALIZE
-    */
+     * INTIALIZE
+     */
     public void builder(Stage stage, Methods m) {
         this.stage = stage;
         this.m = m;
@@ -105,7 +104,7 @@ public class PantallaPrincipalController implements Initializable {
         setClock();
         setIcons();
     }
-    
+
     /*
      * HANDLES
      */
@@ -120,14 +119,14 @@ public class PantallaPrincipalController implements Initializable {
     private void handleIconoEntrenamiento() {
         MyWindow w = new MyWindow();
         PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento " + cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
-        wEntrenamiento.builder(m,w);
+        wEntrenamiento.builder(m, w);
     }
 
     @FXML
     private void handleIconoItinerario() {
         MyWindow w = new MyWindow();
         PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cItinerario++, 400, 350, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
-        wItinerario.builder(m,w);
+        wItinerario.builder(m, w);
     }
 
     @FXML
@@ -141,7 +140,7 @@ public class PantallaPrincipalController implements Initializable {
     }
 
     @FXML
-    private void handleIconoImprimir() {
+    private void handleIconoAyuda() {
 
     }
 
@@ -149,7 +148,9 @@ public class PantallaPrincipalController implements Initializable {
     private void handleBotonFullScreen() {
         if (!stage.isFullScreen()) {
             stage.setFullScreen(true);
+            ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen0.png"));
         } else {
+            ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
             stage.setFullScreen(false);
         }
     }
@@ -158,14 +159,14 @@ public class PantallaPrincipalController implements Initializable {
     private void handleBotonExit() {
         System.exit(0);
     }
-    
+
     /*
-    * SETTINGS
-    */
-    private void setToolBarProperty(){
+     * SETTINGS
+     */
+    private void setToolBarProperty() {
         /*
-        * Agrega a la barra de tareas la opcion de cerrar todas las ventanas abiertas pulsando boton derecho sobre ella
-        */
+         * Agrega a la barra de tareas la opcion de cerrar todas las ventanas abiertas pulsando boton derecho sobre ella
+         */
         MenuItem botonCerrarTodo = new MenuItem("Cerrar todas las ventanas", new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
         botonCerrarTodo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -179,8 +180,8 @@ public class PantallaPrincipalController implements Initializable {
 
     private void setToolTips() {
         /*
-        * Se establecen los tooltips para todos los elementos
-        */
+         * Se establecen los tooltips para todos los elementos
+         */
         botonExit.setTooltip(new Tooltip("Desconectar"));
         botonFullScreen.setTooltip(new Tooltip("Modo pantalla completa"));
     }
@@ -220,46 +221,20 @@ public class PantallaPrincipalController implements Initializable {
         /*
          * carga la imagen de los iconos
          */
-        //getClass().getClassLoader().getResource("interfaz/util/off.png");
+        //getClass().getClassLoader().getResource("interfaz/util/off.png"); //obtener la imagen de un paquete
         ivBotonExit.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "off.png"));
         ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
         ivIconoConfiguracion.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "settings.png"));
         ivIconoDatos.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "consulta.png"));
         ivIconoEntrenamiento.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "entrenamiento.png"));
-        ivIconoImprimir.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "imprimir.png"));
+        ivIconoAyuda.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "imprimir.png"));
         ivIconoItinerario.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "itinerario.png"));
         ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
     }
-    
-    
+
     /*
-    * FILECHOOSER
-    */
-    private File seleccionarArchivo() {
-        //abre el filechoooser y guarda un File
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar imagen");
-        fileChooser.getExtensionFilters();
-        FileChooser.ExtensionFilter exjpg = new FileChooser.ExtensionFilter("JPEG (*.jpg)", "*.jpg", "*.jpeg");
-        FileChooser.ExtensionFilter expng = new FileChooser.ExtensionFilter("PNG (*.png)", "*.png");
-        FileChooser.ExtensionFilter exbmp = new FileChooser.ExtensionFilter("Mapa de bits"+"(*.bmp)", "*.bmp");
-        FileChooser.ExtensionFilter exall = new FileChooser.ExtensionFilter("Archivos de imagen", "*.jpg", "*.jpeg", "*.png", "*.bmp");
-        fileChooser.getExtensionFilters().add(exall);
-        fileChooser.getExtensionFilters().add(exbmp);
-        fileChooser.getExtensionFilters().add(exjpg);
-        fileChooser.getExtensionFilters().add(expng);
-        
-        try {
-            return fileChooser.showOpenDialog(new Stage());
-        } catch (NullPointerException e) {
-            return null;
-        }
-    }
-    
-    
-    /*
-    * CARGAR VENTANAS
-    */
+     * CARGAR VENTANAS
+     */
     private Initializable addWindow(String fxml, String title, int width, int height, boolean resizable, String imgPath, final MyWindow w) {
         /*
          * Este metodo lanza una ventana al escritorio, hay que pasarle el archivo fxml, el titulo que llevara, el tamaño, el icono y la ventana
@@ -284,11 +259,11 @@ public class PantallaPrincipalController implements Initializable {
         w.setLayoutX((desktop.getWidth() / 2) - (width / 2));
         w.setLayoutY((desktop.getHeight() / 2) - (height / 2));
         //Si es resizable se agrega el boton de maximizar
-        if(resizable){
+        if (resizable) {
             w.setResizableWindow(resizable);
             w.getLeftIcons().add(new MaximizeIcon(w));
-            
-        }else{
+
+        } else {
             w.setResizableWindow(false);
         }
         //w.getRightIcons().add(new MinimizeIcon(w));//boton que para minimizar deja la barra superior de la ventana
@@ -343,5 +318,5 @@ public class PantallaPrincipalController implements Initializable {
         });
         return fxmlLoader.getController();
     }
-    
+
 }
