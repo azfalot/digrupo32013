@@ -93,7 +93,7 @@ public class PantallaItinerarioController implements Initializable {
     private void handleBotonAceptar() {
         try {
             ivError.setVisible(false);
-            //m.altaItinerario();
+            //m.altaItinerario(textNombre.getText(), , localizacion, tipo, foto, fecha, getUserId());
             w.close();
         } catch (NullPointerException e) {
             ivError.setVisible(true);

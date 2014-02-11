@@ -143,4 +143,30 @@ class Queries {
         }
         return data;
     }
+    
+    public void altaItinerario(String nombre,String dificultad,String localizacion,int tipo,String foto,Date fecha,int userId){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        int idItinerario = 0;
+        while (true) {
+            try {
+                bd.update(""
+                +"INSERT INTO ITINERARIO" +
+                 " (P_ITINERARIO,NOMBRE,DIFICULTAD,LOCALIZACION,TIPO,FOTO)" +
+                " VALUES ( "+idItinerario+", '"+nombre+"', '"+dificultad+"', '"+localizacion+"',"+tipo+" , '"+foto+"')");
+                break;
+            } catch (SQLException ex) {
+                idItinerario++;
+            }
+        }
+        int idIT_esc=0;
+        while (true) {
+            try{
+                bd.update("INSERT INTO ESC_IT" +
+                " (P_ESC_IT,A_ESCALADORES,A_ITINERARIO,FECHA)" +
+                " VALUES ("+idIT_esc+","+userId+","+idItinerario+",DATE'" + sdf.format(fecha) + "')");
+            } catch (SQLException ex) {
+                idItinerario++;
+            }
+        }
+    }
 }

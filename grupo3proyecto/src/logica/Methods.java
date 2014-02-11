@@ -110,5 +110,7 @@ public class Methods {
         return q.getLocalizaciones(getUserId());
     }
 
-    
+    public void altaItinerario(String nombre,String dificultad,String localizacion,int tipo,String foto,Date fecha){
+        q.altaItinerario(nombre, dificultad, localizacion, tipo, foto, fecha, getUserId());
+    }
 }
