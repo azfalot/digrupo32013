@@ -120,13 +120,13 @@ public class PantallaPrincipalController implements Initializable {
     private void handleIconoEntrenamiento() {
         MyWindow w = new MyWindow();
         PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento " + cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
-        wEntrenamiento.builder(m, w);
+        wEntrenamiento.builder(m,w);
     }
 
     @FXML
     private void handleIconoItinerario() {
         MyWindow w = new MyWindow();
-        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cItinerario++, 400, 391, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
+        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cItinerario++, 400, 350, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
         wItinerario.builder(m,w);
     }
 

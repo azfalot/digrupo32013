@@ -128,7 +128,7 @@ class Queries {
         }
     }
     
-    public ObservableList getLocalizaciones(int userId){
+    public ObservableList<String> getLocalizaciones(int userId){
         /*
         * Devuelve un ArrayList con las localizaciones
         */

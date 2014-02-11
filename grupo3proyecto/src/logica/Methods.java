@@ -106,7 +106,7 @@ public class Methods {
         q.modificarRegistro(tabla, id, campo, nuevoValor);
     }
     
-    public ObservableList getLocalizaciones(){
+    public ObservableList<String> getLocalizaciones(){
         return q.getLocalizaciones(getUserId());
     }
 

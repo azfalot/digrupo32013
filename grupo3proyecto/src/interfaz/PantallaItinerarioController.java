@@ -13,14 +13,11 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,19 +50,24 @@ public class PantallaItinerarioController implements Initializable {
     @FXML
     Button botonExaminar;
     @FXML
-    private ImageView imageView;
+    ImageView imageView;
     @FXML
     ComboBox comboTipo;
     @FXML
-    private GridPane gridPane;
+    GridPane gridPane;
     @FXML
     GridPane gridPaneAutoFill;
-    File file;
-
-    private DatePicker datePicker;
+    
+    
+    private File file;
+    
     private Methods m;
     private Window w;
+    
+    private DatePicker datePicker;
     private AutoFillTextBox textLoca;
+    
+    private String imagePath="";
 
     public void builder(Methods m, Window w) {
         this.m = m;
@@ -74,11 +76,12 @@ public class PantallaItinerarioController implements Initializable {
         setCombos();
         textLoca = new AutoFillTextBox(m.getLocalizaciones());
         gridPaneAutoFill.getChildren().add(textLoca);
+        textLoca.setMaxWidth(140);
+        imageView.setPreserveRatio(false);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         /*
          * ivError: Se le asigna una imagen y se oculta
          */
@@ -90,25 +93,45 @@ public class PantallaItinerarioController implements Initializable {
     private void handleBotonAceptar() {
         try {
             ivError.setVisible(false);
+            //m.altaItinerario();
             w.close();
         } catch (NullPointerException e) {
             ivError.setVisible(true);
         }
     }
     @FXML
-    public void handleBotonExaminarAction(ActionEvent event) throws FileNotFoundException {
-        //Este metodo se encarga de seleccionar la imagen en la ruta especificada y previsualizarla.
-        
+    public void handleBotonExaminarAction(ActionEvent event){
+        /*
+        * Este metodo se encarga de seleccionar la imagen en la ruta especificada y previsualizarla.
+        * Ademas guarda la ruta de la imagen para ser copiada posteriormente al aceptar
+        */      
         FileChooser fileChooser = new FileChooser();
-        //Filtro para la extension del archivo
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("*JPEG Image", "*.jpg");
-        fileChooser.getExtensionFilters().add(extFilter);
-        
+        //Filtros para la extension del archivo
+        FileChooser.ExtensionFilter exjpg = new FileChooser.ExtensionFilter("JPEG (*.jpg)", "*.jpg", "*.jpeg");
+        FileChooser.ExtensionFilter expng = new FileChooser.ExtensionFilter("PNG (*.png)", "*.png");
+        FileChooser.ExtensionFilter exbmp = new FileChooser.ExtensionFilter("Mapa de bits"+" (*.bmp)", "*.bmp");
+        FileChooser.ExtensionFilter exall = new FileChooser.ExtensionFilter("Archivos de imagen", "*.jpg", "*.png", "*.bmp", "*.jpeg");
+        fileChooser.getExtensionFilters().add(exall);
+        fileChooser.getExtensionFilters().add(exbmp);
+        fileChooser.getExtensionFilters().add(exjpg);
+        fileChooser.getExtensionFilters().add(expng);
+        //Abre la ventana del filechooser
         file = fileChooser.showOpenDialog(null);
+        //Guarda la ruta de la imagen en una variable y la escribe en el TextField
+        try{
         textRutaFoto.setText(file.getPath());
-        
-        Image img = new Image(new FileInputStream(file));
+        }catch(NullPointerException e){
+            
+        }
+        imagePath=file.getPath();
+        //Previsualiza la imagen
+        Image img=null;
+        try {
+            img = new Image(new FileInputStream(file));
+        } catch (FileNotFoundException ex) {
+        }
         imageView.setImage(img);
+
     }
 
     private void setCombos() {
