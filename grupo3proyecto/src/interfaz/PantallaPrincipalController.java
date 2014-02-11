@@ -227,7 +227,7 @@ public class PantallaPrincipalController implements Initializable {
         ivIconoConfiguracion.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "settings.png"));
         ivIconoDatos.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "consulta.png"));
         ivIconoEntrenamiento.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "entrenamiento.png"));
-        ivIconoAyuda.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "imprimir.png"));
+        ivIconoAyuda.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "ayuda.png"));
         ivIconoItinerario.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "itinerario.png"));
         ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
     }

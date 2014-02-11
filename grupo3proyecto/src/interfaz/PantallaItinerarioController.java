@@ -120,10 +120,8 @@ public class PantallaItinerarioController implements Initializable {
         //Guarda la ruta de la imagen en una variable y la escribe en el TextField
         try{
         textRutaFoto.setText(file.getPath());
-        }catch(NullPointerException e){
-            
-        }
         imagePath=file.getPath();
+        }catch(NullPointerException e){}   
         //Previsualiza la imagen
         Image img=null;
         try {
