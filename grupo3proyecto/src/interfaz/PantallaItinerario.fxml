@@ -12,11 +12,11 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaItinerarioController">
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="370.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaItinerarioController">
   <children>
-    <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="137.0" layoutX="30.0" layoutY="163.0" strokeType="INSIDE" width="340.0">
+    <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="137.0" layoutX="30.0" layoutY="163.0" strokeType="INSIDE" width="316.0">
       <stroke>
-        <Color blue="0.624" green="0.624" red="0.612" fx:id="x1" />
+        <Color blue="0.750" green="0.750" red="0.750" fx:id="x1" />
       </stroke>
     </Rectangle>
     <TextField id="textTitulo" fx:id="textNombre" layoutX="130.0" layoutY="28.0" prefWidth="140.0" />
@@ -61,8 +61,8 @@
         <URL value="@util/DatePicker.css" />
       </stylesheets>
     </GridPane>
-    <Button id="Examinar" fx:id="botonExaminar" layoutX="41.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleBotonExaminarAction" prefHeight="22.0" prefWidth="89.0" text="Examinar" />
-    <Button id="botones" fx:id="botonAceptar" layoutX="148.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleBotonAceptar" prefWidth="97.0" text="Aceptar">
+    <Button id="Examinar" fx:id="botonExaminar" layoutX="59.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleBotonExaminarAction" prefHeight="22.0" prefWidth="89.0" text="Examinar..." />
+    <Button id="botones" fx:id="botonAceptar" layoutX="136.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleBotonAceptar" prefWidth="97.0" text="Aceptar">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
@@ -87,14 +87,15 @@
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="40.0" layoutY="171.0" prefWidth="77.0" text="Fotografia">
+    <Label id="texto" layoutX="53.0" layoutY="171.0" prefWidth="140.0" text="Fotografia (opcional)">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
     <Label layoutX="30.0" layoutY="105.0" prefWidth="77.0" text="Dificultad" />
-    <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="117.9999008178711" layoutX="203.0" layoutY="173.0" stroke="$x1" strokeType="INSIDE" width="155.99989318847656" />
-    <ImageView fx:id="imageView" fitHeight="109.5" fitWidth="146.0" layoutX="205.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="117.9999008178711" layoutX="181.0" layoutY="174.0" stroke="$x1" strokeType="INSIDE" width="155.99989318847656" />
+    <Label alignment="CENTER" layoutX="223.0" layoutY="224.0" prefHeight="17.0" prefWidth="77.0" text="sin imagen" textFill="$x1" />
+    <ImageView fx:id="imageView" fitHeight="118.49990844726562" fitWidth="157.9998779296875" layoutX="179.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView id="ivError" fx:id="ivErrorNombre" fitHeight="20.0" fitWidth="20.0" layoutX="277.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../../resources/wrong.png" />

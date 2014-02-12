@@ -97,6 +97,7 @@ public class PantallaPrincipalController implements Initializable {
         iconoPerfil.setText(m.getUserName());
         setToolTips();
         setToolBarProperty();
+        
     }
 
     @Override
@@ -125,7 +126,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoItinerario() {
         MyWindow w = new MyWindow();
-        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cItinerario++, 400, 350, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
+        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cItinerario++, 370, 350, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
         wItinerario.builder(m, w);
     }
 
@@ -136,6 +137,8 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoConfiguracion() {
+        MyWindow w=new MyWindow();
+        PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", "Configuración", 275, 250, false, "resources" + File.separator + "icons" + File.separator + "settings.png", w);
 
     }
 

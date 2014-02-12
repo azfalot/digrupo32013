@@ -9,6 +9,7 @@ import eu.schudt.javafx.controls.calendar.DatePicker;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -139,7 +140,7 @@ public class PantallaItinerarioController implements Initializable {
         Image img=null;
         try {
             img = new Image(new FileInputStream(file));
-        } catch (FileNotFoundException ex) {
+        } catch (IOException e) {
         }
         imageView.setImage(img);
 

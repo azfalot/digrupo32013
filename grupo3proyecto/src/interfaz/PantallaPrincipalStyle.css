@@ -15,7 +15,7 @@ and open the template in the editor.
     -fx-effect: dropshadow( gaussian ,black , 2,0.4,1,1 );  
 }
 .icono:hover{
-    -fx-background-color: #9933ff;
+    -fx-background-color: #ff3333;
 }
 .barra{
     -fx-background-color: 

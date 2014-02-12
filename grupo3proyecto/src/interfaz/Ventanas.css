@@ -42,5 +42,9 @@ and open the template in the editor.
 .autofill-text {
     -fx-skin: "np.com.ngopal.control.AutoFillTextBoxSkin";
 }
+.nota{
+    -fx-font-size: 10px;
+    font-style: italic;
+}
 
 
