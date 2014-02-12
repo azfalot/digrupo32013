@@ -40,7 +40,7 @@
         <URL value="@Ventanas.css" />
       </stylesheets>
     </ComboBox>
-    <ComboBox fx:id="comboDificultad" layoutX="130.0" layoutY="103.0" prefHeight="21.0" prefWidth="140.0">
+    <ComboBox fx:id="comboDificultad" layoutX="130.0" layoutY="103.0" prefHeight="21.0" prefWidth="51.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
