@@ -3,6 +3,11 @@ package logica;
 import datos.conexionbd.Datos;
 import datos.conexionbd.POJOS.Usuario;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -18,6 +23,25 @@ import javafx.collections.ObservableList;
 class Queries {
 
     private final Datos bd = Datos.getInstance();
+
+    public File copyPicture(File origen, String newName) {
+        /*
+         * Metodo que copia una imagen al directorio de imagenes
+         */
+        File destino = new File(newName);
+        try {
+            InputStream in = new FileInputStream(origen);
+            OutputStream out = new FileOutputStream(destino);
+            byte[] buf = new byte[2048];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            in.close();
+            out.close();
+        } catch (IOException e) {}
+        return destino;
+    }
 
     public Usuario getUsuario(int id) {
         /*
@@ -109,31 +133,31 @@ class Queries {
         }
     }
 
-    public boolean modificarRegistro(String tabla,int id,String campo,String nuevoValor) {
+    public boolean modificarRegistro(String tabla, int id, String campo, String nuevoValor) {
         /*
-        * Metodo que modifica un registro en la tabla indicada.
-        * En caso de error devolvera false, indicando asi que no se ha podido 
-        * realizar el update a la base de datos.
-        *
-        * Hay que tener en cuenta que hay que pasarle el valor en HSQL, por ejemplo
-        * una fecha se pasaria como DATE'0000-00-00' al parametro nuevoValor, y un 
-        * varchar se pasaria 'nuevo valor' con las comillas simples incluidas.
-        * De este modo se tiene un metodo para cambiar registros estandarizado.
-        */
+         * Metodo que modifica un registro en la tabla indicada.
+         * En caso de error devolvera false, indicando asi que no se ha podido 
+         * realizar el update a la base de datos.
+         *
+         * Hay que tener en cuenta que hay que pasarle el valor en HSQL, por ejemplo
+         * una fecha se pasaria como DATE'0000-00-00' al parametro nuevoValor, y un 
+         * varchar se pasaria 'nuevo valor' con las comillas simples incluidas.
+         * De este modo se tiene un metodo para cambiar registros estandarizado.
+         */
         try {
-            bd.update("UPDATE "+tabla+" SET "+campo+"="+nuevoValor+" WHERE p_"+tabla+"="+id);
+            bd.update("UPDATE " + tabla + " SET " + campo + "=" + nuevoValor + " WHERE p_" + tabla + "=" + id);
             return true;
         } catch (SQLException ex) {
             return false;
         }
     }
-    
-    public ObservableList<String> getLocalizaciones(int userId){
+
+    public ObservableList<String> getLocalizaciones(int userId) {
         /*
-        * Devuelve un ArrayList con las localizaciones
-        */
+         * Devuelve un ArrayList con las localizaciones
+         */
         ObservableList data = FXCollections.observableArrayList();
-        ResultSet rs = bd.consulta("select i.localizacion from itinerario i,esc_it ei where i.p_itinerario=ei.a_itinerario and ei.a_escaladores="+userId);
+        ResultSet rs = bd.consulta("select i.localizacion from itinerario i,esc_it ei where i.p_itinerario=ei.a_itinerario and ei.a_escaladores=" + userId);
         try {
             while (rs.next()) {
                 data.add(rs.getString("localizacion"));
@@ -143,30 +167,36 @@ class Queries {
         }
         return data;
     }
-    
-    public void altaItinerario(String nombre,String dificultad,String localizacion,int tipo,String foto,Date fecha,int userId){
+
+    public void altaItinerario(String nombre, String dificultad, String localizacion, int tipo, File foto, Date fecha, int userId) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int idItinerario = 0;
+        String imgName;
         while (true) {
             try {
+                imgName = "images" + File.separator + "it" + idItinerario + "-" + foto.getName();
                 bd.update(""
-                +"INSERT INTO ITINERARIO" +
-                 " (P_ITINERARIO,NOMBRE,DIFICULTAD,LOCALIZACION,TIPO,FOTO)" +
-                " VALUES ( "+idItinerario+", '"+nombre+"', '"+dificultad+"', '"+localizacion+"',"+tipo+" , '"+foto+"')");
+                        + "INSERT INTO ITINERARIO"
+                        + " (P_ITINERARIO,NOMBRE,DIFICULTAD,LOCALIZACION,TIPO,FOTO)"
+                        + " VALUES ( " + idItinerario + ", '" + nombre + "', '" + dificultad + "', '" + localizacion + "'," + tipo + " ,'" + imgName + "')");
                 break;
             } catch (SQLException ex) {
                 idItinerario++;
             }
         }
-        int idIT_esc=0;
+        copyPicture(foto, imgName);
+        int idIT_esc = 0;
         while (true) {
-            try{
-                bd.update("INSERT INTO ESC_IT" +
-                " (P_ESC_IT,A_ESCALADORES,A_ITINERARIO,FECHA)" +
-                " VALUES ("+idIT_esc+","+userId+","+idItinerario+",DATE'" + sdf.format(fecha) + "')");
+            System.out.println(idIT_esc);
+            try {
+                bd.update("INSERT INTO ESC_IT"
+                        + " (P_ESC_IT,A_ESCALADORES,A_ITINERARIO,FECHA)"
+                        + " VALUES (" + idIT_esc + "," + userId + "," + idItinerario + ",DATE'" + sdf.format(fecha) + "')");
+                break;
             } catch (SQLException ex) {
-                idItinerario++;
+                idIT_esc++;
             }
         }
     }
+
 }

@@ -13,6 +13,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,11 +39,13 @@ public class PantallaItinerarioController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    ImageView ivError;
+    ImageView ivErrorNombre;
+    @FXML
+    ImageView ivErrorLoc;
+    @FXML
+    ImageView ivErrorFecha;
     @FXML
     Button botonAlta;
-    @FXML
-    TextField textRutaFoto;
     @FXML
     TextField textNombre;
     @FXML
@@ -82,22 +85,33 @@ public class PantallaItinerarioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*
-         * ivError: Se le asigna una imagen y se oculta
-         */
-        ivError.setImage(new Image("file:resources" + File.separator + "wrong.png"));
-        ivError.setVisible(false);
+        setErrors();
     }
 
     @FXML
     private void handleBotonAceptar() {
-        try {
-            ivError.setVisible(false);
-            //m.altaItinerario(textNombre.getText(), , localizacion, tipo, foto, fecha, getUserId());
-            w.close();
-        } catch (NullPointerException e) {
-            ivError.setVisible(true);
-        }
+        /*
+        * Controla los campos vacios y si no hay errores da de alta el itinerario
+        */
+            boolean err=false;
+            hideErrors();
+            if("".equals(textNombre.getText())){
+                ivErrorNombre.setVisible(true);
+                err=true;
+            }
+            if("".equals(textLoca.getText())){
+                ivErrorLoc.setVisible(true);
+                err=true;
+            }
+            if("".equals(((TextField) datePicker.getChildren().get(0)).getText())){
+                ivErrorFecha.setVisible(true);
+                err=true;
+            }
+            if(err==false){
+                m.altaItinerario(textNombre.getText(),comboDificultad.getSelectionModel().getSelectedItem().toString(),textLoca.getText(), comboTipo.getSelectionModel().getSelectedIndex(), imagePath, datePicker.getSelectedDate());
+                w.close();
+            }
+
     }
     @FXML
     public void handleBotonExaminarAction(ActionEvent event){
@@ -119,8 +133,7 @@ public class PantallaItinerarioController implements Initializable {
         file = fileChooser.showOpenDialog(null);
         //Guarda la ruta de la imagen en una variable y la escribe en el TextField
         try{
-        textRutaFoto.setText(file.getPath());
-        imagePath=file.getPath();
+            imagePath=file.getAbsolutePath();
         }catch(NullPointerException e){}   
         //Previsualiza la imagen
         Image img=null;
@@ -130,6 +143,22 @@ public class PantallaItinerarioController implements Initializable {
         }
         imageView.setImage(img);
 
+    }
+    
+    private void setErrors(){
+        /*
+         * Se les asigna una imagen a los errores y se ocultan
+         */
+        ivErrorNombre.setImage(new Image("file:resources" + File.separator + "wrong.png"));
+        ivErrorLoc.setImage(new Image("file:resources" + File.separator + "wrong.png"));
+        ivErrorFecha.setImage(new Image("file:resources" + File.separator + "wrong.png"));
+        hideErrors();
+    }
+    
+    private void hideErrors(){
+        ivErrorNombre.setVisible(false);
+        ivErrorLoc.setVisible(false);
+        ivErrorFecha.setVisible(false);
     }
 
     private void setCombos() {
@@ -143,16 +172,13 @@ public class PantallaItinerarioController implements Initializable {
                 "Boulder"
                         );
         comboDificultad.getItems().clear();
-        comboDificultad.getItems().addAll(
-                "1",
-                "2",
-                "Manu rellena aqui"
-        );
+        comboDificultad.setItems(m.getDificultades());
+        
         //Se selecciona el primer valor por defecto
         comboDificultad.getSelectionModel().select(0);
         comboTipo.getSelectionModel().select(0);
     }
-
+    
     private void setDatePicker() {
         /*
          * Este metodo asigna el componente calendario al gridpane

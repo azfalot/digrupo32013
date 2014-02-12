@@ -3,6 +3,12 @@ package logica;
 import datos.conexionbd.POJOS.Usuario;
 import datos.config.Config;
 import datos.strings.Language;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.FXCollections;
@@ -22,7 +28,7 @@ public class Methods {
     private static Methods instance;
     private Config cfg;
     private Language lang;
-    private final Queries q=new Queries();
+    private final Queries q = new Queries();
     private Usuario user = new Usuario();
 
     private Methods() {
@@ -40,40 +46,74 @@ public class Methods {
          */
         return lang.write(text);
     }
-    
-    public int getUserId(){
+
+    public int getUserId() {
         return user.getId();
     }
-    
-    public String getWallpaper(){
+
+    public String getWallpaper() {
         return user.getWallpaper();
     }
-    
-    public String getUserName(){
+
+    public String getUserName() {
         return user.getNombre();
     }
-    
+
     public void setUser(Usuario user, boolean makeDefault) {
         /*
-        * Permite seleccionar un usuario y ponerlo como por defecto o no
-        */
+         * Permite seleccionar un usuario y ponerlo como por defecto o no
+         */
         this.user = user;
         if (makeDefault) {
             cfg.setDefaultUser(user.getId());
-        }else{
+        } else {
             cfg.setDefaultUser(0);
         }
     }
 
     private void getConfig() {
         /*
-        * Obtener configuración del archivo config.cfg, se ejecutara al principio
-        */
+         * Obtener configuración del archivo config.cfg, se ejecutara al principio
+         */
         cfg = new Config();
         lang = Language.getInstance(cfg.getLanguage());
         if (cfg.getDefaultUser() != 0) {
             this.user = getUsuario(cfg.getDefaultUser());
         }
+    }
+
+    public ObservableList getDificultades() {
+        ObservableList data = FXCollections.observableArrayList();
+        data.add("1");
+        data.add("2");
+        data.add("3");
+        data.add("4");
+        data.add("5a");
+        data.add("5b");
+        data.add("5c");
+        data.add("6a");
+        data.add("6a+");
+        data.add("6b");
+        data.add("6b+");
+        data.add("6c");
+        data.add("6c+");
+        data.add("7a");
+        data.add("7a+");
+        data.add("7b");
+        data.add("7b+");
+        data.add("7c");
+        data.add("7c+");
+        data.add("8a");
+        data.add("8a+");
+        data.add("8b");
+        data.add("8b+");
+        data.add("8c");
+        data.add("8c+");
+        data.add("9a");
+        data.add("9a+");
+        data.add("9b");
+        data.add("9b+");
+        return data;
     }
 
     /*
@@ -85,7 +125,7 @@ public class Methods {
     public Usuario getUsuario(int id) {
         return q.getUsuario(id);
     }
-    
+
     public Usuario getUserFromUsername(String name) {
         return q.getUserFromUsername(name);
     }
@@ -93,24 +133,25 @@ public class Methods {
     public ArrayList getNombreUsuarios() {
         return q.getNombreUsuarios();
     }
-    
-    public int altaUsuario(String nombre){
+
+    public int altaUsuario(String nombre) {
         return q.altaUsuario(nombre);
     }
-    
-    public void altaEntrenamiento(String horaIni,String minIni,String horaFin,String minFin,Date fechaSesion,int tipo,String descripcion) {
-        q.altaEntrenamiento(getUserId(),horaIni,minIni,horaFin,minFin,fechaSesion,tipo,descripcion);
+
+    public void altaEntrenamiento(String horaIni, String minIni, String horaFin, String minFin, Date fechaSesion, int tipo, String descripcion) {
+        q.altaEntrenamiento(getUserId(), horaIni, minIni, horaFin, minFin, fechaSesion, tipo, descripcion);
     }
-    
-    public void modificarRegistro(String tabla,int id,String campo,String nuevoValor){
+
+    public void modificarRegistro(String tabla, int id, String campo, String nuevoValor) {
         q.modificarRegistro(tabla, id, campo, nuevoValor);
     }
-    
-    public ObservableList<String> getLocalizaciones(){
+
+    public ObservableList<String> getLocalizaciones() {
         return q.getLocalizaciones(getUserId());
     }
 
-    public void altaItinerario(String nombre,String dificultad,String localizacion,int tipo,String foto,Date fecha){
-        q.altaItinerario(nombre, dificultad, localizacion, tipo, foto, fecha, getUserId());
+    public void altaItinerario(String nombre, String dificultad, String localizacion, int tipo, String foto, Date fecha) {
+        q.altaItinerario(nombre, dificultad, localizacion, tipo, new File(foto), fecha, getUserId());
     }
+
 }
