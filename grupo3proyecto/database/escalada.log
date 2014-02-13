@@ -1,3 +1,0 @@
-/*C2*/SET SCHEMA PUBLIC
-INSERT INTO ESCALADORES VALUES(2,'Palmerina','resources\defaultwallpaper.png')
-COMMIT

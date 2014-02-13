@@ -82,6 +82,7 @@ public class PantallaPrincipalController implements Initializable {
     Methods m;
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
+    boolean wConfigOpened = false;
 
     //contadores de pantallas
     int cEntrenamiento = 1;
@@ -97,7 +98,7 @@ public class PantallaPrincipalController implements Initializable {
         iconoPerfil.setText(m.getUserName());
         setToolTips();
         setToolBarProperty();
-        
+
     }
 
     @Override
@@ -137,9 +138,8 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoConfiguracion() {
-        MyWindow w=new MyWindow();
-        PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", "Configuración", 275, 250, false, "resources" + File.separator + "icons" + File.separator + "settings.png", w);
-
+        MyWindow w = new MyWindow();
+        PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", "Configuración", 275, 260, false, "resources" + File.separator + "icons" + File.separator + "settings.png", w);
     }
 
     @FXML

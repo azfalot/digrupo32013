@@ -11,9 +11,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="275.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaConfiguracionController">
+<AnchorPane id="AnchorPane" prefHeight="260.0" prefWidth="275.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaConfiguracionController">
   <children>
-    <TabPane fx:id="tabPane" prefHeight="237.0" prefWidth="275.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-26.0">
+    <TabPane fx:id="tabPane" prefHeight="231.99997792968497" prefWidth="275.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
         <Tab closable="false" text="General">
           <content>
@@ -90,7 +90,7 @@
         </Tab>
       </tabs>
     </TabPane>
-    <Button fx:id="botonAceptar" layoutX="107.0" layoutY="211.0" mnemonicParsing="false" text="Aceptar" />
+    <Button fx:id="botonAceptar" layoutX="107.0" layoutY="232.0" mnemonicParsing="false" text="Aceptar" />
   </children>
   <stylesheets>
     <URL value="@Ventanas.css" />
