@@ -1,6 +1,7 @@
 package interfaz;
 
 import datos.conexionbd.POJOS.Entrenamiento;
+import datos.conexionbd.POJOS.Itinerario;
 import interfaz.util.MaximizeIcon;
 import interfaz.util.MyMinimizeIcon;
 import interfaz.util.MyWindow;
@@ -158,13 +159,19 @@ public class PantallaPrincipalController implements Initializable {
         //SIN HACER
         
         //prueba de obtencion de entrenamientos
-        SimpleDateFormat asd=new SimpleDateFormat("HH:mm");
-        ArrayList<Entrenamiento> e=m.getEntrenamientos();
-        for(Entrenamiento ent:e){
-            System.out.println(asd.format(ent.getHora_fin()));
+        ArrayList<Itinerario> e=m.getItinerarios();
+        for(Itinerario i:e){
+            System.out.println(i.getA_escaladores()+" "+i.getP_itinerario());
         }
     }
-
+    
+    @FXML
+    private void handleIconoAcerca(){
+        MyWindow w=new MyWindow();
+        PantallaAcercaController wAcerca=(PantallaAcercaController) addWindow("PantallaAcerca.fxml","Acerca de...",285,330,false,"resources" + File.separator + "icons" + File.separator + "ayuda.png",w);
+        wAcerca.builder(m,w);
+    }
+    
     @FXML
     private void handleBotonFullScreen() {
         if (!stage.isFullScreen()) {

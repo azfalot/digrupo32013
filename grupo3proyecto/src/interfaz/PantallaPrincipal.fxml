@@ -19,7 +19,7 @@
             <Image url="@../../resources/defaultwallpaper.png" />
           </image>
         </ImageView>
-        <GridPane prefHeight="554.9998168945312" prefWidth="742.0031298828125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+        <GridPane prefHeight="529.9998168945312" prefWidth="740.0031298828125" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
           <children>
             <Button id="button1" fx:id="iconoDatos" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" mnemonicParsing="false" onAction="#handleIconoDatos" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Datos" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
               <font>
@@ -96,6 +96,7 @@
             <RowConstraints maxHeight="188.69993774414064" minHeight="10.0" percentHeight="34.0" prefHeight="188.69993774414064" vgrow="ALWAYS" />
           </rowConstraints>
         </GridPane>
+        <Button mnemonicParsing="false" onAction="#handleIconoAcerca" prefWidth="133.999998152256" styleClass="acerca" text="Acerca de..." AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="0.0" />
       </children>
     </AnchorPane>
     <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="598.0" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="141.33" AnchorPane.topAnchor="0.0">

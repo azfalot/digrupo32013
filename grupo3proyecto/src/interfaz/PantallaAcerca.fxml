@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="330.0" prefWidth="285.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaAcercaController">
+  <children>
+    <Label layoutX="31.0" layoutY="98.0" prefWidth="238.0" text="Desarrollo de Aplicaciones Multiplataforma" />
+    <ImageView fx:id="ivIcono" fitHeight="60.0" fitWidth="60.0" layoutX="31.0" layoutY="26.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@../../resources/icon.png" />
+      </image>
+    </ImageView>
+    <Label fx:id="labelAppName" layoutX="108.0" layoutY="48.0" prefWidth="133.0" text="app_name" />
+    <Label layoutX="31.0" layoutY="122.0" prefWidth="60.0" text="Grupo 3:" />
+    <Label layoutX="53.0" layoutY="146.0" prefWidth="196.0" styleClass="creditos" text="Daniel Plaza Fernández" textAlignment="CENTER" />
+    <Label layoutX="53.0" layoutY="192.0" prefWidth="195.0" styleClass="creditos" text="Jonathan Zorrilla Mayor" textAlignment="CENTER" />
+    <Label layoutX="53.0" layoutY="239.0" prefWidth="195.0" styleClass="creditos" text="Manuel Álvarez Lavín" textAlignment="CENTER" />
+    <Label layoutX="53.0" layoutY="262.0" prefWidth="196.0" styleClass="creditos" text="Carlos Alberto Junior Otero Ramírez" textAlignment="CENTER" />
+    <Label layoutX="53.0" layoutY="169.0" prefWidth="195.0" styleClass="creditos" text="Rafael Noriega Fuentes" textAlignment="CENTER" />
+    <Label layoutX="53.0" layoutY="216.0" prefWidth="196.0" styleClass="creditos" text="Ángel García Frechoso" textAlignment="CENTER" />
+    <Button layoutX="113.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleBotonAceptar" text="Aceptar" />
+  </children>
+  <stylesheets>
+    <URL value="@Ventanas.css" />
+  </stylesheets>
+</AnchorPane>

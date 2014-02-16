@@ -60,3 +60,9 @@ and open the template in the editor.
     -fx-background-color: #82ac86;
     -fx-font-family: "Verdana";
 }
+.acerca{
+    -fx-background-color: transparent;
+    -fx-font: bold 14pt 'M10Regular';
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( gaussian ,black , 2,0.4,1,1 );  
+}

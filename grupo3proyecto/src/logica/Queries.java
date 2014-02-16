@@ -2,6 +2,7 @@ package logica;
 
 import datos.conexionbd.Datos;
 import datos.conexionbd.POJOS.Entrenamiento;
+import datos.conexionbd.POJOS.Itinerario;
 import datos.conexionbd.POJOS.Usuario;
 import java.io.File;
 import java.io.FileInputStream;
@@ -220,6 +221,24 @@ public class Queries {
         }
 
         return entrenamientos;
+    }
+    
+    public ArrayList getItinerarios(int userId) {
+        /*
+        * Devuelve un ArrayList con los todos los itinerarios del usuario
+        */
+        ArrayList<Itinerario> itinerarios = new ArrayList();
+
+        ResultSet rs = bd.consulta("select i.*,e.* from itinerario i,esc_it e where i.p_itinerario=e.a_itinerario and e.a_escaladores=" + userId);
+        try {
+            while (rs.next()) {
+                itinerarios.add(new Itinerario(rs.getInt("p_itinerario"),rs.getString("nombre"),rs.getString("dificultad"),rs.getString("localizacion"),rs.getInt("tipo"),rs.getString("foto"),rs.getInt("p_esc_it"),rs.getInt("a_escaladores"),rs.getDate("fecha")));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return itinerarios;
     }
     
     public void deleteEntrenamiento(int p_sesion_entrenamientos){

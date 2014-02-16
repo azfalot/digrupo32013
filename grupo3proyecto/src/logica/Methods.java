@@ -23,7 +23,8 @@ public class Methods {
     private Language lang;
     private final Queries q = new Queries();
     private Usuario user = new Usuario();
-    private Date fechaRendimiento;
+    
+    private Date fechaRendimiento;//fecha para calcular el rendimiento
     
     /*
     * CONSTRUCTOR
@@ -194,6 +195,10 @@ public class Methods {
     
     public ArrayList getEntrenamientos(){
         return q.getEntrenamientos(getUserId());
+    }
+    
+    public ArrayList getItinerarios(){
+        return q.getItinerarios(getUserId());
     }
     
     public void deleteEntrenamiento(int p_sesion_entrenamientos){

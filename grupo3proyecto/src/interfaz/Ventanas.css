@@ -56,5 +56,9 @@ and open the template in the editor.
 .table-view{
     -fx-font-size: 12px;
 }
+.creditos{
+    -fx-font-size: 12px;
+    -fx-text-alignment: center;
+}
 
 
