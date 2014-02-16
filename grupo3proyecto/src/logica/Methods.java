@@ -4,11 +4,6 @@ import datos.conexionbd.POJOS.Usuario;
 import datos.config.Config;
 import datos.strings.Language;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.FXCollections;
@@ -21,8 +16,6 @@ import javafx.collections.ObservableList;
 public class Methods {
     /*
      * Clase que conecta datos con interfaz. Se ha programado con un patron singleton de diseño.
-     * 
-     * 
      */
 
     private static Methods instance;
@@ -30,23 +23,24 @@ public class Methods {
     private Language lang;
     private final Queries q = new Queries();
     private Usuario user = new Usuario();
-
+    private Date fechaRendimiento;
+    
+    /*
+    * CONSTRUCTOR
+    */
     private Methods() {
         getConfig();//configura los valores iniciales
+        
     }
 
     public static Methods getInstance() {
         instance = new Methods();
         return instance;
     }
-
-    public String write(String text) {
-        /*
-         * Metodo que conecta la interfaz con los archivos de idioma
-         */
-        return lang.write(text);
-    }
-
+    
+    /*
+    * GETTERS Y SETTERS PARA EL USUARIO
+    */
     public int getUserId() {
         return user.getId();
     }
@@ -58,7 +52,18 @@ public class Methods {
     public String getUserName() {
         return user.getNombre();
     }
+    
+    public void setUserName(String nombre){
+        user.setNombre(nombre);
+    }
+    
+    public void setUserWallpaper(File wallpaper){
+        user.setWallpaper(q.copyPicture(wallpaper,"images" + File.separator+"wp-"+ getUserId()).getAbsolutePath());
+    }
 
+    /*
+    * OPERACIONES CON LA CONFIGURACION config.cfg
+    */
     public void setUser(Usuario user, boolean makeDefault) {
         /*
          * Permite seleccionar un usuario y ponerlo como por defecto o no
@@ -70,7 +75,25 @@ public class Methods {
             cfg.setDefaultUser(0);
         }
     }
-
+    
+    public void setUserDefault(boolean makeDefault){
+        if (makeDefault) {
+            cfg.setDefaultUser(user.getId());
+        }
+    }
+    
+    public void setLanguage(String language){
+        cfg.setLanguage(language);
+    }
+    
+    public String getLanguage(){
+        return cfg.getLanguage();
+    }
+    
+    public boolean isUserDefault(){
+        return cfg.getDefaultUser()==getUserId();
+    }
+    
     private void getConfig() {
         /*
          * Obtener configuración del archivo config.cfg, se ejecutara al principio
@@ -81,8 +104,21 @@ public class Methods {
             this.user = getUsuario(cfg.getDefaultUser());
         }
     }
+    
+    
+    /*
+    * UTILIDADES
+    */
 
+    public String write(String text) {
+        /*
+         * Metodo que conecta la interfaz con los archivos de idioma
+         */
+        return lang.write(text);
+    }
+    
     public ObservableList getDificultades() {
+        //lista de dificultades
         ObservableList data = FXCollections.observableArrayList();
         data.add("1");
         data.add("2");
@@ -120,7 +156,9 @@ public class Methods {
      * CONSULTAS
      *
      * Las consultas estan en la clase Queries, esta clase solo actua como comunicador.
-     * Esta forma de trabajar es por cuestion de orden.
+     * Esta forma de trabajar es por cuestion de orden y para que cuando una clase 
+     * de POJOS quiera hacer un update no necesite la instacia de Methods y pueda hacerse
+     * su propia instancia de Queries.
      */
     public Usuario getUsuario(int id) {
         return q.getUsuario(id);
@@ -153,5 +191,25 @@ public class Methods {
     public void altaItinerario(String nombre, String dificultad, String localizacion, int tipo, String foto, Date fecha) {
         q.altaItinerario(nombre, dificultad, localizacion, tipo, new File(foto), fecha, getUserId());
     }
-
+    
+    public ArrayList getEntrenamientos(){
+        return q.getEntrenamientos(getUserId());
+    }
+    
+    public void deleteEntrenamiento(int p_sesion_entrenamientos){
+        q.deleteEntrenamiento(p_sesion_entrenamientos);
+    }
+    
+    public void deleteItinerario(int p_itinerario){
+        q.deleteItinerario(p_itinerario);
+    }
+    
+    public void deleteUsuarios(int p_escaladores){
+        q.deleteUsuario(p_escaladores);
+    }
+    
+    public ArrayList<Usuario> getUsuarios(){
+        return q.getUsuarios();
+    }
+    
 }

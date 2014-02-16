@@ -1,5 +1,6 @@
 package interfaz;
 
+import datos.conexionbd.POJOS.Entrenamiento;
 import interfaz.util.MaximizeIcon;
 import interfaz.util.MyMinimizeIcon;
 import interfaz.util.MyWindow;
@@ -9,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -31,7 +33,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import jfxtras.labs.scene.control.window.CloseIcon;
@@ -83,6 +84,7 @@ public class PantallaPrincipalController implements Initializable {
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
     boolean wConfigOpened = false;
+    Escalada e;
 
     //contadores de pantallas
     int cEntrenamiento = 1;
@@ -91,9 +93,10 @@ public class PantallaPrincipalController implements Initializable {
     /*
      * INTIALIZE
      */
-    public void builder(Stage stage, Methods m) {
+    public void builder(Stage stage, Methods m,Escalada e) {
         this.stage = stage;
         this.m = m;
+        this.e=e;
         setDesktop();
         iconoPerfil.setText(m.getUserName());
         setToolTips();
@@ -133,18 +136,33 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoPerfil() {
-
+        /*
+        * Mostrara una pagina para generar los informes de las estadisticas
+        */
+        //SIN HACER -  muestra datos de usuario en consola
+        System.out.println(m.getUserId());
+        System.out.println(m.getUserName());
+        System.out.println(m.getLanguage());
     }
 
     @FXML
     private void handleIconoConfiguracion() {
+        //SIN TERMINAR
         MyWindow w = new MyWindow();
         PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", "Configuración", 275, 260, false, "resources" + File.separator + "icons" + File.separator + "settings.png", w);
+        wConfiguracion.builder(m,w,this,e);
     }
 
     @FXML
     private void handleIconoAyuda() {
-
+        //SIN HACER
+        
+        //prueba de obtencion de entrenamientos
+        SimpleDateFormat asd=new SimpleDateFormat("HH:mm");
+        ArrayList<Entrenamiento> e=m.getEntrenamientos();
+        for(Entrenamiento ent:e){
+            System.out.println(asd.format(ent.getHora_fin()));
+        }
     }
 
     @FXML
@@ -198,26 +216,35 @@ public class PantallaPrincipalController implements Initializable {
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                //cambia la hora del reloj
                 final Calendar cal = Calendar.getInstance();
                 labelHora.setText(fHora.format(cal.getTime()));
+                //comprueba el icono de fullscreen
+                if (!stage.isFullScreen()) {
+                    ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
+                }
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
-    private void setDesktop() {
+    public void setDesktop() {
         /*
          * Establece el fondo de pantalla ajustado a la ventana
          * Este metodo se lanza en el builder ya que necesita acceder a m(Methods)
          */
-        Image image = new Image("file:" + m.getWallpaper());
-        wallpaper.setImage(image);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        wallpaper.setFitWidth(screenSize.getWidth() + 1);
-        wallpaper.setFitHeight(screenSize.getHeight());
-        wallpaper.setPreserveRatio(false);
-        wallpaper.setCache(false);
+        try{
+            Image image = new Image("file:" + m.getWallpaper());
+            wallpaper.setImage(image);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            wallpaper.setFitWidth(screenSize.getWidth() + 1);
+            wallpaper.setFitHeight(screenSize.getHeight());
+            wallpaper.setPreserveRatio(false);
+            wallpaper.setCache(false);
+        }catch(Throwable e){
+            //Se captura el error por si no se reconoce la pantalla, algo asi paso en el mac de angel
+        }
     }
 
     private void setIcons() {

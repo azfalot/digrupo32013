@@ -1,6 +1,7 @@
 package logica;
 
 import datos.conexionbd.Datos;
+import datos.conexionbd.POJOS.Entrenamiento;
 import datos.conexionbd.POJOS.Usuario;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +21,7 @@ import javafx.collections.ObservableList;
  *
  * @author Grupo 3
  */
-class Queries {
+public class Queries {
 
     private final Datos bd = Datos.getInstance();
 
@@ -39,10 +40,14 @@ class Queries {
             }
             in.close();
             out.close();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
         return destino;
     }
 
+    /*
+    * QUERIES Y UPDATES
+    */
     public Usuario getUsuario(int id) {
         /*
          * Devuelve los datos del usuario indicado
@@ -125,7 +130,7 @@ class Queries {
         while (true) {
             try {
                 bd.update("INSERT INTO SESION_ENTRENAMIENTOS( P_SESION_ENTRENAMIENTOS, A_ESCALADORES, HORA_INICIO, HORA_FIN, FECHA, TIPO,DESCRIPCION) "
-                        + "VALUES ( " + id + "," + userId + ",TIME'" + horaIni + ":" + minIni + ":00' ,TIME'" + horaFin + ":" + minFin + ":00',DATE'" + sdf.format(fechaSesion) + "' , " + tipo + ",'" + descripcion + "')");
+                        + "VALUES ( " + id + "," + userId + ",'" + horaIni + ":" + minIni + ":00' ,'" + horaFin + ":" + minFin + ":00','" + sdf.format(fechaSesion) + "' , " + tipo + ",'" + descripcion + "')");
                 break;
             } catch (SQLException ex) {
                 id++;
@@ -140,7 +145,7 @@ class Queries {
          * realizar el update a la base de datos.
          *
          * Hay que tener en cuenta que hay que pasarle el valor en HSQL, por ejemplo
-         * una fecha se pasaria como DATE'0000-00-00' al parametro nuevoValor, y un 
+         * una fecha se pasaria como '0000-00-00' al parametro nuevoValor, y un 
          * varchar se pasaria 'nuevo valor' con las comillas simples incluidas.
          * De este modo se tiene un metodo para cambiar registros estandarizado.
          */
@@ -174,7 +179,7 @@ class Queries {
         String imgName;
         while (true) {
             try {
-                imgName = "images" + File.separator + "it" + idItinerario + "-" + foto.getName();
+                imgName = "images" + File.separator + "it-" + idItinerario;
                 bd.update(""
                         + "INSERT INTO ITINERARIO"
                         + " (P_ITINERARIO,NOMBRE,DIFICULTAD,LOCALIZACION,TIPO,FOTO)"
@@ -191,7 +196,7 @@ class Queries {
             try {
                 bd.update("INSERT INTO ESC_IT"
                         + " (P_ESC_IT,A_ESCALADORES,A_ITINERARIO,FECHA)"
-                        + " VALUES (" + idIT_esc + "," + userId + "," + idItinerario + ",DATE'" + sdf.format(fecha) + "')");
+                        + " VALUES (" + idIT_esc + "," + userId + "," + idItinerario + ",'" + sdf.format(fecha) + "')");
                 break;
             } catch (SQLException ex) {
                 idIT_esc++;
@@ -199,4 +204,59 @@ class Queries {
         }
     }
 
+    public ArrayList getEntrenamientos(int userId) {
+        /*
+        * Devuelve un ArrayList con los todos los entrenamientos del usuario
+        */
+        ArrayList<Entrenamiento> entrenamientos = new ArrayList();
+
+        ResultSet rs = bd.consulta("select * from sesion_entrenamientos where a_escaladores=" + userId);
+        try {
+            while (rs.next()) {
+                entrenamientos.add(new Entrenamiento(rs.getInt("p_sesion_entrenamientos"),rs.getInt("a_escaladores"),rs.getTime("hora_inicio"),rs.getTime("hora_fin"),rs.getDate("fecha"),rs.getInt("tipo"),rs.getString("descripcion")));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return entrenamientos;
+    }
+    
+    public void deleteEntrenamiento(int p_sesion_entrenamientos){
+        //Borra un entrenamiento pasandole el id
+        try {
+            bd.update("delete from sesion_entrenamientos where p_sesion_entrenamientos="+p_sesion_entrenamientos);
+        } catch (SQLException ex) {
+        }
+    }
+    public void deleteItinerario(int p_itinerario){
+        //Borra un itinerario pasandole el id
+        try {
+            bd.update("delete from itinerario where p_itinerario="+p_itinerario);
+        } catch (SQLException ex) {
+        }
+    }
+    public void deleteUsuario(int p_escaladores){
+        //Borra un usuario pasandole el id
+        try {
+            bd.update("delete from escaladores where p_escaladores="+p_escaladores);
+        } catch (SQLException ex) {
+        }
+    }
+    
+    public ArrayList getUsuarios() {
+        /*
+         * Devuelve un ArrayList con todos los usuarios
+         */
+        ArrayList usuarios=new ArrayList();
+        ResultSet rs = bd.consulta("select * from escaladores");
+        try {
+            while (rs.next()) {
+                usuarios.add(new Usuario(rs.getInt("p_escaladores"),rs.getString("nombre"),rs.getString("wallpaper")));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return usuarios;
+    }
 }

@@ -41,6 +41,7 @@ public class PantallaDatosController implements Initializable {
     }
     
     private void setPaneSizes(){
+        //Ajusta el tamaño de las pestañas
         tabPane.setTabMinHeight(22);
         tabPane.setTabMaxHeight(22);
     }
@@ -52,6 +53,9 @@ public class PantallaDatosController implements Initializable {
     /*
     * TABLA
     */
+    
+    //ejemplos sacados de la practica 2 (obras de arte)
+    
     public void refreshTabla() {
 //        formatTabla();
 //        for (Obra obra : metodos.getObras()) {
@@ -76,6 +80,28 @@ public class PantallaDatosController implements Initializable {
 //        //hace que las columnas ocupen todo el espacio reservado para la tabla
 //        tabla.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
+    
+    
+    
+    
+    /*
+    
+    ESTE METODO PERMITE ENLAZAR CON OTRA VENTANA DANDO DOBLE CLICK SOBRE UNA TABLA
+    por ejemplo para ir a los detalles de un entrenamiento concreto
+    
+    private void addEventoDobleClick() {
+        tabla.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                if (t.getClickCount() == 2 && tabla.getSelectionModel().getSelectedItem() != null) {
+                    app.goToDetalles(metodos.getObras().get(tabla.getSelectionModel().getSelectedIndex()));
+                }
+            }
+        });
+        
+    }
+    
+    */
     
     
 }

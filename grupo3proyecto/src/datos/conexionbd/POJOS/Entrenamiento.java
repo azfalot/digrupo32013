@@ -3,25 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package datos.conexionbd.POJOS;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import logica.Queries;
 
 /**
  *
  * @author Grupo 3
  */
 public class Entrenamiento {
-    
-    private int p_escaladores;
+
+    private int p_entrenamiento;
     private int a_escaladores;
-    private Date hora_inicio,hora_fin,fecha;
+    private Date hora_inicio, hora_fin, fecha;
     private int tipo;
     private String descripcion;
-
-    public Entrenamiento(int p_escaladores, int a_escaladores, Date hora_inicio, Date hora_fin, Date fecha, int tipo, String descripcion) {
-        this.p_escaladores = p_escaladores;
+    
+    private Queries q = new Queries();//instancia necesaria para hacer updates
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//formato de fechas
+    private SimpleDateFormat fhora = new SimpleDateFormat("hh:mm:ss");//formato de horas
+    
+    /*
+    * CONSTRUCTOR
+    */
+    
+    public Entrenamiento(int p_entrenamiento, int a_escaladores, Date hora_inicio, Date hora_fin, Date fecha, int tipo, String descripcion) {
+        this.p_entrenamiento = p_entrenamiento;
         this.a_escaladores = a_escaladores;
         this.hora_inicio = hora_inicio;
         this.hora_fin = hora_fin;
@@ -29,9 +38,13 @@ public class Entrenamiento {
         this.tipo = tipo;
         this.descripcion = descripcion;
     }
+    
+    /*
+    * GETTERS
+    */
 
-    public int getP_escaladores() {
-        return p_escaladores;
+    public int getP_entrenamiento() {
+        return p_entrenamiento;
     }
 
     public int getA_escaladores() {
@@ -57,6 +70,53 @@ public class Entrenamiento {
     public String getDescripcion() {
         return descripcion;
     }
+
+    /*
+     * SETTERS
+     */
+    public void setHora_inicio(Date hora_inicio) {
+        this.hora_inicio = hora_inicio;
+        q.modificarRegistro("sesion_entrenamientos", this.p_entrenamiento, "hora_inicio", "'" + String.valueOf(fhora.format(hora_inicio)) + "'");
+    }
+
+    public void setHora_fin(Date hora_fin) {
+        this.hora_fin = hora_fin;
+        q.modificarRegistro("sesion_entrenamientos", this.p_entrenamiento, "hora_fin", "'" + String.valueOf(fhora.format(hora_fin)) + "'");
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+        q.modificarRegistro("sesion_entrenamientos", this.p_entrenamiento, "fecha", "'" + String.valueOf(sdf.format(fecha)) + "'");
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+        q.modificarRegistro("sesion_entrenamientos", this.p_entrenamiento, "tipo", String.valueOf(tipo));
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        q.modificarRegistro("sesion_entrenamientos", this.p_entrenamiento, "descripcion", descripcion);
+    }
     
     
+    /*
+    * EQUALS
+    */
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        if(((Entrenamiento)obj).getP_entrenamiento()==this.p_entrenamiento){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
