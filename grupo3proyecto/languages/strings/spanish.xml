@@ -44,6 +44,15 @@
 		<i_configuracion>Configuración</i_configuracion>
 		<i_ayuda>Ayuda</i_ayuda>
 		<i_acerca>Acerca de ...</i_acerca>
+		<tt_disconect>Desconectar</tt_disconect>
+		<tt_fullscreen>Activar/desactivar pantalla completa</tt_fullscreen>
+		<consulta>Consulta</consulta>
+		<alta_entrenamiento>Alta entrenamiento</alta_entrenamiento>
+		<alta_itinerario>Alta itinerario</alta_itinerario>
+		<config>Configuración</config>
+		<l_rend>Rendimiento</l_rend>
+		<close_window>Cerrar ventana</close_window>
+		<close_all_windows>Cerrar todas las ventanas</close_all_windows>
 	
 	<!-- CONFIG WINDOW -->
 		<t_general>General</t_general>

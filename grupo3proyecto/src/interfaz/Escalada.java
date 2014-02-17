@@ -74,6 +74,7 @@ public class Escalada extends Application {
     public void goToPantallaPrincipal() {
         wPrincipal = (PantallaPrincipalController) newSceneContent("PantallaPrincipal.fxml", m.getUserName(), true, false, mainStage);
         wPrincipal.builder(mainStage, m,this);
+        mainStage.setFullScreen(false);
 
     }
 

@@ -91,6 +91,8 @@ public class PantallaPrincipalController implements Initializable {
     ContextMenu barMenu;
     @FXML
     TextField tfRendimiento;
+    @FXML
+    Label labelRendimiento;
 
     Methods m;
     Stage stage;
@@ -111,18 +113,20 @@ public class PantallaPrincipalController implements Initializable {
         this.e = e;
         setDesktop();
         iconoPerfil.setText(m.getUserName());
-        setToolTips();
         setToolBarProperty();
         translate();
     }
-    
-    private void translate(){
+
+    private void translate() {
         iconoAyuda.setText(m.write("i_ayuda"));
         iconoDatos.setText(m.write("i_datos"));
         iconoEntrenamiento.setText(m.write("i_entrenamiento"));
         iconoItinerario.setText(m.write("i_itinerario"));
         iconoConfiguracion.setText(m.write("i_configuracion"));
         iconoAcerca.setText(m.write("i_acerca"));
+        labelRendimiento.setText(m.write("l_rend"));
+        botonExit.setTooltip(new Tooltip(m.write("tt_disconect")));
+        botonFullScreen.setTooltip(new Tooltip(m.write("tt_fullscreen")));
     }
 
     @Override
@@ -137,21 +141,21 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoDatos() {
         MyWindow w = new MyWindow();
-        PantallaDatosController wConsulta = (PantallaDatosController) addWindow("PantallaDatos.fxml", "Consulta " + tituloConsulta.format(new Date()), 500, 350, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", w);
+        PantallaDatosController wConsulta = (PantallaDatosController) addWindow("PantallaDatos.fxml", m.write("consulta") + " " + tituloConsulta.format(new Date()), 500, 350, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", w);
         wConsulta.builder(m);
     }
 
     @FXML
     private void handleIconoEntrenamiento() {
         MyWindow w = new MyWindow();
-        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", "Alta entrenamiento " + cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
+        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", m.write("alta_entrenamiento") + " " + cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
         wEntrenamiento.builder(m, w);
     }
 
     @FXML
     private void handleIconoItinerario() {
         MyWindow w = new MyWindow();
-        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", "Alta itinerario " + cItinerario++, 370, 350, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
+        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", m.write("alta_itinerario") + " " + cItinerario++, 370, 350, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
         wItinerario.builder(m, w);
     }
 
@@ -170,7 +174,7 @@ public class PantallaPrincipalController implements Initializable {
     private void handleIconoConfiguracion() {
         //SIN TERMINAR
         MyWindow w = new MyWindow();
-        PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", "Configuración", 275, 260, false, "resources" + File.separator + "icons" + File.separator + "settings.png", w);
+        PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", m.write("config"), 275, 260, false, "resources" + File.separator + "icons" + File.separator + "settings.png", w);
         wConfiguracion.builder(m, w, this, e);
     }
 
@@ -188,7 +192,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoAcerca() {
         MyWindow w = new MyWindow();
-        PantallaAcercaController wAcerca = (PantallaAcercaController) addWindow("PantallaAcerca.fxml", "Acerca de ...", 285, 330, false, "resources" + File.separator + "icons" + File.separator + "ayuda.png", w);
+        PantallaAcercaController wAcerca = (PantallaAcercaController) addWindow("PantallaAcerca.fxml", m.write("acerca"), 285, 330, false, "resources" + File.separator + "icons" + File.separator + "ayuda.png", w);
         wAcerca.builder(m, w);
     }
 
@@ -215,7 +219,7 @@ public class PantallaPrincipalController implements Initializable {
         /*
          * Agrega a la barra de tareas la opcion de cerrar todas las ventanas abiertas pulsando boton derecho sobre ella
          */
-        MenuItem botonCerrarTodo = new MenuItem("Cerrar todas las ventanas", new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
+        MenuItem botonCerrarTodo = new MenuItem(m.write("close_all_windows"), new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
         botonCerrarTodo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -224,14 +228,6 @@ public class PantallaPrincipalController implements Initializable {
             }
         });
         barMenu.getItems().add(botonCerrarTodo);
-    }
-
-    private void setToolTips() {
-        /*
-         * Se establecen los tooltips para todos los elementos
-         */
-        botonExit.setTooltip(new Tooltip("Desconectar"));
-        botonFullScreen.setTooltip(new Tooltip("Activar/desactivar modo pantalla completa"));
     }
 
     private void setClock() {
@@ -354,7 +350,7 @@ public class PantallaPrincipalController implements Initializable {
         button.setFocusTraversable(false);
         //Se crea un menu con la opcion de cerrar la ventana y el boton
         ContextMenu cm = new ContextMenu();
-        MenuItem mi = new MenuItem("Cerrar ventana", new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
+        MenuItem mi = new MenuItem(m.write("close_window"), new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
         mi.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
