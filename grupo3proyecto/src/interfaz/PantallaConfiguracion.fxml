@@ -19,15 +19,19 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="211.0" prefWidth="275.0">
               <children>
-                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="88.0" layoutX="11.0" layoutY="13.0" strokeType="INSIDE" width="254.0">
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="88.0" layoutX="11.0" layoutY="10.0" strokeType="INSIDE" width="254.0">
                   <stroke>
                     <Color blue="0.750" green="0.750" red="0.750" fx:id="x1" />
                   </stroke>
                 </Rectangle>
-                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="88.0" layoutX="11.0" layoutY="110.0" stroke="#bfbfbf" strokeType="INSIDE" width="254.0" />
-                <Label layoutX="28.0" layoutY="41.0" prefWidth="56.0" text="Usuario:" />
-                <TextField fx:id="tfUsuario" layoutX="84.0" layoutY="38.0" prefWidth="163.0" />
-                <CheckBox fx:id="checkDefault" allowIndeterminate="false" contentDisplay="RIGHT" graphicTextGap="4.0" indeterminate="false" layoutX="56.0" layoutY="72.0" mnemonicParsing="false" selected="false" text="usuario por defecto" />
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="88.0" layoutX="11.0" layoutY="110.0" strokeType="INSIDE" width="254.0">
+                  <stroke>
+                    <Color blue="0.749" green="0.749" red="0.749" fx:id="x2" />
+                  </stroke>
+                </Rectangle>
+                <Label layoutX="28.0" layoutY="33.0" prefWidth="56.0" text="Usuario:" />
+                <TextField fx:id="tfUsuario" layoutX="84.0" layoutY="30.0" prefWidth="163.0" />
+                <CheckBox fx:id="checkDefault" allowIndeterminate="false" contentDisplay="RIGHT" graphicTextGap="4.0" indeterminate="false" layoutX="56.0" layoutY="64.0" mnemonicParsing="false" selected="false" text="usuario por defecto" />
                 <Label layoutX="28.0" layoutY="117.0" prefWidth="219.0" text="Cálculo de rendimiento:" />
                 <Label layoutX="28.0" layoutY="146.0" prefWidth="109.5" text="Día de comienzo:" />
                 <Label layoutX="28.0" layoutY="168.0" prefWidth="219.0" styleClass="nota" text="(se tomará toda la semana posterior)" />
@@ -47,6 +51,7 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="188.0" layoutX="11.0" layoutY="10.0" stroke="$x2" strokeType="INSIDE" width="254.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="111.0" layoutX="50.0" layoutY="50.0" stroke="$x1" strokeType="INSIDE" width="176.0" />
                 <ImageView fx:id="ivDesktop" fitHeight="110.0" fitWidth="175.99998474121094" layoutX="51.0" layoutY="51.0" pickOnBounds="true" preserveRatio="false" />
                 <Button fx:id="botonCambiarFondo" layoutX="50.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleAparienciaCambiarFondo" text="Cambiar fondo..." />
@@ -59,7 +64,8 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <TableView fx:id="tablaUsuarios" focusTraversable="false" layoutX="14.0" layoutY="14.0" prefHeight="168.0" prefWidth="123.5">
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="188.0" layoutX="11.0" layoutY="10.0" stroke="$x2" strokeType="INSIDE" width="254.0" />
+                <TableView fx:id="tablaUsuarios" focusTraversable="false" layoutX="21.0" layoutY="18.0" prefHeight="168.0" prefWidth="123.5">
                   <columns>
                     <TableColumn prefWidth="75.0" text="Column X" />
                   </columns>
@@ -74,6 +80,7 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="188.0" layoutX="11.0" layoutY="10.0" stroke="$x2" strokeType="INSIDE" width="254.0" />
                 <Label layoutX="33.0" layoutY="70.0" styleClass="nota" text="(Se necesita reiniciar la aplicación para aplicar)" />
                 <Label layoutX="33.0" layoutY="41.0" prefWidth="51.0" text="Idioma:" />
                 <ComboBox fx:id="comboIdioma" layoutX="84.0" layoutY="39.0" prefHeight="21.0" prefWidth="149.0">

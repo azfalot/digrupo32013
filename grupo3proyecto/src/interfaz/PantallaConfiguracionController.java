@@ -8,24 +8,34 @@ package interfaz;
 import datos.conexionbd.POJOS.Usuario;
 import eu.schudt.javafx.controls.calendar.DatePicker;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import jfxtras.labs.scene.control.window.Window;
 import logica.Methods;
 
@@ -149,19 +159,25 @@ public class PantallaConfiguracionController implements Initializable {
             m.setUserName(tfUsuario.getText());
         }
         m.setUserDefault(checkDefault.isSelected());
-        
+
     }
 
     @FXML
     private void handleUsuariosBorrar() {
-        m.deleteUsuarios(((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem()).getId());
-        refreshTabla();
+        try {
+            m.deleteUsuarios(((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem()).getId());
+            refreshTabla();
+        } catch (Throwable e) {
+        }
     }
 
     @FXML
     private void handleUsuariosCambiarUsuario() {
-        m.setUser((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem(), false);
-        e.goToPantallaPrincipal();
+        try {
+            m.setUser((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem(), false);
+            e.goToPantallaPrincipal();
+        } catch (Throwable e) {
+        }
     }
 
     @FXML
@@ -206,11 +222,12 @@ public class PantallaConfiguracionController implements Initializable {
     private void formatTabla() {
         //borra la tabla (columnas y datos)
         tablaUsuarios.getColumns().clear();
-        tablaUsuarios.getItems().clear();
+        tablaUsuarios.getItems().clear();        
         
+//        //----------------------CONTEXT MENU--------------------------------------
 //        ContextMenu cm = new ContextMenu();
 //        MenuItem mc = new MenuItem("Cambiar de usuario");
-//        MenuItem mb = new MenuItem("Cambiar de usuario");
+//        MenuItem mb = new MenuItem("Borrar");
 //        mc.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override
 //            public void handle(ActionEvent e) {
@@ -225,13 +242,14 @@ public class PantallaConfiguracionController implements Initializable {
 //        });
 //        cm.getItems().add(mc);
 //        cm.getItems().add(mb);
+//        //tablaUsuarios.setContextMenu(cm);
 //        tablaUsuarios.setContextMenu(cm);
+//        tablaUsuarios.getContextMenu().setAutoHide(true);
+//        //------------------------------------------------------------------------
         
         //crea las nuevas columnas
         TableColumn nombreCol = new TableColumn("Nombre");
         nombreCol.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
-        
-        
         
         //define la tabla como no editable
         tablaUsuarios.setEditable(false);
@@ -239,5 +257,6 @@ public class PantallaConfiguracionController implements Initializable {
         tablaUsuarios.getColumns().addAll(nombreCol);
         //hace que las columnas ocupen todo el espacio reservado para la tabla
         tablaUsuarios.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+                
     }
 }

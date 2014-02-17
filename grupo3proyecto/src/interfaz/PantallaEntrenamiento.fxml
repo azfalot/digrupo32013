@@ -8,10 +8,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="310.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaEntrenamientoController">
+<AnchorPane id="AnchorPane" prefHeight="265.0000999999975" prefWidth="310.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaEntrenamientoController">
   <children>
+    <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="212.0" layoutX="16.0" layoutY="14.0" stroke="#bfbfbf" strokeType="INSIDE" width="280.0" />
     <Label id="texto" layoutX="33.0" layoutY="37.0" prefWidth="77.0" text="Fecha sesion">
       <stylesheets>
         <URL value="@Ventanas.css" />
@@ -124,7 +126,7 @@
         <URL value="@Ventanas.css" />
       </stylesheets>
     </TextArea>
-    <Button id="botones" fx:id="botonAceptar" layoutX="107.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleBotonAceptar" prefWidth="97.0" text="Aceptar">
+    <Button id="botones" fx:id="botonAceptar" layoutX="110.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleBotonAceptar" prefWidth="97.0" text="Aceptar">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
