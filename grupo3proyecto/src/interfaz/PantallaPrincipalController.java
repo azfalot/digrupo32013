@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -141,21 +142,21 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoDatos() {
         MyWindow w = new MyWindow();
-        PantallaDatosController wConsulta = (PantallaDatosController) addWindow("PantallaDatos.fxml", m.write("consulta") + " " + tituloConsulta.format(new Date()), 500, 350, true, "resources" + File.separator + "icons" + File.separator + "consulta.png", w);
+        PantallaDatosController wConsulta = (PantallaDatosController) addWindow("PantallaDatos.fxml", m.write("consulta") + " " + tituloConsulta.format(new Date()), 500, 350, true, getClass().getResourceAsStream("resources/consulta.png"), w);
         wConsulta.builder(m);
     }
 
     @FXML
     private void handleIconoEntrenamiento() {
         MyWindow w = new MyWindow();
-        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", m.write("alta_entrenamiento") + " " + cEntrenamiento++, 310, 265, false, "resources" + File.separator + "icons" + File.separator + "entrenamiento.png", w);
+        PantallaEntrenamientoController wEntrenamiento = (PantallaEntrenamientoController) addWindow("PantallaEntrenamiento.fxml", m.write("alta_entrenamiento") + " " + cEntrenamiento++, 310, 265, false, getClass().getResourceAsStream("resources/entrenamiento.png"), w);
         wEntrenamiento.builder(m, w);
     }
 
     @FXML
     private void handleIconoItinerario() {
         MyWindow w = new MyWindow();
-        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", m.write("alta_itinerario") + " " + cItinerario++, 370, 350, false, "resources" + File.separator + "icons" + File.separator + "itinerario.png", w);
+        PantallaItinerarioController wItinerario = (PantallaItinerarioController) addWindow("PantallaItinerario.fxml", m.write("alta_itinerario") + " " + cItinerario++, 370, 350, false, getClass().getResourceAsStream("resources/itinerario.png"), w);
         wItinerario.builder(m, w);
     }
 
@@ -174,7 +175,7 @@ public class PantallaPrincipalController implements Initializable {
     private void handleIconoConfiguracion() {
         //SIN TERMINAR
         MyWindow w = new MyWindow();
-        PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", m.write("config"), 275, 260, false, "resources" + File.separator + "icons" + File.separator + "settings.png", w);
+        PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", m.write("config"), 275, 260, false, getClass().getResourceAsStream("resources/settings.png"), w);
         wConfiguracion.builder(m, w, this, e);
     }
 
@@ -192,7 +193,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoAcerca() {
         MyWindow w = new MyWindow();
-        PantallaAcercaController wAcerca = (PantallaAcercaController) addWindow("PantallaAcerca.fxml", m.write("acerca"), 285, 330, false, "resources" + File.separator + "icons" + File.separator + "ayuda.png", w);
+        PantallaAcercaController wAcerca = (PantallaAcercaController) addWindow("PantallaAcerca.fxml", m.write("acerca"), 285, 330, false, getClass().getResourceAsStream("resources/ayuda.png"), w);
         wAcerca.builder(m, w);
     }
 
@@ -200,9 +201,9 @@ public class PantallaPrincipalController implements Initializable {
     private void handleBotonFullScreen() {
         if (!stage.isFullScreen()) {
             stage.setFullScreen(true);
-            ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen0.png"));
+            ivBotonFullScreen.setImage(new Image(getClass().getResourceAsStream("resources/fullscreen0.png")));
         } else {
-            ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
+            ivBotonFullScreen.setImage(new Image(getClass().getResourceAsStream("resources/fullscreen.png")));
             stage.setFullScreen(false);
         }
     }
@@ -219,7 +220,7 @@ public class PantallaPrincipalController implements Initializable {
         /*
          * Agrega a la barra de tareas la opcion de cerrar todas las ventanas abiertas pulsando boton derecho sobre ella
          */
-        MenuItem botonCerrarTodo = new MenuItem(m.write("close_all_windows"), new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
+        MenuItem botonCerrarTodo = new MenuItem(m.write("close_all_windows"), new ImageView(new Image(getClass().getResourceAsStream("resources/barclose.png"))));
         botonCerrarTodo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -244,7 +245,7 @@ public class PantallaPrincipalController implements Initializable {
                 labelHora.setText(fHora.format(cal.getTime()));
                 //comprueba el icono de fullscreen
                 if (!stage.isFullScreen()) {
-                    ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
+                    ivBotonFullScreen.setImage(new Image(getClass().getResourceAsStream("resources/fullscreen.png")));
                 }
             }
         }));
@@ -275,21 +276,20 @@ public class PantallaPrincipalController implements Initializable {
         /*
          * carga la imagen de los iconos
          */
-        //getClass().getClassLoader().getResource("interfaz/util/off.png"); //obtener la imagen de un paquete
-        ivBotonExit.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "off.png"));
-        ivBotonFullScreen.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "fullscreen.png"));
-        ivIconoConfiguracion.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "settings.png"));
-        ivIconoDatos.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "consulta.png"));
-        ivIconoEntrenamiento.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "entrenamiento.png"));
-        ivIconoAyuda.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "ayuda.png"));
-        ivIconoItinerario.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "itinerario.png"));
-        ivIconoPerfil.setImage(new Image("file:resources" + File.separator + "icons" + File.separator + "perfil.png"));
+        ivBotonExit.setImage(new Image(getClass().getResourceAsStream("resources/off.png")));
+        ivBotonFullScreen.setImage(new Image(getClass().getResourceAsStream("resources/fullscreen.png")));
+        ivIconoConfiguracion.setImage(new Image(getClass().getResourceAsStream("resources/settings.png")));
+        ivIconoDatos.setImage(new Image(getClass().getResourceAsStream("resources/consulta.png")));
+        ivIconoEntrenamiento.setImage(new Image(getClass().getResourceAsStream("resources/entrenamiento.png")));
+        ivIconoAyuda.setImage(new Image(getClass().getResourceAsStream("resources/ayuda.png")));
+        ivIconoItinerario.setImage(new Image(getClass().getResourceAsStream("resources/itinerario.png")));
+        ivIconoPerfil.setImage(new Image(getClass().getResourceAsStream("resources/perfil.png")));
     }
 
     /*
      * CARGAR VENTANAS
      */
-    private Initializable addWindow(String fxml, String title, int width, int height, boolean resizable, String imgPath, final MyWindow w) {
+    private Initializable addWindow(String fxml, String title, int width, int height, boolean resizable, InputStream img, final MyWindow w) {
         /*
          * Este metodo lanza una ventana al escritorio, hay que pasarle el archivo fxml, el titulo que llevara, el tamaño, el icono y la ventana
          * Funciona igual que el newSceneContent de la clase Escalada, pero para ventanas en el escritorio.
@@ -320,14 +320,13 @@ public class PantallaPrincipalController implements Initializable {
         } else {
             w.setResizableWindow(false);
         }
-        //w.getRightIcons().add(new MinimizeIcon(w));//boton que para minimizar deja la barra superior de la ventana
         w.getRightIcons().add(new MyMinimizeIcon(w));//boton que para minimizar hace desparecer la ventana      
         w.getRightIcons().add(new CloseIcon(w));//boton para cerrar
 
         //Se agrega al escritorio
         desktop.getChildren().add(w);
         //Se crea el boton de la barra de tareas
-        final Button button = new Button(title, new ImageView(new Image("file:" + imgPath, 15, 15, false, false)));
+        final Button button = new Button(title, new ImageView(new Image(img, 15, 15, false, false)));
         toolBar.getItems().add(button);
         /*
          * el boton hara que la ventana se coloque debajo de el en la barra de tareas
@@ -350,7 +349,7 @@ public class PantallaPrincipalController implements Initializable {
         button.setFocusTraversable(false);
         //Se crea un menu con la opcion de cerrar la ventana y el boton
         ContextMenu cm = new ContextMenu();
-        MenuItem mi = new MenuItem(m.write("close_window"), new ImageView(new Image("file:resources" + File.separator + "barclose.png")));
+        MenuItem mi = new MenuItem(m.write("close_window"), new ImageView(new Image(getClass().getResourceAsStream("resources/barclose.png"))));
         mi.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {

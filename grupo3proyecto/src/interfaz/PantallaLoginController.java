@@ -1,6 +1,5 @@
 package interfaz;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -62,7 +61,7 @@ public class PantallaLoginController implements Initializable {
     }
 
     private void setImages() {
-        ivFondo.setImage(new Image("file:resources" + File.separator + "w_login.png"));
+        ivFondo.setImage(new Image(getClass().getResourceAsStream("resources/w_login.png")));
     }
 
     public void fillComboBox(int index) {

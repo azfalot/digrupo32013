@@ -47,7 +47,7 @@ public class PantallaItinerarioController implements Initializable {
     @FXML
     ImageView ivErrorFecha;
     @FXML
-    Button botonAlta;
+    Button botonAceptar;
     @FXML
     TextField textNombre;
     @FXML
@@ -108,7 +108,7 @@ public class PantallaItinerarioController implements Initializable {
         labelFotografia.setText(m.write("l_fotografia"));
         botonExaminar.setText(m.write("b_examinar"));
         labelSinImagen.setText(m.write("l_sin_imagen"));
-        botonAlta.setText(m.write("acept"));
+        botonAceptar.setText(m.write("acept"));
     }
 
     @Override
@@ -188,9 +188,9 @@ public class PantallaItinerarioController implements Initializable {
         /*
          * Se les asigna una imagen a los errores y se ocultan
          */
-        ivErrorNombre.setImage(new Image("file:resources" + File.separator + "wrong.png"));
-        ivErrorLoc.setImage(new Image("file:resources" + File.separator + "wrong.png"));
-        ivErrorFecha.setImage(new Image("file:resources" + File.separator + "wrong.png"));
+        ivErrorNombre.setImage(new Image(getClass().getResourceAsStream("resources/wrong.png")));
+        ivErrorLoc.setImage(new Image(getClass().getResourceAsStream("resources/wrong.png")));
+        ivErrorFecha.setImage(new Image(getClass().getResourceAsStream("resources/wrong.png")));
         hideErrors();
     }
     

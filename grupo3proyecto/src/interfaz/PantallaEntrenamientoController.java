@@ -6,7 +6,6 @@
 package interfaz;
 
 import eu.schudt.javafx.controls.calendar.DatePicker;
-import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -103,7 +102,7 @@ public class PantallaEntrenamientoController implements Initializable {
         /*
         * ivError: Se le asigna una imagen y se oculta
         */
-        ivError.setImage(new Image("file:resources" + File.separator + "wrong.png"));
+        ivError.setImage(new Image(getClass().getResourceAsStream("resources/wrong.png")));
         ivError.setVisible(false);
     }
     

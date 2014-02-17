@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package interfaz;
 
 import interfaz.util.MyWindow;
 import java.io.File;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -24,7 +24,7 @@ import logica.Methods;
  * @author Grupo 3
  */
 public class PantallaAcercaController implements Initializable {
-    
+
     @FXML
     Label labelAppName;
     @FXML
@@ -33,30 +33,30 @@ public class PantallaAcercaController implements Initializable {
     Button botonAceptar;
     @FXML
     Label labelGrupo;
-    
-    Methods m;  
+
+    Methods m;
     MyWindow w;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         labelAppName.setText(Escalada.applicationName);
-        ivIcono.setImage(new Image("file:resources"+ File.separator + "icon.png"));
-    }    
-    
-    public void builder(Methods m,MyWindow w){
-        this.m=m;
-        this.w=w;
+        ivIcono.setImage(new Image(getClass().getResourceAsStream("resources/icon.png")));
+    }
+
+    public void builder(Methods m, MyWindow w) {
+        this.m = m;
+        this.w = w;
         translate();
     }
-    
-    private void translate(){
+
+    private void translate() {
         botonAceptar.setText(m.write("acept"));
-        labelGrupo.setText(m.write("group")+":");
+        labelGrupo.setText(m.write("group") + ":");
     }
-    
+
     @FXML
-    private void handleBotonAceptar(){
+    private void handleBotonAceptar() {
         w.close();
     }
-    
+
 }

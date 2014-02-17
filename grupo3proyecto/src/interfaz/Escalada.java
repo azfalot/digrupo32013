@@ -108,7 +108,7 @@ public class Escalada extends Application {
             } else {
                 stage.setTitle(applicationName + " | " + title);
             }
-            stage.getIcons().add(new Image("file:resources" + File.separator + "icon.png"));
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("resources/icon.png")));
             stage.setResizable(resizable);
             if (modal) {
                 stage.initModality(Modality.APPLICATION_MODAL);

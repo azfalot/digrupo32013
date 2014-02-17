@@ -5,7 +5,6 @@
  */
 package interfaz;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -69,8 +68,8 @@ public class PantallaCrearUsuarioController implements Initializable {
     }
     
     private void setImages() {
-        ivFondo.setImage(new Image("file:resources" + File.separator + "w_login.png"));
-        ivError.setImage(new Image("file:resources" + File.separator + "wrong.png"));
+        ivFondo.setImage(new Image(getClass().getResourceAsStream("resources/w_login.png")));
+        ivError.setImage(new Image(getClass().getResourceAsStream("resources/wrong.png")));
     }
 
     @FXML
