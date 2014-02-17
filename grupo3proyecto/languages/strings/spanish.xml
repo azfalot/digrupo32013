@@ -1,24 +1,91 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <spanish>
 
-	<!--LANGUAGE from this list: http://www.oracle.com/technetwork/java/javase/locales-137662.html-->
+	<!--LANGUAGE you can get them from this list: http://www.oracle.com/technetwork/java/javase/locales-137662.html -->
 		<language>es</language>
 		<language0></language0>
 		
 	<!--COMMON-->
 		<acept>Aceptar</acept>
 		<cancel>Cancelar</cancel>
+		<close>Cerrar</close>
+		<apply>Aplicar</apply>
 		<name>Nombre</name>
+		<erase>Borrar</erase>
 		<new>Nuevo</new>
+		<today>Hoy</today>
+		<date>Fecha</date>
+		<description>Descripción</description>
+		<image_files>Archivos de imagen</image_files>
+		<bitmap>Mapa de bits</bitmap>
 		
 	<!--LOGIN WINDOW-->
 		<login>Login</login>
 		<remember>Recuérdame</remember>
-		<name_error_repeated>El nombre de usuario ya existe</name_error_repeated>
-		<name_error_space>El nombre de usuario no puede ser un campo vacío</name_error_space>
+		<new_user>Nuevo usuario</new_user>
+		<tt_remember>Marque esta casilla si desea que este usuario sea cargado automáticamente al arrancar el programa</tt_remember>
+		<tt_combo_user>Lista de usuarios registrados</tt_combo_user>
+		<tt_new_user>Agrega un nuevo usuario</tt_new_user>
+		
+    <!--NEW USER WINDOW-->
+		<create_user>Crear usuario</create_user>
+		<welcome>Bienvenido a</welcome>
+		<set_name>Introduzca nombre</set_name>
+		<inst1>Debe crear un usuario</inst1>
+		<inst2>para continuar</inst2>
+		<err_user_exists>El usuario ya existe</err_user_exists>
 		<tt_tfNombre>Nombre para el nuevo usuario</tt_tfNombre>
-		<tt_checkRemember>Marque esta casilla si desea que este usuario sea cargado automáticamente al arrancar el programa</tt_checkRemember>
-		<tt_comboUsuario>Lista de usuarios registrados</tt_comboUsuario>
-		<tt_botonAdd>Agrega un nuevo usuario</tt_botonAdd>
+	
+	
+	<!-- MAIN WINDOW -->
+		<i_datos>Datos</i_datos>
+		<i_entrenamiento>Entrenamiento</i_entrenamiento>
+		<i_itinerario>Itinerario</i_itinerario>
+		<i_configuracion>Configuración</i_configuracion>
+		<i_ayuda>Ayuda</i_ayuda>
+		<i_acerca>Acerca de ...</i_acerca>
+	
+	<!-- CONFIG WINDOW -->
+		<t_general>General</t_general>
+		<t_apariencia>Apariencia</t_apariencia>
+		<t_usuarios>Usuarios</t_usuarios>
+		<t_idioma>Idioma</t_idioma>
+		<l_usuario>Usuario</l_usuario>
+		<cb_default>Usuario por defecto</cb_default>
+		<l_calculo>Cálculo de rendimiento</l_calculo>
+		<l_dia>Día de comienzo</l_dia>
+		<l_dia2>se tomará toda la semana posterior</l_dia2>
+		<l_fondo>Fondo de escritorio</l_fondo>
+		<b_cambiarfondo>Cambiar fondo...</b_cambiarfondo>
+		<users>Usuarios</users>
+		<b_cambiarusuario>Cambiar usuario</b_cambiarusuario>
+		<l_idioma>Idioma</l_idioma>
+		<l_idioma2>Se necesita reiniciar la aplicación para aplicar</l_idioma2>
+		
+	<!-- ENTRENAMIENTO -->
+		<fisico>Físico</fisico>
+		<roca>Roca</roca>
+		<rocodromo>Rocódromo</rocodromo>
+		<l_date_session>Fecha sesión</l_date_session>
+		<l_horainicio>Hora inicio</l_horainicio>
+		<l_horafin>Hora fin</l_horafin>
+		<l_type>Tipo</l_type>
+	
+	<!-- ITINERARIO -->
+		<via>Vía de escalada</via>
+		<boulder>Boulder</boulder>
+		<loc>Localización</loc>
+		<l_tipo>Tipo</l_tipo>
+		<l_dificultad>Dificultad</l_dificultad>
+		<l_fecharesolucion>Fecha resolución</l_fecharesolucion>
+		<l_fotografia>Fotografía (opcional)</l_fotografia>
+		<b_examinar>Examinar ...</b_examinar>
+		<l_sin_imagen>Sin Imagen</l_sin_imagen>
+		
+	<!-- ACERCA -->
+		<group>Grupo 3</group>
+		<acerca>Acerca de ...</acerca>
+		
+	
 		
 </spanish>

@@ -96,7 +96,7 @@
             <RowConstraints maxHeight="188.69993774414064" minHeight="10.0" percentHeight="34.0" prefHeight="188.69993774414064" vgrow="ALWAYS" />
           </rowConstraints>
         </GridPane>
-        <Button mnemonicParsing="false" onAction="#handleIconoAcerca" prefWidth="133.999998152256" styleClass="acerca" text="Acerca de..." AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="0.0" />
+        <Button id="botonAcerca" fx:id="iconoAcerca" mnemonicParsing="false" onAction="#handleIconoAcerca" prefWidth="122.00311279296875" styleClass="acerca" text="Acerca de ..." AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="1.0" />
       </children>
     </AnchorPane>
     <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="598.0" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="141.33" AnchorPane.topAnchor="0.0">
@@ -132,7 +132,7 @@
     </ToolBar>
     <ToolBar prefHeight="32.0" prefWidth="143.3331298828125" styleClass="barra" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
       <items>
-        <Label prefWidth="77.66998291015625" text="Rendimiento" textAlignment="RIGHT" textFill="WHITE" underline="false" wrapText="false" />
+        <Label fx:id="labelRendimiento" prefWidth="77.66998291015625" text="Rendimiento" textAlignment="RIGHT" textFill="WHITE" underline="false" wrapText="false" />
         <TextField fx:id="tfRendimiento" editable="false" focusTraversable="false" prefWidth="38.0" styleClass="rendimiento" text="3,87" />
       </items>
     </ToolBar>

@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,7 +39,7 @@ public class PantallaEntrenamientoController implements Initializable {
     @FXML
     ImageView ivError;
     @FXML
-    Button botonAlta;
+    Button botonAceptar;
     @FXML
     ComboBox comboHoraInicio;
     @FXML
@@ -52,6 +53,16 @@ public class PantallaEntrenamientoController implements Initializable {
     @FXML
     ComboBox comboTipo;
     @FXML
+    Label labelFecha;
+    @FXML
+    Label labelHoraInicio;
+    @FXML
+    Label labelHoraFin;
+    @FXML
+    Label labelTipo;
+    @FXML
+    Label labelDescripcion;
+    @FXML
     private GridPane gridPane;
 
     private DatePicker datePicker;
@@ -63,6 +74,16 @@ public class PantallaEntrenamientoController implements Initializable {
         this.w = w;
         setDatePicker();
         setCombos();
+        translate();
+    }
+    
+    public void translate(){
+        botonAceptar.setText(m.write("acept"));
+        labelDescripcion.setText(m.write("description"));
+        labelFecha.setText(m.write("l_date_session")+":");
+        labelHoraFin.setText(m.write("l_horafin")+":");
+        labelHoraInicio.setText(m.write("l_horainicio")+":");
+        labelTipo.setText(m.write("l_type")+":");
     }
 
     @Override
@@ -103,9 +124,9 @@ public class PantallaEntrenamientoController implements Initializable {
         */
         comboTipo.getItems().clear();
         comboTipo.getItems().addAll(
-                "Físico",
-                "Roca",
-                "Rocódromo"
+                m.write("fisico"),
+                m.write("roca"),
+                m.write("rocodromo")
         );
         comboMinInicio.getItems().clear();
         comboMinFinal.getItems().clear();
@@ -143,10 +164,10 @@ public class PantallaEntrenamientoController implements Initializable {
          * Este metodo asigna el componente calendario al gridpane
          * Aparecera un textfield donde haciendo click se desplegara el calendario
          */
-        datePicker = new DatePicker(new Locale("es", ""));
+        datePicker = new DatePicker(new Locale(m.write("language"), m.write("language0")));
         datePicker.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
         datePicker.setPromptText("-- / -- / ----");
-        datePicker.getCalendarView().todayButtonTextProperty().set("Hoy");
+        datePicker.getCalendarView().todayButtonTextProperty().set(m.write("today"));
         datePicker.getCalendarView().setShowWeeks(false);
         datePicker.getStylesheets().add("interfaz/util/DatePicker.css");
         gridPane.add(datePicker, 0, 0);

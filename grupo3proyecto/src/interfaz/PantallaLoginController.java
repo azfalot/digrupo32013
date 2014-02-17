@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -30,17 +31,34 @@ public class PantallaLoginController implements Initializable {
     ImageView ivFondo;
     @FXML
     CheckBox checkRemember;
+    @FXML
+    Button botonNuevoUsuario;
 
     Methods m;
     Stage stage;
     Escalada app;
-
+    
+    
     public void builder(Escalada app, Methods m, Stage stage, int index) {
         this.app = app;
         this.m = m;
         this.stage = stage;
         fillComboBox(index);
-
+        
+        translate();
+    }
+    
+    private void translate(){
+        //textos
+        botonAceptar.setText(m.write("acept"));
+        botonCancelar.setText(m.write("cancel"));
+        botonNuevoUsuario.setText(m.write("new_user"));
+        checkRemember.setText(m.write("remember"));
+        
+        //tooltips
+        botonNuevoUsuario.setTooltip(new Tooltip(m.write("tt_new_user")));
+        checkRemember.setTooltip(new Tooltip(m.write("tt_remember")));
+        comboUsuario.setTooltip(new Tooltip(m.write("tt_combo_user")));
     }
 
     private void setImages() {

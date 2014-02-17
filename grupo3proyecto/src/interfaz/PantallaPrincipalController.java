@@ -1,6 +1,5 @@
 package interfaz;
 
-import datos.conexionbd.POJOS.Entrenamiento;
 import datos.conexionbd.POJOS.Itinerario;
 import interfaz.util.MaximizeIcon;
 import interfaz.util.MyMinimizeIcon;
@@ -61,6 +60,18 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     Button iconoPerfil;
     @FXML
+    Button iconoDatos;
+    @FXML
+    Button iconoEntrenamiento;
+    @FXML
+    Button iconoItinerario;
+    @FXML
+    Button iconoConfiguracion;
+    @FXML
+    Button iconoAyuda;
+    @FXML
+    Button iconoAcerca;
+    @FXML
     ImageView ivBotonExit;
     @FXML
     ImageView ivBotonFullScreen;
@@ -94,15 +105,24 @@ public class PantallaPrincipalController implements Initializable {
     /*
      * INTIALIZE
      */
-    public void builder(Stage stage, Methods m,Escalada e) {
+    public void builder(Stage stage, Methods m, Escalada e) {
         this.stage = stage;
         this.m = m;
-        this.e=e;
+        this.e = e;
         setDesktop();
         iconoPerfil.setText(m.getUserName());
         setToolTips();
         setToolBarProperty();
-
+        translate();
+    }
+    
+    private void translate(){
+        iconoAyuda.setText(m.write("i_ayuda"));
+        iconoDatos.setText(m.write("i_datos"));
+        iconoEntrenamiento.setText(m.write("i_entrenamiento"));
+        iconoItinerario.setText(m.write("i_itinerario"));
+        iconoConfiguracion.setText(m.write("i_configuracion"));
+        iconoAcerca.setText(m.write("i_acerca"));
     }
 
     @Override
@@ -138,8 +158,8 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoPerfil() {
         /*
-        * Mostrara una pagina para generar los informes de las estadisticas
-        */
+         * Mostrara una pagina para generar los informes de las estadisticas
+         */
         //SIN HACER -  muestra datos de usuario en consola
         System.out.println(m.getUserId());
         System.out.println(m.getUserName());
@@ -151,27 +171,27 @@ public class PantallaPrincipalController implements Initializable {
         //SIN TERMINAR
         MyWindow w = new MyWindow();
         PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", "Configuración", 275, 260, false, "resources" + File.separator + "icons" + File.separator + "settings.png", w);
-        wConfiguracion.builder(m,w,this,e);
+        wConfiguracion.builder(m, w, this, e);
     }
 
     @FXML
     private void handleIconoAyuda() {
         //SIN HACER
-        
+
         //prueba de obtencion de entrenamientos
-        ArrayList<Itinerario> e=m.getItinerarios();
-        for(Itinerario i:e){
-            System.out.println(i.getA_escaladores()+" "+i.getP_itinerario());
+        ArrayList<Itinerario> e = m.getItinerarios();
+        for (Itinerario i : e) {
+            System.out.println(i.getA_escaladores() + " " + i.getP_itinerario());
         }
     }
-    
+
     @FXML
-    private void handleIconoAcerca(){
-        MyWindow w=new MyWindow();
-        PantallaAcercaController wAcerca=(PantallaAcercaController) addWindow("PantallaAcerca.fxml","Acerca de...",285,330,false,"resources" + File.separator + "icons" + File.separator + "ayuda.png",w);
-        wAcerca.builder(m,w);
+    private void handleIconoAcerca() {
+        MyWindow w = new MyWindow();
+        PantallaAcercaController wAcerca = (PantallaAcercaController) addWindow("PantallaAcerca.fxml", "Acerca de ...", 285, 330, false, "resources" + File.separator + "icons" + File.separator + "ayuda.png", w);
+        wAcerca.builder(m, w);
     }
-    
+
     @FXML
     private void handleBotonFullScreen() {
         if (!stage.isFullScreen()) {
@@ -211,7 +231,7 @@ public class PantallaPrincipalController implements Initializable {
          * Se establecen los tooltips para todos los elementos
          */
         botonExit.setTooltip(new Tooltip("Desconectar"));
-        botonFullScreen.setTooltip(new Tooltip("Modo pantalla completa"));
+        botonFullScreen.setTooltip(new Tooltip("Activar/desactivar modo pantalla completa"));
     }
 
     private void setClock() {
@@ -241,7 +261,7 @@ public class PantallaPrincipalController implements Initializable {
          * Establece el fondo de pantalla ajustado a la ventana
          * Este metodo se lanza en el builder ya que necesita acceder a m(Methods)
          */
-        try{
+        try {
             Image image = new Image("file:" + m.getWallpaper());
             wallpaper.setImage(image);
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -249,9 +269,10 @@ public class PantallaPrincipalController implements Initializable {
             wallpaper.setFitHeight(screenSize.getHeight());
             wallpaper.setPreserveRatio(false);
             wallpaper.setCache(false);
-        }catch(Throwable e){
+        } catch (Throwable e) {
             //Se captura el error por si no se reconoce la pantalla, algo asi paso en el mac de angel
         }
+
     }
 
     private void setIcons() {

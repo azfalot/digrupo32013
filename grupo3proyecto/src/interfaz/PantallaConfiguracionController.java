@@ -8,34 +8,27 @@ package interfaz;
 import datos.conexionbd.POJOS.Usuario;
 import eu.schudt.javafx.controls.calendar.DatePicker;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import javafx.util.Callback;
 import jfxtras.labs.scene.control.window.Window;
 import logica.Methods;
 
@@ -60,6 +53,39 @@ public class PantallaConfiguracionController implements Initializable {
     TextField tfUsuario;
     @FXML
     CheckBox checkDefault;
+    @FXML
+    Tab tabGeneral;
+    @FXML
+    Tab tabApariencia;
+    @FXML
+    Tab tabUsuarios;
+    @FXML
+    Tab tabIdioma;
+    @FXML
+    Label labelUsuario;
+    @FXML
+    Label labelCalculo;
+    @FXML
+    Label labelDia;
+    @FXML
+    Label labelDia2;
+    @FXML
+    Label labelFondo;
+    @FXML
+    Button botonCambiarFondo;
+    @FXML
+    Button botonCerrar;
+    @FXML
+    Button botonAplicar;
+    @FXML
+    Button botonCambiarUsuario;
+    @FXML
+    Button botonBorrar;
+    @FXML
+    Label labelIdioma;
+    @FXML
+    Label labelIdioma2;
+
 
     private Methods m;
     private Window w;
@@ -82,6 +108,27 @@ public class PantallaConfiguracionController implements Initializable {
         setImages();
         setDatePicker();
         setUser();
+        translate();
+    }
+    
+    private void translate(){
+        tabGeneral.setText(m.write("t_general"));
+        tabApariencia.setText(m.write("t_apariencia"));
+        tabUsuarios.setText(m.write("t_usuarios"));
+        tabIdioma.setText(m.write("t_idioma"));
+        labelUsuario.setText(m.write("l_usuario")+":");
+        checkDefault.setText(m.write("cb_default"));
+        labelCalculo.setText(m.write("l_calculo")+":");
+        labelDia.setText(m.write("l_dia")+":");
+        labelDia2.setText("("+m.write("l_dia2")+")");
+        labelFondo.setText(m.write("l_fondo")+":");
+        botonCambiarFondo.setText(m.write("b_cambiarfondo"));
+        botonAplicar.setText(m.write("apply"));
+        botonCerrar.setText(m.write("close"));
+        botonBorrar.setText(m.write("erase"));
+        botonCambiarUsuario.setText(m.write("b_cambiarusuario"));
+        labelIdioma.setText(m.write("l_idioma")+":");
+        labelIdioma2.setText("("+m.write("l_idioma2")+")");
     }
 
     @Override
@@ -121,10 +168,10 @@ public class PantallaConfiguracionController implements Initializable {
          * Este metodo asigna el componente calendario al gridpane
          * Aparecera un textfield donde haciendo click se desplegara el calendario
          */
-        datePicker = new DatePicker(new Locale("es", ""));
+        datePicker = new DatePicker(new Locale(m.write("language"), m.write("language0")));
         datePicker.setDateFormat(sdf);
         datePicker.setPromptText("-- / -- / ----");
-        datePicker.getCalendarView().todayButtonTextProperty().set("Hoy");
+        datePicker.getCalendarView().todayButtonTextProperty().set(m.write("today"));
         datePicker.getCalendarView().setShowWeeks(false);
         datePicker.getStylesheets().add("interfaz/util/DatePicker.css");
         gridPane.add(datePicker, 0, 0);
@@ -190,8 +237,8 @@ public class PantallaConfiguracionController implements Initializable {
         //Filtros para la extension del archivo
         FileChooser.ExtensionFilter exjpg = new FileChooser.ExtensionFilter("JPEG (*.jpg)", "*.jpg", "*.jpeg");
         FileChooser.ExtensionFilter expng = new FileChooser.ExtensionFilter("PNG (*.png)", "*.png");
-        FileChooser.ExtensionFilter exbmp = new FileChooser.ExtensionFilter("Mapa de bits" + " (*.bmp)", "*.bmp");
-        FileChooser.ExtensionFilter exall = new FileChooser.ExtensionFilter("Archivos de imagen", "*.jpg", "*.png", "*.bmp", "*.jpeg");
+        FileChooser.ExtensionFilter exbmp = new FileChooser.ExtensionFilter(m.write("bitmap") + " (*.bmp)", "*.bmp");
+        FileChooser.ExtensionFilter exall = new FileChooser.ExtensionFilter(m.write("image_files"), "*.jpg", "*.png", "*.bmp", "*.jpeg");
         fileChooser.getExtensionFilters().add(exall);
         fileChooser.getExtensionFilters().add(exbmp);
         fileChooser.getExtensionFilters().add(exjpg);
@@ -224,31 +271,8 @@ public class PantallaConfiguracionController implements Initializable {
         tablaUsuarios.getColumns().clear();
         tablaUsuarios.getItems().clear();        
         
-//        //----------------------CONTEXT MENU--------------------------------------
-//        ContextMenu cm = new ContextMenu();
-//        MenuItem mc = new MenuItem("Cambiar de usuario");
-//        MenuItem mb = new MenuItem("Borrar");
-//        mc.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent e) {
-//                handleUsuariosCambiarUsuario();
-//            }
-//        });
-//        mb.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent e) {
-//                handleUsuariosBorrar();
-//            }
-//        });
-//        cm.getItems().add(mc);
-//        cm.getItems().add(mb);
-//        //tablaUsuarios.setContextMenu(cm);
-//        tablaUsuarios.setContextMenu(cm);
-//        tablaUsuarios.getContextMenu().setAutoHide(true);
-//        //------------------------------------------------------------------------
-        
         //crea las nuevas columnas
-        TableColumn nombreCol = new TableColumn("Nombre");
+        TableColumn nombreCol = new TableColumn(m.write("name"));
         nombreCol.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
         
         //define la tabla como no editable

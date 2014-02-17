@@ -24,7 +24,7 @@ public class Escalada extends Application {
     private Stage mainStage;
     private Stage loginStage;
     private Methods m;
-    private final String applicationName = "Escalator 3000 BETA"; //nombre de la aplicacion
+    static final String applicationName = "Escalator 3000 Beta"; //nombre de la aplicacion
     private PantallaLoginController wLogin;//ventana de login, sera necesaria para que sea actualizada tras dar de alta un usuario
     private PantallaPrincipalController wPrincipal;
 
@@ -59,7 +59,7 @@ public class Escalada extends Application {
         /*
          * el parametro index es el indice de usuario que va a colocarse en el combo box por defecto
          */
-        wLogin = (PantallaLoginController) newSceneContent("PantallaLogin.fxml", "Login", false, false, loginStage);
+        wLogin = (PantallaLoginController) newSceneContent("PantallaLogin.fxml", m.write("login"), false, false, loginStage);
         wLogin.builder(this, m, loginStage, index);
     }
 
@@ -67,7 +67,7 @@ public class Escalada extends Application {
         /*
          * el parametro noUsers sera true si no hay usuarios en la base de datos
          */
-        PantallaCrearUsuarioController wCrear = (PantallaCrearUsuarioController) newSceneContent("PantallaCrearUsuario.fxml", "Login" + " > " + "Crear usuario", false, false, loginStage);
+        PantallaCrearUsuarioController wCrear = (PantallaCrearUsuarioController) newSceneContent("PantallaCrearUsuario.fxml", m.write("login") + " > " + m.write("create_user"), false, false, loginStage);
         wCrear.builder(this, m, noUsers);
     }
 

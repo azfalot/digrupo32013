@@ -13,11 +13,14 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,7 +62,20 @@ public class PantallaItinerarioController implements Initializable {
     GridPane gridPane;
     @FXML
     GridPane gridPaneAutoFill;
-    
+    @FXML
+    Label labelNombre;
+    @FXML
+    Label labelLocalizacion;
+    @FXML
+    Label labelTipo;
+    @FXML
+    Label labelDificultad;
+    @FXML
+    Label labelFechaResolucion;
+    @FXML
+    Label labelFotografia;
+    @FXML
+    Label labelSinImagen;
     
     private File file;
     
@@ -80,11 +96,35 @@ public class PantallaItinerarioController implements Initializable {
         gridPaneAutoFill.getChildren().add(textLoca);
         textLoca.setMaxWidth(140);
         imageView.setPreserveRatio(false);
+        translate();
+    }
+    
+    private void translate(){
+        labelNombre.setText(m.write("name")+":");
+        labelLocalizacion.setText(m.write("loc")+":");
+        labelTipo.setText(m.write("l_tipo")+":");
+        labelDificultad.setText(m.write("l_dificultad")+":");
+        labelFechaResolucion.setText(m.write("l_fecharesolucion")+":");
+        labelFotografia.setText(m.write("l_fotografia"));
+        botonExaminar.setText(m.write("b_examinar"));
+        labelSinImagen.setText(m.write("l_sin_imagen"));
+        botonAlta.setText(m.write("acept"));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setErrors();
+        /*
+        * Limitamos el texto del TextField a 30
+        */
+        textNombre.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> ov, String t, String t1) {
+                if (t1.length() > 30) {
+                    textNombre.setText(t);
+                }
+            }
+        });
     }
 
     @FXML
@@ -122,8 +162,8 @@ public class PantallaItinerarioController implements Initializable {
         //Filtros para la extension del archivo
         FileChooser.ExtensionFilter exjpg = new FileChooser.ExtensionFilter("JPEG (*.jpg)", "*.jpg", "*.jpeg");
         FileChooser.ExtensionFilter expng = new FileChooser.ExtensionFilter("PNG (*.png)", "*.png");
-        FileChooser.ExtensionFilter exbmp = new FileChooser.ExtensionFilter("Mapa de bits"+" (*.bmp)", "*.bmp");
-        FileChooser.ExtensionFilter exall = new FileChooser.ExtensionFilter("Archivos de imagen", "*.jpg", "*.png", "*.bmp", "*.jpeg");
+        FileChooser.ExtensionFilter exbmp = new FileChooser.ExtensionFilter(m.write("bitmap")+" (*.bmp)", "*.bmp");
+        FileChooser.ExtensionFilter exall = new FileChooser.ExtensionFilter(m.write("image_files"), "*.jpg", "*.png", "*.bmp", "*.jpeg");
         fileChooser.getExtensionFilters().add(exall);
         fileChooser.getExtensionFilters().add(exbmp);
         fileChooser.getExtensionFilters().add(exjpg);
@@ -167,8 +207,8 @@ public class PantallaItinerarioController implements Initializable {
         
         comboTipo.getItems().clear();
         comboTipo.getItems().addAll(
-                "Vía de escalada",
-                "Boulder"
+                m.write("via"),
+                m.write("boulder")
                         );
         comboDificultad.getItems().clear();
         comboDificultad.setItems(m.getDificultades());
@@ -183,10 +223,10 @@ public class PantallaItinerarioController implements Initializable {
          * Este metodo asigna el componente calendario al gridpane
          * Aparecera un textfield donde haciendo click se desplegara el calendario
          */
-        datePicker = new DatePicker(new Locale("es", ""));
+        datePicker = new DatePicker(new Locale(m.write("language"), m.write("language0")));
         datePicker.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
         datePicker.setPromptText("-- / -- / ----");
-        datePicker.getCalendarView().todayButtonTextProperty().set("Hoy");
+        datePicker.getCalendarView().todayButtonTextProperty().set(m.write("today"));
         datePicker.getCalendarView().setShowWeeks(false);
         datePicker.getStylesheets().add("interfaz/util/DatePicker.css");
         gridPane.add(datePicker, 0, 0);

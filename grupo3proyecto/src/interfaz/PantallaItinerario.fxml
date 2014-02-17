@@ -68,34 +68,34 @@
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Button>
-    <Label id="texto" layoutX="30.0" layoutY="136.0" prefWidth="97.0" text="Fecha resolución">
+    <Label id="texto" fx:id="labelFechaResolucion" layoutX="30.0" layoutY="136.0" prefWidth="97.0" text="Fecha resolución">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="30.0" layoutY="31.0" prefWidth="77.0" text="Nombre:">
+    <Label id="texto" fx:id="labelNombre" layoutX="30.0" layoutY="31.0" prefWidth="77.0" text="Nombre:">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="30.0" layoutY="55.0" prefWidth="77.0" text="Localización:">
+    <Label id="texto" fx:id="labelLocalizacion" layoutX="30.0" layoutY="55.0" prefWidth="77.0" text="Localización:">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="30.0" layoutY="78.0" prefWidth="77.0" text="Tipo">
+    <Label id="texto" fx:id="labelTipo" layoutX="30.0" layoutY="78.0" prefWidth="77.0" text="Tipo">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="53.0" layoutY="175.0" prefWidth="140.0" text="Fotografia (opcional)">
+    <Label id="texto" fx:id="labelFotografia" layoutX="53.0" layoutY="175.0" prefWidth="140.0" text="Fotografia (opcional)">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label layoutX="30.0" layoutY="105.0" prefWidth="77.0" text="Dificultad" />
+    <Label fx:id="labelDificultad" layoutX="30.0" layoutY="105.0" prefWidth="77.0" text="Dificultad" />
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="117.9999008178711" layoutX="181.0" layoutY="178.0" stroke="$x1" strokeType="INSIDE" width="155.99989318847656" />
-    <Label alignment="CENTER" layoutX="223.0" layoutY="228.0" prefHeight="17.0" prefWidth="77.0" text="sin imagen" textFill="$x1" />
+    <Label fx:id="labelSinImagen" alignment="CENTER" layoutX="223.0" layoutY="228.0" prefHeight="17.0" prefWidth="77.0" text="sin imagen" textFill="$x1" />
     <ImageView fx:id="imageView" fitHeight="118.49990844726562" fitWidth="157.9998779296875" layoutX="179.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView id="ivError" fx:id="ivErrorNombre" fitHeight="20.0" fitWidth="20.0" layoutX="277.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
       <image>

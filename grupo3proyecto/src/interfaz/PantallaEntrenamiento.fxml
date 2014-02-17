@@ -14,12 +14,12 @@
 <AnchorPane id="AnchorPane" prefHeight="265.0000999999975" prefWidth="310.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaEntrenamientoController">
   <children>
     <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="212.0" layoutX="16.0" layoutY="14.0" stroke="#bfbfbf" strokeType="INSIDE" width="280.0" />
-    <Label id="texto" layoutX="33.0" layoutY="37.0" prefWidth="77.0" text="Fecha sesion">
+    <Label id="texto" fx:id="labelFecha" layoutX="33.0" layoutY="37.0" prefWidth="77.0" text="Fecha sesion">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="33.0" layoutY="63.0" prefWidth="77.0" text="Hora inicio">
+    <Label id="texto" fx:id="labelHoraInicio" layoutX="33.0" layoutY="63.0" prefWidth="77.0" text="Hora inicio">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
@@ -29,7 +29,7 @@
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="33.0" layoutY="90.0" prefWidth="77.0" text="Hora final">
+    <Label id="texto" fx:id="labelHoraFin" layoutX="33.0" layoutY="90.0" prefWidth="77.0" text="Hora final">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
@@ -39,12 +39,12 @@
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="33.0" layoutY="117.0" prefWidth="77.0" text="Tipo">
+    <Label id="texto" fx:id="labelTipo" layoutX="33.0" layoutY="117.0" prefWidth="77.0" text="Tipo">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>
     </Label>
-    <Label id="texto" layoutX="33.0" layoutY="145.0" prefWidth="77.0" text="Descripcion">
+    <Label id="texto" fx:id="labelDescripcion" layoutX="33.0" layoutY="145.0" prefWidth="77.0" text="Descripcion">
       <stylesheets>
         <URL value="@Ventanas.css" />
       </stylesheets>

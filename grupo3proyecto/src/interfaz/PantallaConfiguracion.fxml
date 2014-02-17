@@ -15,7 +15,7 @@
   <children>
     <TabPane fx:id="tabPane" prefHeight="231.99997792968497" prefWidth="275.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
-        <Tab closable="false" text="General">
+        <Tab fx:id="tabGeneral" closable="false" text="General">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="211.0" prefWidth="275.0">
               <children>
@@ -29,12 +29,12 @@
                     <Color blue="0.749" green="0.749" red="0.749" fx:id="x2" />
                   </stroke>
                 </Rectangle>
-                <Label layoutX="28.0" layoutY="33.0" prefWidth="56.0" text="Usuario:" />
+                <Label fx:id="labelUsuario" layoutX="28.0" layoutY="33.0" prefWidth="56.0" text="Usuario:" />
                 <TextField fx:id="tfUsuario" layoutX="84.0" layoutY="30.0" prefWidth="163.0" />
                 <CheckBox fx:id="checkDefault" allowIndeterminate="false" contentDisplay="RIGHT" graphicTextGap="4.0" indeterminate="false" layoutX="56.0" layoutY="64.0" mnemonicParsing="false" selected="false" text="usuario por defecto" />
-                <Label layoutX="28.0" layoutY="117.0" prefWidth="219.0" text="Cálculo de rendimiento:" />
-                <Label layoutX="28.0" layoutY="146.0" prefWidth="109.5" text="Día de comienzo:" />
-                <Label layoutX="28.0" layoutY="168.0" prefWidth="219.0" styleClass="nota" text="(se tomará toda la semana posterior)" />
+                <Label fx:id="labelCalculo" layoutX="28.0" layoutY="117.0" prefWidth="219.0" text="Cálculo de rendimiento:" />
+                <Label fx:id="labelDia" layoutX="28.0" layoutY="146.0" prefWidth="109.5" text="Día de comienzo:" />
+                <Label id="LabelDia2" fx:id="labelDia2" layoutX="28.0" layoutY="168.0" prefWidth="219.0" styleClass="nota" text="(se tomará toda la semana posterior)" />
                 <GridPane fx:id="gridPane" layoutX="127.0" layoutY="143.0" prefHeight="22.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -47,7 +47,7 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab closable="false" text="Apariencia">
+        <Tab fx:id="tabApariencia" closable="false" text="Apariencia">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
@@ -55,12 +55,12 @@
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="111.0" layoutX="50.0" layoutY="50.0" stroke="$x1" strokeType="INSIDE" width="176.0" />
                 <ImageView fx:id="ivDesktop" fitHeight="110.0" fitWidth="175.99998474121094" layoutX="51.0" layoutY="51.0" pickOnBounds="true" preserveRatio="false" />
                 <Button fx:id="botonCambiarFondo" layoutX="50.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleAparienciaCambiarFondo" text="Cambiar fondo..." />
-                <Label layoutX="50.0" layoutY="20.0" prefWidth="162.0" text="Fondo de escritorio:" />
+                <Label fx:id="labelFondo" layoutX="50.0" layoutY="20.0" prefWidth="162.0" text="Fondo de escritorio:" />
               </children>
             </AnchorPane>
           </content>
         </Tab>
-        <Tab closable="false" text="Usuarios">
+        <Tab fx:id="tabUsuarios" closable="false" text="Usuarios">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
@@ -76,13 +76,13 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab text="Idioma">
+        <Tab fx:id="tabIdioma" text="Idioma">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
                 <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="188.0" layoutX="11.0" layoutY="10.0" stroke="$x2" strokeType="INSIDE" width="254.0" />
-                <Label layoutX="33.0" layoutY="70.0" styleClass="nota" text="(Se necesita reiniciar la aplicación para aplicar)" />
-                <Label layoutX="33.0" layoutY="41.0" prefWidth="51.0" text="Idioma:" />
+                <Label fx:id="labelIdioma2" layoutX="33.0" layoutY="70.0" styleClass="nota" text="(Se necesita reiniciar la aplicación para aplicar)" />
+                <Label fx:id="labelIdioma" layoutX="33.0" layoutY="41.0" prefWidth="51.0" text="Idioma:" />
                 <ComboBox fx:id="comboIdioma" layoutX="84.0" layoutY="39.0" prefHeight="21.0" prefWidth="149.0">
                   <items>
                     <FXCollections fx:factory="observableArrayList">
