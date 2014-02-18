@@ -111,7 +111,7 @@ public class Queries {
         int id = 1;
         while (true) {
             try {
-                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','" + "resources" + File.separator + "defaultwallpaper.png" + "')");
+                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','" + "images" + File.separator + "defaultwallpaper" + "')");
                 break;
             } catch (SQLException ex) {
                 id++;
