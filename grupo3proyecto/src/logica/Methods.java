@@ -18,7 +18,7 @@ public class Methods {
      * Clase que conecta datos con interfaz. Se ha programado con un patron singleton de diseño.
      */
 
-    private static Methods instance;
+    private static final Methods instance= new Methods();;
     private Config cfg;
     private Language lang;
     private final Queries q = new Queries();
@@ -31,12 +31,48 @@ public class Methods {
     */
     private Methods() {
         getConfig();//configura los valores iniciales
+        /*
+        * Se define la fecha para la cual se calculara el rendimiento:
+        * Ya que el rendimiento es una cifra que abarca una semana entera
+        * se tomará desde hace 6 días.
+        */
+        fechaRendimiento=new Date((long)(new Date().getTime()-(86400*6000)));
         
     }
 
     public static Methods getInstance() {
-        instance = new Methods();
         return instance;
+    }
+    
+    /*
+     * CALCULO DE RENDIMIENTO
+     */
+    public Date getFechaRendimiento() {
+        return fechaRendimiento;
+    }
+
+    public void setFechaRendimiento(Date fechaRendimiento) {
+        this.fechaRendimiento = fechaRendimiento;
+    }
+    
+    public double calculaRendimiento(Date fechaInicial, Date fechaFinal){
+        double rendimiento=0;
+        double horasEntrenamiento=q.getHorasEntrenamiento(getUserId(), fechaInicial, fechaFinal);
+        int itinerarios=q.getCantidadItinerarios(getUserId(), fechaInicial, fechaFinal);
+        if(horasEntrenamiento>=10){
+            rendimiento+=5;
+        }else{
+            rendimiento+=horasEntrenamiento*0.5;
+        }
+        if(itinerarios>=20){
+            rendimiento+=5;
+        }else{
+            rendimiento+=itinerarios*0.25;
+        }
+        return rendimiento;
+    }
+    public double calculaRendimiento(){
+        return calculaRendimiento(fechaRendimiento,new Date());
     }
     
     /*
@@ -209,7 +245,7 @@ public class Methods {
         q.deleteItinerario(p_itinerario);
     }
     
-    public void deleteUsuarios(int p_escaladores){
+    public void deleteUsuario(int p_escaladores){
         q.deleteUsuario(p_escaladores);
     }
     

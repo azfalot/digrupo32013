@@ -102,7 +102,7 @@ public class PantallaConfiguracionController implements Initializable {
         this.m = m;
         this.w = w;
         this.ppc = ppc;
-        this.e = e;
+        this.e = e;    
         refreshTabla();
         setComboIdioma();
         setImages();
@@ -177,6 +177,7 @@ public class PantallaConfiguracionController implements Initializable {
         gridPane.add(datePicker, 0, 0);
         ((TextField) datePicker.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
         ((TextField) datePicker.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+        ((TextField) datePicker.getChildren().get(0)).setText(sdf.format(m.getFechaRendimiento()));
     }
 
     /*
@@ -206,13 +207,14 @@ public class PantallaConfiguracionController implements Initializable {
             m.setUserName(tfUsuario.getText());
         }
         m.setUserDefault(checkDefault.isSelected());
-
+        //fecha de calculo de rendimiento
+        m.setFechaRendimiento(datePicker.getSelectedDate());
     }
 
     @FXML
     private void handleUsuariosBorrar() {
         try {
-            m.deleteUsuarios(((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem()).getId());
+            m.deleteUsuario(((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem()).getId());
             refreshTabla();
         } catch (Throwable e) {
         }

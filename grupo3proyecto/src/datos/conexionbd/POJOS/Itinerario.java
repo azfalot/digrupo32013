@@ -8,6 +8,7 @@ package datos.conexionbd.POJOS;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import logica.Methods;
 import logica.Queries;
 
 /**
@@ -21,6 +22,7 @@ public class Itinerario {
     private String localizacion;
     private int tipo;
     private String foto;
+    private String tipoStr;
     
     private int p_esc_it;
     private int a_escaladores;
@@ -28,6 +30,7 @@ public class Itinerario {
     
     private Queries q=new Queries();
     private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+    private Methods m=Methods.getInstance();
     
     /*
     * CONSTRUCTOR
@@ -42,6 +45,10 @@ public class Itinerario {
         this.p_esc_it = p_esc_it;
         this.a_escaladores = a_escaladores;
         this.fecha = fecha;
+        switch(tipo){
+            case 0:tipoStr=m.write("via");break;
+            case 1:tipoStr=m.write("boulder");break;
+        }
     }
     
     /*
@@ -64,8 +71,8 @@ public class Itinerario {
         return localizacion;
     }
 
-    public int getTipo() {
-        return tipo;
+    public String getTipoStr() {
+        return tipoStr;
     }
 
     public String getFoto() {
@@ -110,8 +117,19 @@ public class Itinerario {
     public void setTipo(int tipo) {
         this.tipo = tipo;
         q.modificarRegistro("itinerario", this.p_itinerario, "tipo", String.valueOf(tipo));
+        switch(tipo){
+            case 0:tipoStr=m.write("via");break;
+            case 1:tipoStr=m.write("boulder");break;
+        }
     }
-
+    
+    public void setTipoStr(String tipoStr) {
+        /*
+        * NO USAR ESTE SETTER
+        */
+        this.tipoStr = tipoStr;
+    }
+    
     public void setFoto(String foto) {
         this.foto = foto;
         q.modificarRegistro("itinerario", this.p_itinerario, "foto", "'"+foto+"'");

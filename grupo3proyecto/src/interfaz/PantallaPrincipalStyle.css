@@ -59,6 +59,7 @@ and open the template in the editor.
 .rendimiento{
     -fx-background-color: #82ac86;
     -fx-font-family: "Verdana";
+    -fx-text-alignment: center;
 }
 .acerca{
     -fx-background-color: transparent;

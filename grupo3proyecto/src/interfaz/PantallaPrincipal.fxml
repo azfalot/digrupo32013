@@ -19,7 +19,7 @@
             <Image url="@../../resources/defaultwallpaper.png" />
           </image>
         </ImageView>
-        <GridPane prefHeight="529.9998168945312" prefWidth="740.0031298828125" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+        <GridPane gridLinesVisible="false" prefHeight="529.9998168945312" prefWidth="740.0031298828125" visible="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
             <Button id="button1" fx:id="iconoDatos" alignment="CENTER" cancelButton="false" contentDisplay="TOP" defaultButton="false" focusTraversable="false" mnemonicParsing="false" onAction="#handleIconoDatos" prefHeight="88.99981689453125" prefWidth="102.00312988281246" styleClass="icono" text="Datos" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
               <font>
@@ -99,7 +99,7 @@
         <Button id="botonAcerca" fx:id="iconoAcerca" mnemonicParsing="false" onAction="#handleIconoAcerca" prefWidth="122.00311279296875" styleClass="acerca" text="Acerca de ..." AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="1.0" />
       </children>
     </AnchorPane>
-    <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="598.0" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="141.33" AnchorPane.topAnchor="0.0">
+    <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="583.3331469726562" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="0.0">
       <contextMenu>
         <ContextMenu fx:id="barMenu" />
       </contextMenu>
@@ -130,10 +130,10 @@
         <Separator orientation="VERTICAL" prefHeight="21.0" />
       </items>
     </ToolBar>
-    <ToolBar prefHeight="32.0" prefWidth="143.3331298828125" styleClass="barra" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+    <ToolBar prefHeight="32.0" prefWidth="157.33001708984375" styleClass="barra" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
       <items>
         <Label fx:id="labelRendimiento" prefWidth="77.66998291015625" text="Rendimiento" textAlignment="RIGHT" textFill="WHITE" underline="false" wrapText="false" />
-        <TextField fx:id="tfRendimiento" editable="false" focusTraversable="false" prefWidth="38.0" styleClass="rendimiento" text="3,87" />
+        <TextField fx:id="tfRendimiento" editable="false" focusTraversable="false" prefWidth="40.0" styleClass="rendimiento" text="0,00" />
       </items>
     </ToolBar>
   </children>

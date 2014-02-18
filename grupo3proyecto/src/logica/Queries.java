@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +27,7 @@ public class Queries {
 
     private final Datos bd = Datos.getInstance();
 
-    public File copyPicture(File origen, String newName) {
+    File copyPicture(File origen, String newName) {
         /*
          * Metodo que copia una imagen al directorio de imagenes
          */
@@ -47,8 +48,8 @@ public class Queries {
     }
 
     /*
-    * QUERIES Y UPDATES
-    */
+     * QUERIES Y UPDATES
+     */
     public Usuario getUsuario(int id) {
         /*
          * Devuelve los datos del usuario indicado
@@ -111,7 +112,7 @@ public class Queries {
         int id = 1;
         while (true) {
             try {
-                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','" + "resources" + File.separator + "defaultwallpaper.png" + "')");
+                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','" + "images" + File.separator + "defaultwallpaper" + "')");
                 break;
             } catch (SQLException ex) {
                 id++;
@@ -163,7 +164,7 @@ public class Queries {
          * Devuelve un ArrayList con las localizaciones
          */
         ObservableList data = FXCollections.observableArrayList();
-        ResultSet rs = bd.consulta("select i.localizacion from itinerario i,esc_it ei where i.p_itinerario=ei.a_itinerario and ei.a_escaladores=" + userId);
+        ResultSet rs = bd.consulta("select i.localizacion from itinerario i,esc_it ei where i.p_itinerario=ei.a_itinerario and ei.a_escaladores=" + userId+" group by i.localizacion");
         try {
             while (rs.next()) {
                 data.add(rs.getString("localizacion"));
@@ -193,7 +194,6 @@ public class Queries {
         copyPicture(foto, imgName);
         int idIT_esc = 0;
         while (true) {
-            System.out.println(idIT_esc);
             try {
                 bd.update("INSERT INTO ESC_IT"
                         + " (P_ESC_IT,A_ESCALADORES,A_ITINERARIO,FECHA)"
@@ -207,14 +207,14 @@ public class Queries {
 
     public ArrayList getEntrenamientos(int userId) {
         /*
-        * Devuelve un ArrayList con los todos los entrenamientos del usuario
-        */
+         * Devuelve un ArrayList con los todos los entrenamientos del usuario
+         */
         ArrayList<Entrenamiento> entrenamientos = new ArrayList();
 
         ResultSet rs = bd.consulta("select * from sesion_entrenamientos where a_escaladores=" + userId);
         try {
             while (rs.next()) {
-                entrenamientos.add(new Entrenamiento(rs.getInt("p_sesion_entrenamientos"),rs.getInt("a_escaladores"),rs.getTime("hora_inicio"),rs.getTime("hora_fin"),rs.getDate("fecha"),rs.getInt("tipo"),rs.getString("descripcion")));
+                entrenamientos.add(new Entrenamiento(rs.getInt("p_sesion_entrenamientos"), rs.getInt("a_escaladores"), rs.getTime("hora_inicio"), rs.getTime("hora_fin"), rs.getDate("fecha"), rs.getInt("tipo"), rs.getString("descripcion")));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -222,17 +222,17 @@ public class Queries {
 
         return entrenamientos;
     }
-    
+
     public ArrayList getItinerarios(int userId) {
         /*
-        * Devuelve un ArrayList con los todos los itinerarios del usuario
-        */
+         * Devuelve un ArrayList con los todos los itinerarios del usuario
+         */
         ArrayList<Itinerario> itinerarios = new ArrayList();
 
         ResultSet rs = bd.consulta("select i.*,e.* from itinerario i,esc_it e where i.p_itinerario=e.a_itinerario and e.a_escaladores=" + userId);
         try {
             while (rs.next()) {
-                itinerarios.add(new Itinerario(rs.getInt("p_itinerario"),rs.getString("nombre"),rs.getString("dificultad"),rs.getString("localizacion"),rs.getInt("tipo"),rs.getString("foto"),rs.getInt("p_esc_it"),rs.getInt("a_escaladores"),rs.getDate("fecha")));
+                itinerarios.add(new Itinerario(rs.getInt("p_itinerario"), rs.getString("nombre"), rs.getString("dificultad"), rs.getString("localizacion"), rs.getInt("tipo"), rs.getString("foto"), rs.getInt("p_esc_it"), rs.getInt("a_escaladores"), rs.getDate("fecha")));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -240,42 +240,89 @@ public class Queries {
 
         return itinerarios;
     }
-    
-    public void deleteEntrenamiento(int p_sesion_entrenamientos){
+
+    public void deleteEntrenamiento(int p_sesion_entrenamientos) {
         //Borra un entrenamiento pasandole el id
         try {
-            bd.update("delete from sesion_entrenamientos where p_sesion_entrenamientos="+p_sesion_entrenamientos);
+            bd.update("delete from sesion_entrenamientos where p_sesion_entrenamientos=" + p_sesion_entrenamientos);
         } catch (SQLException ex) {
         }
     }
-    public void deleteItinerario(int p_itinerario){
+
+    public void deleteItinerario(int p_itinerario) {
         //Borra un itinerario pasandole el id
         try {
-            bd.update("delete from itinerario where p_itinerario="+p_itinerario);
+            bd.update("delete from itinerario where p_itinerario=" + p_itinerario);
         } catch (SQLException ex) {
         }
     }
-    public void deleteUsuario(int p_escaladores){
+
+    public void deleteUsuario(int p_escaladores) {
         //Borra un usuario pasandole el id
         try {
-            bd.update("delete from escaladores where p_escaladores="+p_escaladores);
+            bd.update("delete from escaladores where p_escaladores=" + p_escaladores);
         } catch (SQLException ex) {
         }
     }
-    
+
     public ArrayList getUsuarios() {
         /*
          * Devuelve un ArrayList con todos los usuarios
          */
-        ArrayList usuarios=new ArrayList();
+        ArrayList usuarios = new ArrayList();
         ResultSet rs = bd.consulta("select * from escaladores");
         try {
             while (rs.next()) {
-                usuarios.add(new Usuario(rs.getInt("p_escaladores"),rs.getString("nombre"),rs.getString("wallpaper")));
+                usuarios.add(new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper")));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return usuarios;
+    }
+
+    public int getCantidadItinerarios(int p_escaladores, Date fechaInicio, Date fechaFin) {
+        /*
+         * Obtiene la cantidad de itinerarios realizados entre 2 fechas
+         */
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        ResultSet rs = bd.consulta("select a_itinerario from esc_it where a_escaladores="+p_escaladores+" and fecha between '"+sdf.format(fechaInicio)+"' and '"+sdf.format(fechaFin)+"'");
+        int c=0;
+        try {
+            while(rs.next()) {
+                c++;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return c;
+    }
+
+    public double getHorasEntrenamiento(int p_escaladores, Date fechaInicio, Date fechaFin) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat fHora = new SimpleDateFormat("HH:mm:ss");
+        double horas = 0;
+        ResultSet rs = bd.consulta("select hora_inicio,hora_fin from sesion_entrenamientos where a_escaladores=" + p_escaladores + " and fecha between '" + sdf.format(fechaInicio) + "' and '" + sdf.format(fechaFin) + "'");
+        try {
+            while (rs.next()) {
+                Date horaIni=null;
+                Date horaFin=null;
+                try {
+                    horaIni = fHora.parse(rs.getString("hora_inicio"));
+                    horaFin = fHora.parse(rs.getString("hora_fin"));
+                } catch (ParseException ex) {
+                }
+                
+                double dif=(horaFin.getTime() - horaIni.getTime());
+                if(dif<=0){
+                    horas += dif / (1000 * 60 * 60);
+                }else{
+                    horas += (24+dif) / (1000 * 60 * 60);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return horas;
     }
 }

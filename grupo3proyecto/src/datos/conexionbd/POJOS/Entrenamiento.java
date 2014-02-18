@@ -7,6 +7,7 @@ package datos.conexionbd.POJOS;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import logica.Methods;
 import logica.Queries;
 
 /**
@@ -20,10 +21,12 @@ public class Entrenamiento {
     private Date hora_inicio, hora_fin, fecha;
     private int tipo;
     private String descripcion;
+    private String tipoStr;
     
     private Queries q = new Queries();//instancia necesaria para hacer updates
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//formato de fechas
     private SimpleDateFormat fhora = new SimpleDateFormat("hh:mm:ss");//formato de horas
+    private Methods m=Methods.getInstance();
     
     /*
     * CONSTRUCTOR
@@ -37,6 +40,11 @@ public class Entrenamiento {
         this.fecha = fecha;
         this.tipo = tipo;
         this.descripcion = descripcion;
+        switch(tipo){
+            case 0:tipoStr=m.write("fisico");break;
+            case 1:tipoStr=m.write("rocodromo");break;
+            case 2:tipoStr=m.write("roca");break;
+        }
     }
     
     /*
@@ -63,8 +71,8 @@ public class Entrenamiento {
         return fecha;
     }
 
-    public int getTipo() {
-        return tipo;
+    public String getTipoStr() {
+        return tipoStr;
     }
 
     public String getDescripcion() {
@@ -92,7 +100,22 @@ public class Entrenamiento {
     public void setTipo(int tipo) {
         this.tipo = tipo;
         q.modificarRegistro("sesion_entrenamientos", this.p_entrenamiento, "tipo", String.valueOf(tipo));
+        switch(tipo){
+            case 0:tipoStr=m.write("fisico");break;
+            case 1:tipoStr=m.write("rocodromo");break;
+            case 2:tipoStr=m.write("roca");break;
+        }
     }
+
+    public void setTipoStr(String tipoStr) {
+        /*
+        * NO USAR ESTE SETTER
+        */
+        this.tipoStr = tipoStr;
+    }
+    
+    
+    
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;

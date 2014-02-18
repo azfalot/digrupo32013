@@ -6,10 +6,10 @@ import interfaz.util.MyMinimizeIcon;
 import interfaz.util.MyWindow;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -98,6 +98,7 @@ public class PantallaPrincipalController implements Initializable {
     Methods m;
     Stage stage;
     SimpleDateFormat tituloConsulta = new SimpleDateFormat("dd/MM/yy hh:mm");
+    DecimalFormat df = new DecimalFormat("0.00");
     boolean wConfigOpened = false;
     Escalada e;
 
@@ -115,6 +116,7 @@ public class PantallaPrincipalController implements Initializable {
         setDesktop();
         iconoPerfil.setText(m.getUserName());
         setToolBarProperty();
+        tfRendimiento.setText(df.format(m.calculaRendimiento()));
         translate();
     }
 
@@ -188,6 +190,7 @@ public class PantallaPrincipalController implements Initializable {
         for (Itinerario i : e) {
             System.out.println(i.getA_escaladores() + " " + i.getP_itinerario());
         }
+
     }
 
     @FXML
@@ -216,6 +219,7 @@ public class PantallaPrincipalController implements Initializable {
     /*
      * SETTINGS
      */
+    
     private void setToolBarProperty() {
         /*
          * Agrega a la barra de tareas la opcion de cerrar todas las ventanas abiertas pulsando boton derecho sobre ella
@@ -247,6 +251,7 @@ public class PantallaPrincipalController implements Initializable {
                 if (!stage.isFullScreen()) {
                     ivBotonFullScreen.setImage(new Image(getClass().getResourceAsStream("resources/fullscreen.png")));
                 }
+                tfRendimiento.setText(df.format(m.calculaRendimiento()));
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
