@@ -2,6 +2,7 @@ package interfaz;
 
 import datos.conexionbd.POJOS.Itinerario;
 import interfaz.util.MaximizeIcon;
+import interfaz.util.ModalListener;
 import interfaz.util.MyMinimizeIcon;
 import interfaz.util.MyWindow;
 import java.awt.Dimension;
@@ -37,6 +38,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import jfxtras.labs.scene.control.window.CloseIcon;
+import jfxtras.labs.scene.control.window.Window;
 import logica.Methods;
 
 /**
@@ -94,6 +96,10 @@ public class PantallaPrincipalController implements Initializable {
     TextField tfRendimiento;
     @FXML
     Label labelRendimiento;
+    @FXML
+    ToolBar toolBarR;
+    @FXML
+    Button botonModal;
 
     Methods m;
     Stage stage;
@@ -117,6 +123,7 @@ public class PantallaPrincipalController implements Initializable {
         iconoPerfil.setText(m.getUserName());
         setToolBarProperty();
         tfRendimiento.setText(df.format(m.calculaRendimiento()));
+        botonModal.setVisible(false);
         translate();
     }
 
@@ -171,6 +178,7 @@ public class PantallaPrincipalController implements Initializable {
         System.out.println(m.getUserId());
         System.out.println(m.getUserName());
         System.out.println(m.getLanguage());
+        toolBar.setDisable(true);
     }
 
     @FXML
@@ -215,10 +223,30 @@ public class PantallaPrincipalController implements Initializable {
     private void handleBotonExit() {
         System.exit(0);
     }
-
+    
+    public void throwModalWindow(String title,String mensaje,ModalListener mAceptar){
+        /*
+        * Lanza una ventana modal pasandole el titulo, el mensaje y la funcion del boton aceptar
+        */
+        final Window w=new Window();
+        PantallaModalController wModal =(PantallaModalController)addModalWindow(title,w);
+        wModal.builder(m, mensaje, w,mAceptar);
+    }
+    
     /*
      * SETTINGS
      */
+    private void setModality(boolean modality){
+        /*
+        * desactiva las toolbar y tapa el escritorio
+        */
+        toolBar.setDisable(modality);
+        toolBarR.setDisable(modality);
+        botonModal.setVisible(modality);
+        if(modality==true){
+            botonModal.toFront();
+        }
+    }
     
     private void setToolBarProperty() {
         /*
@@ -376,5 +404,43 @@ public class PantallaPrincipalController implements Initializable {
         });
         return fxmlLoader.getController();
     }
-
+    
+    
+    public Initializable addModalWindow(String title,Window w){
+        /*
+        * Crea una ventana modal
+        */
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PantallaModal.fxml"));
+        Pane cmdPane = null;
+        try {
+            cmdPane = (Pane) fxmlLoader.load();
+        } catch (IOException ex) {
+        }
+        //se suman los valores ya que el size se refiere a la totalidad de la ventana con bordes
+        int width = 254;//+4
+        int height = 155;//+30
+        //se establece el contenido
+        w.setContentPane(cmdPane);
+        //Se definen las propiedades de la ventana
+        w.setTitle(title);
+        w.setPrefSize(width, height);
+        //se coloca la ventana en el centro del escritorio
+        w.setLayoutX((desktop.getWidth() / 2) - (width / 2));
+        w.setLayoutY((desktop.getHeight() / 2) - (height / 2));
+        w.setOnCloseAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                setModality(false);
+            }
+        });
+        w.setResizableWindow(false);//no sera resizable
+        w.setMovable(false);//no sera movable
+        w.getRightIcons().add(new CloseIcon(w));//boton para cerrar
+        //Se agrega al escritorio
+        desktop.getChildren().add(w);
+        setModality(true);//hace la ventana modal
+        w.toFront();//la mueve al frente
+        return fxmlLoader.getController();
+    }
+    
 }

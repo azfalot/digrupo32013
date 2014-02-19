@@ -70,6 +70,10 @@
 		<b_cambiarusuario>Cambiar usuario</b_cambiarusuario>
 		<l_idioma>Idioma</l_idioma>
 		<l_idioma2>Se necesita reiniciar la aplicación para aplicar</l_idioma2>
+		<attention>¡Atención!</attention>
+		<att1>Cerrar sesión</att1>
+		<sec1>Se borrará el usuario</sec1>
+		<sec2>¿Cerrar sesión?</sec2>
 		
 	<!-- ENTRENAMIENTO -->
 		<fisico>Físico</fisico>
