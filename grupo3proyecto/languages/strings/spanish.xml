@@ -53,6 +53,8 @@
 		<l_rend>Rendimiento</l_rend>
 		<close_window>Cerrar ventana</close_window>
 		<close_all_windows>Cerrar todas las ventanas</close_all_windows>
+		<exit_message>¿Está seguro?</exit_message>
+		<exit>Salir</exit>
 	
 	<!-- CONFIG WINDOW -->
 		<t_general>General</t_general>

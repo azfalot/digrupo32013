@@ -221,33 +221,40 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleBotonExit() {
-        System.exit(0);
+        ModalListener ml = new ModalListener() {
+            @Override
+            public void onAction() {
+                System.exit(0);
+            }
+        };
+        throwModalWindow(m.write("exit"), m.write("exit_message"), ml);
+
     }
-    
-    public void throwModalWindow(String title,String mensaje,ModalListener mAceptar){
+
+    public void throwModalWindow(String title, String mensaje, ModalListener mAceptar) {
         /*
-        * Lanza una ventana modal pasandole el titulo, el mensaje y la funcion del boton aceptar
-        */
-        final Window w=new Window();
-        PantallaModalController wModal =(PantallaModalController)addModalWindow(title,w);
-        wModal.builder(m, mensaje, w,mAceptar);
+         * Lanza una ventana modal pasandole el titulo, el mensaje y la funcion del boton aceptar
+         */
+        final Window w = new Window();
+        PantallaModalController wModal = (PantallaModalController) addModalWindow(title, w);
+        wModal.builder(m, mensaje, w, mAceptar);
     }
-    
+
     /*
      * SETTINGS
      */
-    private void setModality(boolean modality){
+    private void setModality(boolean modality) {
         /*
-        * desactiva las toolbar y tapa el escritorio
-        */
+         * desactiva las toolbar y tapa el escritorio
+         */
         toolBar.setDisable(modality);
         toolBarR.setDisable(modality);
         botonModal.setVisible(modality);
-        if(modality==true){
+        if (modality == true) {
             botonModal.toFront();
         }
     }
-    
+
     private void setToolBarProperty() {
         /*
          * Agrega a la barra de tareas la opcion de cerrar todas las ventanas abiertas pulsando boton derecho sobre ella
@@ -404,12 +411,11 @@ public class PantallaPrincipalController implements Initializable {
         });
         return fxmlLoader.getController();
     }
-    
-    
-    public Initializable addModalWindow(String title,Window w){
+
+    public Initializable addModalWindow(String title, Window w) {
         /*
-        * Crea una ventana modal
-        */
+         * Crea una ventana modal
+         */
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PantallaModal.fxml"));
         Pane cmdPane = null;
         try {
@@ -442,5 +448,5 @@ public class PantallaPrincipalController implements Initializable {
         w.toFront();//la mueve al frente
         return fxmlLoader.getController();
     }
-    
+
 }

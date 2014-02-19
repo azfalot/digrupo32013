@@ -97,7 +97,7 @@
           </rowConstraints>
         </GridPane>
         <Button id="botonAcerca" fx:id="iconoAcerca" mnemonicParsing="false" onAction="#handleIconoAcerca" prefWidth="122.00311279296875" styleClass="acerca" text="Acerca de ..." AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="1.0" />
-        <Button fx:id="botonModal" mnemonicParsing="false" opacity="0.4" prefHeight="561.9998168945312" prefWidth="741.0030212402344" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-7.0" />
+        <Button fx:id="botonModal" mnemonicParsing="false" opacity="0.4" prefHeight="586.4998168945312" prefWidth="742.0031298828125" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-31.5" />
       </children>
     </AnchorPane>
     <ToolBar fx:id="toolBar" depthTest="INHERIT" disable="false" focusTraversable="false" minHeight="14.0" opacity="1.0" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="583.3331469726562" styleClass="barra" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="0.0">
