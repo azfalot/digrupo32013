@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="125.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaModalController">
+  <children>
+    <Label fx:id="labelTexto" layoutX="96.0" layoutY="22.0" prefHeight="53.0" prefWidth="140.0" text="Label" />
+    <ImageView fx:id="ivHelp" fitHeight="60.0" fitWidth="60.0" layoutX="15.0" layoutY="22.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@resources/help.png" />
+      </image>
+    </ImageView>
+    <Button fx:id="botonAceptar" layoutX="150.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleAceptar" text="Button" />
+    <Button fx:id="botonCancelar" layoutX="45.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleCancelar" text="Button" />
+  </children>
+  <stylesheets>
+    <URL value="@Ventanas.css" />
+  </stylesheets>
+</AnchorPane>

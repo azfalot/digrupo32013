@@ -7,6 +7,7 @@ package interfaz;
 
 import datos.conexionbd.POJOS.Usuario;
 import eu.schudt.javafx.controls.calendar.DatePicker;
+import interfaz.util.ModalListener;
 import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -86,13 +87,12 @@ public class PantallaConfiguracionController implements Initializable {
     @FXML
     Label labelIdioma2;
 
-
     private Methods m;
     private Window w;
     private PantallaPrincipalController ppc;
     private Escalada e;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private File fondoEscritorio;
     private boolean wallpaperChanged = false;
 
@@ -102,7 +102,7 @@ public class PantallaConfiguracionController implements Initializable {
         this.m = m;
         this.w = w;
         this.ppc = ppc;
-        this.e = e;    
+        this.e = e;
         refreshTabla();
         setComboIdioma();
         setImages();
@@ -110,25 +110,25 @@ public class PantallaConfiguracionController implements Initializable {
         setUser();
         translate();
     }
-    
-    private void translate(){
+
+    private void translate() {
         tabGeneral.setText(m.write("t_general"));
         tabApariencia.setText(m.write("t_apariencia"));
         tabUsuarios.setText(m.write("t_usuarios"));
         tabIdioma.setText(m.write("t_idioma"));
-        labelUsuario.setText(m.write("l_usuario")+":");
+        labelUsuario.setText(m.write("l_usuario") + ":");
         checkDefault.setText(m.write("cb_default"));
-        labelCalculo.setText(m.write("l_calculo")+":");
-        labelDia.setText(m.write("l_dia")+":");
-        labelDia2.setText("("+m.write("l_dia2")+")");
-        labelFondo.setText(m.write("l_fondo")+":");
+        labelCalculo.setText(m.write("l_calculo") + ":");
+        labelDia.setText(m.write("l_dia") + ":");
+        labelDia2.setText("(" + m.write("l_dia2") + ")");
+        labelFondo.setText(m.write("l_fondo") + ":");
         botonCambiarFondo.setText(m.write("b_cambiarfondo"));
         botonAplicar.setText(m.write("apply"));
         botonCerrar.setText(m.write("close"));
         botonBorrar.setText(m.write("erase"));
         botonCambiarUsuario.setText(m.write("b_cambiarusuario"));
-        labelIdioma.setText(m.write("l_idioma")+":");
-        labelIdioma2.setText("("+m.write("l_idioma2")+")");
+        labelIdioma.setText(m.write("l_idioma") + ":");
+        labelIdioma2.setText("(" + m.write("l_idioma2") + ")");
     }
 
     @Override
@@ -213,20 +213,32 @@ public class PantallaConfiguracionController implements Initializable {
 
     @FXML
     private void handleUsuariosBorrar() {
-        try {
-            m.deleteUsuario(((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem()).getId());
-            refreshTabla();
-        } catch (Throwable e) {
-        }
+        ModalListener mAceptar = new ModalListener() {
+            @Override
+            public void onAction() {
+                try {
+                    m.deleteUsuario(((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem()).getId());
+                    refreshTabla();
+                } catch (Throwable e) {
+                }
+            }
+        };
+        ppc.throwModalWindow(m.write("attention"), m.write("sec1"), mAceptar);
     }
 
     @FXML
     private void handleUsuariosCambiarUsuario() {
-        try {
-            m.setUser((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem(), false);
-            e.goToPantallaPrincipal();
-        } catch (Throwable e) {
-        }
+        ModalListener mAceptar = new ModalListener() {
+            @Override
+            public void onAction() {
+                try {
+                    m.setUser((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem(), false);
+                    e.goToPantallaPrincipal();
+                } catch (Throwable e) {
+                }
+            }
+        };
+        ppc.throwModalWindow(m.write("att1"), m.write("sec2"), mAceptar);
     }
 
     @FXML
@@ -271,18 +283,18 @@ public class PantallaConfiguracionController implements Initializable {
     private void formatTabla() {
         //borra la tabla (columnas y datos)
         tablaUsuarios.getColumns().clear();
-        tablaUsuarios.getItems().clear();        
-        
+        tablaUsuarios.getItems().clear();
+
         //crea las nuevas columnas
         TableColumn nombreCol = new TableColumn(m.write("name"));
         nombreCol.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
-        
+
         //define la tabla como no editable
         tablaUsuarios.setEditable(false);
         //añade las columnas creadas
         tablaUsuarios.getColumns().addAll(nombreCol);
         //hace que las columnas ocupen todo el espacio reservado para la tabla
         tablaUsuarios.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-                
+
     }
 }
