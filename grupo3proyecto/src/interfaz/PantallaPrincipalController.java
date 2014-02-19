@@ -144,7 +144,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML
     private void handleIconoDatos() {
         MyWindow w = new MyWindow();
-        PantallaDatosController wConsulta = (PantallaDatosController) addWindow("PantallaDatos.fxml", m.write("consulta") + " " + tituloConsulta.format(new Date()), 500, 350, true, getClass().getResourceAsStream("resources/consulta.png"), w);
+        PantallaDatosController wConsulta = (PantallaDatosController) addWindow("PantallaDatos.fxml", m.write("consulta") + " " + tituloConsulta.format(new Date()), 625, 390, true, getClass().getResourceAsStream("resources/consulta.png"), w);
         wConsulta.builder(m);
     }
 

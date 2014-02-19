@@ -74,7 +74,7 @@ public class Entrenamiento {
     public String getTipoStr() {
         return tipoStr;
     }
-
+    
     public String getDescripcion() {
         return descripcion;
     }
