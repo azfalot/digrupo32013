@@ -89,6 +89,19 @@ public class Methods {
     public String getUserName() {
         return user.getNombre();
     }
+    public Date getPeriodoInicio(){
+        return user.getPeriodoInicio();
+    }
+    public Date getPeriodoFin(){
+        return user.getPeriodoFin();
+    }
+    
+    public void setPeriodoInicio(Date periodoInicio){
+        user.setPeriodoInicio(periodoInicio);
+    }
+    public void setPeriodoFin(Date PeriodoFin){
+        user.setPeriodoFin(PeriodoFin);
+    }
     
     public void setUserName(String nombre){
         user.setNombre(nombre);

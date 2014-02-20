@@ -178,7 +178,7 @@ public class PantallaPrincipalController implements Initializable {
         System.out.println(m.getUserId());
         System.out.println(m.getUserName());
         System.out.println(m.getLanguage());
-        toolBar.setDisable(true);
+        //toolBar.setDisable(true);
     }
 
     @FXML
@@ -440,7 +440,7 @@ public class PantallaPrincipalController implements Initializable {
             }
         });
         w.setResizableWindow(false);//no sera resizable
-        w.setMovable(false);//no sera movable
+        //w.setMovable(false);//no sera movable
         w.getRightIcons().add(new CloseIcon(w));//boton para cerrar
         //Se agrega al escritorio
         desktop.getChildren().add(w);

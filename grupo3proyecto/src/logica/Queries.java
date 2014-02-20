@@ -57,7 +57,7 @@ public class Queries {
         ResultSet rs = bd.consulta("select * from escaladores where p_escaladores=" + id);
         try {
             while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"));
+                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"),rs.getDate("periodo_inicio"),rs.getDate("periodo_fin"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -72,7 +72,7 @@ public class Queries {
         ResultSet rs = bd.consulta("select * from escaladores where nombre='" + name + "'");
         try {
             while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"));
+                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"),rs.getDate("periodo_inicio"),rs.getDate("periodo_fin"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -273,7 +273,7 @@ public class Queries {
         ResultSet rs = bd.consulta("select * from escaladores");
         try {
             while (rs.next()) {
-                usuarios.add(new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper")));
+                usuarios.add(new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"),rs.getDate("periodo_inicio"),rs.getDate("periodo_fin")));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -1,5 +1,7 @@
 package datos.conexionbd.POJOS;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import logica.Queries;
 
 /**
@@ -11,8 +13,11 @@ public class Usuario {
     private final int p_escaladores;
     private String nombre;
     private String wallpaper;
+    private Date periodoInicio;
+    private Date periodoFin;
 
     Queries q = new Queries();//instancia de Queries necesaria para los updates
+    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 
     public Usuario() {
         this.p_escaladores = 0;
@@ -21,11 +26,14 @@ public class Usuario {
     /*
      * CONSTRUCTOR
      */
-    public Usuario(int id, String nombre, String wallpaper) {
-        this.p_escaladores = id;
+    public Usuario(int p_escaladores, String nombre, String wallpaper, Date periodoInicio, Date periodoFin) {
+        this.p_escaladores = p_escaladores;
         this.nombre = nombre;
         this.wallpaper = wallpaper;
+        this.periodoInicio = periodoInicio;
+        this.periodoFin = periodoFin;
     }
+    
 
     /*
      * GETTERS
@@ -42,6 +50,15 @@ public class Usuario {
         return wallpaper;
     }
 
+    public Date getPeriodoInicio() {
+        return periodoInicio;
+    }
+
+    public Date getPeriodoFin() {
+        return periodoFin;
+    }
+    
+
     /*
      * SETTERS
      */
@@ -54,6 +71,18 @@ public class Usuario {
         this.wallpaper = wallpaper;
         q.modificarRegistro("escaladores", p_escaladores, "wallpaper", "'" + wallpaper + "'");
     }
+
+    public void setPeriodoInicio(Date periodoInicio) {
+        
+        this.periodoInicio = periodoInicio;
+        q.modificarRegistro("escaladores", p_escaladores, "periodo_inicio", "'" + sdf.format(periodoInicio) + "'");
+    }
+
+    public void setPeriodoFin(Date periodoFin) {
+        this.periodoFin = periodoFin;
+        q.modificarRegistro("escaladores", p_escaladores, "periodo_fin", "'" + sdf.format(periodoFin) + "'");
+    }
+    
     
     
     /*
