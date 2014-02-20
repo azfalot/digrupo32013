@@ -49,7 +49,9 @@ public class PantallaConfiguracionController implements Initializable {
     @FXML
     ImageView ivDesktop;
     @FXML
-    GridPane gridPane;
+    GridPane gridPaneInicio;
+    @FXML
+    GridPane gridPaneFin;
     @FXML
     TextField tfUsuario;
     @FXML
@@ -65,11 +67,9 @@ public class PantallaConfiguracionController implements Initializable {
     @FXML
     Label labelUsuario;
     @FXML
-    Label labelCalculo;
+    Label labelPeriodo;
     @FXML
-    Label labelDia;
-    @FXML
-    Label labelDia2;
+    Label labelA;
     @FXML
     Label labelFondo;
     @FXML
@@ -86,6 +86,8 @@ public class PantallaConfiguracionController implements Initializable {
     Label labelIdioma;
     @FXML
     Label labelIdioma2;
+    @FXML
+    Label labelDesde;
 
     private Methods m;
     private Window w;
@@ -96,7 +98,8 @@ public class PantallaConfiguracionController implements Initializable {
     private File fondoEscritorio;
     private boolean wallpaperChanged = false;
 
-    private DatePicker datePicker;
+    private DatePicker datePickerInicio;
+    private DatePicker datePickerFin;
 
     public void builder(Methods m, Window w, PantallaPrincipalController ppc, Escalada e) {
         this.m = m;
@@ -106,7 +109,8 @@ public class PantallaConfiguracionController implements Initializable {
         refreshTabla();
         setComboIdioma();
         setImages();
-        setDatePicker();
+        setDatePickerInicio();
+        setDatePickerFin();
         setUser();
         translate();
     }
@@ -118,9 +122,6 @@ public class PantallaConfiguracionController implements Initializable {
         tabIdioma.setText(m.write("t_idioma"));
         labelUsuario.setText(m.write("l_usuario") + ":");
         checkDefault.setText(m.write("cb_default"));
-        labelCalculo.setText(m.write("l_calculo") + ":");
-        labelDia.setText(m.write("l_dia") + ":");
-        labelDia2.setText("(" + m.write("l_dia2") + ")");
         labelFondo.setText(m.write("l_fondo") + ":");
         botonCambiarFondo.setText(m.write("b_cambiarfondo"));
         botonAplicar.setText(m.write("apply"));
@@ -129,6 +130,9 @@ public class PantallaConfiguracionController implements Initializable {
         botonCambiarUsuario.setText(m.write("b_cambiarusuario"));
         labelIdioma.setText(m.write("l_idioma") + ":");
         labelIdioma2.setText("(" + m.write("l_idioma2") + ")");
+        labelA.setText(m.write("to"));
+        labelPeriodo.setText(m.write("periodo")+":");
+        labelDesde.setText(m.write("from"));
     }
 
     @Override
@@ -163,21 +167,37 @@ public class PantallaConfiguracionController implements Initializable {
         checkDefault.setSelected(m.isUserDefault());
     }
 
-    private void setDatePicker() {
+    private void setDatePickerInicio() {
         /*
-         * Este metodo asigna el componente calendario al gridpane
+         * Este metodo asigna el componente calendario al gridpaneInicio
          * Aparecera un textfield donde haciendo click se desplegara el calendario
          */
-        datePicker = new DatePicker(new Locale(m.write("language"), m.write("language0")));
-        datePicker.setDateFormat(sdf);
-        datePicker.setPromptText("-- / -- / ----");
-        datePicker.getCalendarView().todayButtonTextProperty().set(m.write("today"));
-        datePicker.getCalendarView().setShowWeeks(false);
-        datePicker.getStylesheets().add("interfaz/util/DatePicker.css");
-        gridPane.add(datePicker, 0, 0);
-        ((TextField) datePicker.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
-        ((TextField) datePicker.getChildren().get(0)).setEditable(false);//el textfield no sera editable
-        ((TextField) datePicker.getChildren().get(0)).setText(sdf.format(m.getFechaRendimiento()));
+        datePickerInicio = new DatePicker(new Locale(m.write("language"), m.write("language0")));
+        datePickerInicio.setDateFormat(sdf);
+        datePickerInicio.setPromptText("-- / -- / ----");
+        datePickerInicio.getCalendarView().todayButtonTextProperty().set(m.write("today"));
+        datePickerInicio.getCalendarView().setShowWeeks(false);
+        datePickerInicio.getStylesheets().add("interfaz/util/DatePicker.css");
+        gridPaneInicio.add(datePickerInicio, 0, 0);
+        ((TextField) datePickerInicio.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePickerInicio.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+        ((TextField) datePickerInicio.getChildren().get(0)).setText(sdf.format(m.getPeriodoInicio()));
+    }
+    private void setDatePickerFin() {
+        /*
+         * Este metodo asigna el componente calendario al gridpaneFin
+         * Aparecera un textfield donde haciendo click se desplegara el calendario
+         */
+        datePickerFin = new DatePicker(new Locale(m.write("language"), m.write("language0")));
+        datePickerFin.setDateFormat(sdf);
+        datePickerFin.setPromptText("-- / -- / ----");
+        datePickerFin.getCalendarView().todayButtonTextProperty().set(m.write("today"));
+        datePickerFin.getCalendarView().setShowWeeks(false);
+        datePickerFin.getStylesheets().add("interfaz/util/DatePicker.css");
+        gridPaneFin.add(datePickerFin, 0, 0);
+        ((TextField) datePickerFin.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePickerFin.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+        ((TextField) datePickerFin.getChildren().get(0)).setText(sdf.format(m.getPeriodoFin()));
     }
 
     /*
@@ -207,8 +227,9 @@ public class PantallaConfiguracionController implements Initializable {
             m.setUserName(tfUsuario.getText());
         }
         m.setUserDefault(checkDefault.isSelected());
-        //fecha de calculo de rendimiento
-        m.setFechaRendimiento(datePicker.getSelectedDate());
+        //fechas de calculo de rendimiento
+        m.setPeriodoInicio(datePickerInicio.getSelectedDate());
+        m.setPeriodoFin(datePickerFin.getSelectedDate());
     }
 
     @FXML

@@ -32,10 +32,9 @@
                 <Label fx:id="labelUsuario" layoutX="28.0" layoutY="33.0" prefWidth="56.0" text="Usuario:" />
                 <TextField fx:id="tfUsuario" layoutX="84.0" layoutY="30.0" prefWidth="163.0" />
                 <CheckBox fx:id="checkDefault" allowIndeterminate="false" contentDisplay="RIGHT" graphicTextGap="4.0" indeterminate="false" layoutX="56.0" layoutY="64.0" mnemonicParsing="false" selected="false" text="usuario por defecto" />
-                <Label fx:id="labelCalculo" layoutX="28.0" layoutY="117.0" prefWidth="219.0" text="Cálculo de rendimiento:" />
-                <Label fx:id="labelDia" layoutX="28.0" layoutY="146.0" prefWidth="109.5" text="Día de comienzo:" />
-                <Label id="LabelDia2" fx:id="labelDia2" layoutX="28.0" layoutY="168.0" prefWidth="219.0" styleClass="nota" text="(se tomará toda la semana posterior)" />
-                <GridPane fx:id="gridPane" layoutX="127.0" layoutY="143.0" prefHeight="22.0">
+                <Label id="labelCalculo" fx:id="labelPeriodo" layoutX="28.0" layoutY="117.0" prefWidth="219.0" text="Periodo de entrenamiento:" />
+                <Label id="labelDia" fx:id="labelA" layoutX="148.0" layoutY="154.0" prefWidth="24.5" text="a" />
+                <GridPane id="gridPane" fx:id="gridPaneFin" layoutX="166.0" layoutY="152.0" maxWidth="73.0" prefHeight="21.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -43,6 +42,15 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                 </GridPane>
+                <GridPane id="gridPane" fx:id="gridPaneInicio" layoutX="68.0" layoutY="152.0" maxWidth="73.0" prefHeight="21.0">
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                </GridPane>
+                <Label fx:id="labelDesde" layoutX="28.0" layoutY="154.0" text="desde" />
               </children>
             </AnchorPane>
           </content>

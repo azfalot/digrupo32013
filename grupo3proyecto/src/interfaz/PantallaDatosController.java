@@ -10,6 +10,7 @@ import datos.conexionbd.POJOS.Itinerario;
 import eu.schudt.javafx.controls.calendar.DatePicker;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -92,7 +93,7 @@ public class PantallaDatosController implements Initializable {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     SimpleDateFormat sdfmin = new SimpleDateFormat("mm");
     SimpleDateFormat sdfhor = new SimpleDateFormat("hh");
-    
+
 
     /*
      * INITIALIZE
@@ -113,14 +114,11 @@ public class PantallaDatosController implements Initializable {
         paneEntrenamiento.setVisible(false);
         paneItinerario.setVisible(false);
 
-
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setPaneSizes();
-
 
     }
 
@@ -321,16 +319,10 @@ public class PantallaDatosController implements Initializable {
                 comboDificultad.getSelectionModel().select(i.getDificultad());
                 ((TextField) ((DatePicker) gridPaneItinerario.getChildren().get(0)).getChildren().get(0)).setText(sdf.format(i.getFecha()));
                 String p = (i.getFoto());
-                Image img = new Image(p);
+                Image img = new Image("file:" + p);
                 imageView.setImage(img);
-
-
-
             }
         });
-
-
-
 
         tablaEntrenamiento.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -338,14 +330,13 @@ public class PantallaDatosController implements Initializable {
 
                 paneEntrenamiento.setVisible(true);
                 Entrenamiento e = (Entrenamiento) tablaEntrenamiento.getSelectionModel().getSelectedItem();
-               ((TextField) ((DatePicker) gridPaneEntrenamiento.getChildren().get(0)).getChildren().get(0)).setText(sdf.format(e.getFecha()));
-               comboHoraInicio.getSelectionModel().select(sdfhor.format(e.getHora_inicio()));
-               comboMinInicio.getSelectionModel().select(sdfmin.format(e.getHora_inicio()));
-               comboHoraFinal.getSelectionModel().select(sdfhor.format(e.getHora_fin()));
-               comboMinFinal.getSelectionModel().select(sdfmin.format(e.getHora_fin()));
-               comboTipoEntrenamiento.getSelectionModel().select(e.getTipoStr());
-               textAreaDescripcion.setText(e.getDescripcion());
-               
+                ((TextField) ((DatePicker) gridPaneEntrenamiento.getChildren().get(0)).getChildren().get(0)).setText(sdf.format(e.getFecha()));
+                comboHoraInicio.getSelectionModel().select(sdfhor.format(e.getHora_inicio()));
+                comboMinInicio.getSelectionModel().select(sdfmin.format(e.getHora_inicio()));
+                comboHoraFinal.getSelectionModel().select(sdfhor.format(e.getHora_fin()));
+                comboMinFinal.getSelectionModel().select(sdfmin.format(e.getHora_fin()));
+                comboTipoEntrenamiento.getSelectionModel().select(e.getTipoStr());
+                textAreaDescripcion.setText(e.getDescripcion());
 
             }
         });

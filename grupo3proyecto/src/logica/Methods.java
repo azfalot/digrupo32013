@@ -24,19 +24,11 @@ public class Methods {
     private final Queries q = new Queries();
     private Usuario user = new Usuario();
     
-    private Date fechaRendimiento;//fecha para calcular el rendimiento
-    
     /*
     * CONSTRUCTOR
     */
     private Methods() {
         getConfig();//configura los valores iniciales
-        /*
-        * Se define la fecha para la cual se calculara el rendimiento:
-        * Ya que el rendimiento es una cifra que abarca una semana entera
-        * se tomará desde hace 6 días.
-        */
-        fechaRendimiento=new Date((long)(new Date().getTime()-(86400*6000)));
         
     }
 
@@ -47,13 +39,6 @@ public class Methods {
     /*
      * CALCULO DE RENDIMIENTO
      */
-    public Date getFechaRendimiento() {
-        return fechaRendimiento;
-    }
-
-    public void setFechaRendimiento(Date fechaRendimiento) {
-        this.fechaRendimiento = fechaRendimiento;
-    }
     
     public double calculaRendimiento(Date fechaInicial, Date fechaFinal){
         double rendimiento=0;
@@ -72,7 +57,7 @@ public class Methods {
         return rendimiento;
     }
     public double calculaRendimiento(){
-        return calculaRendimiento(fechaRendimiento,new Date());
+        return calculaRendimiento(getPeriodoInicio(),getPeriodoFin());
     }
     
     /*

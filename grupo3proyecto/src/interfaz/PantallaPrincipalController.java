@@ -122,7 +122,6 @@ public class PantallaPrincipalController implements Initializable {
         setDesktop();
         iconoPerfil.setText(m.getUserName());
         setToolBarProperty();
-        tfRendimiento.setText(df.format(m.calculaRendimiento()));
         botonModal.setVisible(false);
         translate();
     }
@@ -198,7 +197,6 @@ public class PantallaPrincipalController implements Initializable {
         for (Itinerario i : e) {
             System.out.println(i.getA_escaladores() + " " + i.getP_itinerario());
         }
-
     }
 
     @FXML
@@ -286,7 +284,7 @@ public class PantallaPrincipalController implements Initializable {
                 if (!stage.isFullScreen()) {
                     ivBotonFullScreen.setImage(new Image(getClass().getResourceAsStream("resources/fullscreen.png")));
                 }
-                tfRendimiento.setText(df.format(m.calculaRendimiento()));
+                //tfRendimiento.setText(df.format(m.calculaRendimiento()));
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);

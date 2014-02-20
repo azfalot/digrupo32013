@@ -31,7 +31,7 @@ public class Queries {
         /*
          * Metodo que copia una imagen al directorio de imagenes
          */
-        File destino = new File(newName);
+        File destino = new File(newName + ".jpg");
         try {
             InputStream in = new FileInputStream(origen);
             OutputStream out = new FileOutputStream(destino);
@@ -57,7 +57,7 @@ public class Queries {
         ResultSet rs = bd.consulta("select * from escaladores where p_escaladores=" + id);
         try {
             while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"),rs.getDate("periodo_inicio"),rs.getDate("periodo_fin"));
+                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"), rs.getDate("periodo_inicio"), rs.getDate("periodo_fin"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -72,7 +72,7 @@ public class Queries {
         ResultSet rs = bd.consulta("select * from escaladores where nombre='" + name + "'");
         try {
             while (rs.next()) {
-                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"),rs.getDate("periodo_inicio"),rs.getDate("periodo_fin"));
+                return new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"), rs.getDate("periodo_inicio"), rs.getDate("periodo_fin"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -112,7 +112,7 @@ public class Queries {
         int id = 1;
         while (true) {
             try {
-                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','" + "images" + File.separator + "defaultwallpaper" + "')");
+                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','" + "images" + File.separator + "defaultwallpaper.png" + "')");
                 break;
             } catch (SQLException ex) {
                 id++;
@@ -164,7 +164,7 @@ public class Queries {
          * Devuelve un ArrayList con las localizaciones
          */
         ObservableList data = FXCollections.observableArrayList();
-        ResultSet rs = bd.consulta("select i.localizacion from itinerario i,esc_it ei where i.p_itinerario=ei.a_itinerario and ei.a_escaladores=" + userId+" group by i.localizacion");
+        ResultSet rs = bd.consulta("select i.localizacion from itinerario i,esc_it ei where i.p_itinerario=ei.a_itinerario and ei.a_escaladores=" + userId + " group by i.localizacion");
         try {
             while (rs.next()) {
                 data.add(rs.getString("localizacion"));
@@ -248,7 +248,16 @@ public class Queries {
         } catch (SQLException ex) {
         }
     }
-
+    
+    public Itinerario getItinerario(int p_itinerario){
+        ResultSet rs = bd.consulta("select i.*,e.* from itinerario i,esc_it e where i.p_itinerario=e.a_itinerario and i.p_itinerario="+p_itinerario);
+        try{
+            return new Itinerario(rs.getInt("p_itinerario"),rs.getString("nombre"),rs.getString("dificultad"),rs.getString("localizacion"),rs.getInt("tipo"),rs.getString("foto"),rs.getInt("p_esc_it"),rs.getInt("a_escaladores"),rs.getDate("fecha")); 
+        } catch (SQLException ex) {
+        }
+        return null;
+    }
+    
     public void deleteItinerario(int p_itinerario) {
         //Borra un itinerario pasandole el id
         try {
@@ -259,6 +268,10 @@ public class Queries {
 
     public void deleteUsuario(int p_escaladores) {
         //Borra un usuario pasandole el id
+        ArrayList<Itinerario> it = getItinerarios(p_escaladores);
+        for (int i = 0; i < it.size(); i++) {
+            deleteItinerario(it.get(i).getP_itinerario());
+        }
         try {
             bd.update("delete from escaladores where p_escaladores=" + p_escaladores);
         } catch (SQLException ex) {
@@ -273,7 +286,7 @@ public class Queries {
         ResultSet rs = bd.consulta("select * from escaladores");
         try {
             while (rs.next()) {
-                usuarios.add(new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"),rs.getDate("periodo_inicio"),rs.getDate("periodo_fin")));
+                usuarios.add(new Usuario(rs.getInt("p_escaladores"), rs.getString("nombre"), rs.getString("wallpaper"), rs.getDate("periodo_inicio"), rs.getDate("periodo_fin")));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -286,10 +299,10 @@ public class Queries {
          * Obtiene la cantidad de itinerarios realizados entre 2 fechas
          */
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        ResultSet rs = bd.consulta("select a_itinerario from esc_it where a_escaladores="+p_escaladores+" and fecha between '"+sdf.format(fechaInicio)+"' and '"+sdf.format(fechaFin)+"'");
-        int c=0;
+        ResultSet rs = bd.consulta("select a_itinerario from esc_it where a_escaladores=" + p_escaladores + " and fecha between '" + sdf.format(fechaInicio) + "' and '" + sdf.format(fechaFin) + "'");
+        int c = 0;
         try {
-            while(rs.next()) {
+            while (rs.next()) {
                 c++;
             }
         } catch (SQLException ex) {
@@ -298,31 +311,39 @@ public class Queries {
         return c;
     }
 
-    public double getHorasEntrenamiento(int p_escaladores, Date fechaInicio, Date fechaFin) {
+    public int getHorasEntrenamiento(int p_escaladores, Date fechaInicio, Date fechaFin) {
+        /*
+         * Devuelve el numero de horas completas de entrenamiento realizadas entre dos
+         * fechas pasadas como parametro
+         */
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat fHora = new SimpleDateFormat("HH:mm:ss");
         double horas = 0;
         ResultSet rs = bd.consulta("select hora_inicio,hora_fin from sesion_entrenamientos where a_escaladores=" + p_escaladores + " and fecha between '" + sdf.format(fechaInicio) + "' and '" + sdf.format(fechaFin) + "'");
         try {
             while (rs.next()) {
-                Date horaIni=null;
-                Date horaFin=null;
+                Date horaIni = null;
+                Date horaFin = null;
                 try {
                     horaIni = fHora.parse(rs.getString("hora_inicio"));
                     horaFin = fHora.parse(rs.getString("hora_fin"));
                 } catch (ParseException ex) {
                 }
-                
-                double dif=(horaFin.getTime() - horaIni.getTime());
-                if(dif<=0){
+
+                double dif = (horaFin.getTime() - horaIni.getTime());
+                /*
+                 * Si la hora de comienzo es mayor que la fecha de inicio el porgrama
+                 * deduce que se ha estado entrenando hasta pasada media noche
+                 */
+                if (dif <= 0) {
                     horas += dif / (1000 * 60 * 60);
-                }else{
-                    horas += (24+dif) / (1000 * 60 * 60);
+                } else {
+                    horas += (24 + dif) / (1000 * 60 * 60);
                 }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return horas;
+        return (int) horas;//se hace el casting para coger solo las horas completas
     }
 }

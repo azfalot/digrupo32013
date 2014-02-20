@@ -63,9 +63,6 @@
 		<t_idioma>Idioma</t_idioma>
 		<l_usuario>Usuario</l_usuario>
 		<cb_default>Usuario por defecto</cb_default>
-		<l_calculo>Cálculo de rendimiento</l_calculo>
-		<l_dia>Día de comienzo</l_dia>
-		<l_dia2>se tomará toda la semana posterior</l_dia2>
 		<l_fondo>Fondo de escritorio</l_fondo>
 		<b_cambiarfondo>Cambiar fondo...</b_cambiarfondo>
 		<users>Usuarios</users>
@@ -76,6 +73,9 @@
 		<att1>Cerrar sesión</att1>
 		<sec1>Se borrará el usuario</sec1>
 		<sec2>¿Cerrar sesión?</sec2>
+		<periodo>Periodo de entrenamiento</periodo>
+		<to>a</to>
+		<from>Desde</from>
 		
 	<!-- ENTRENAMIENTO -->
 		<fisico>Físico</fisico>
