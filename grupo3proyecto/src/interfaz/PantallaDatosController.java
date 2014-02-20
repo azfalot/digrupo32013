@@ -8,6 +8,8 @@ package interfaz;
 import datos.conexionbd.POJOS.Entrenamiento;
 import datos.conexionbd.POJOS.Itinerario;
 import eu.schudt.javafx.controls.calendar.DatePicker;
+import java.io.File;
+import java.io.FileInputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -51,6 +54,8 @@ public class PantallaDatosController implements Initializable {
     ImageView ivError;
     @FXML
     Button botonAceptar;
+    @FXML
+    Button botonExaminar;
     @FXML
     ComboBox comboHoraInicio;
     @FXML
@@ -77,7 +82,6 @@ public class PantallaDatosController implements Initializable {
     TextField textNombre;
     @FXML
     ImageView imageView;
-    
     @FXML
     Pane paneEntrenamiento;
     @FXML
@@ -85,6 +89,10 @@ public class PantallaDatosController implements Initializable {
     private AutoFillTextBox textLoca;
     private DatePicker datePicker;
     Methods m;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdfmin = new SimpleDateFormat("mm");
+    SimpleDateFormat sdfhor = new SimpleDateFormat("hh");
+    
 
     /*
      * INITIALIZE
@@ -142,8 +150,7 @@ public class PantallaDatosController implements Initializable {
         tablaEntrenamiento.getItems().clear();
 //
 //        //crea las nuevas columnas
-        TableColumn idCol = new TableColumn("Id Entrenamiento");
-        idCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, Integer>("p_entrenamiento"));
+
         TableColumn horaInicioCol = new TableColumn("Hora Inicio");
         horaInicioCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, Date>("hora_inicio"));
         TableColumn horaFinCol = new TableColumn("Hora Fin");
@@ -159,7 +166,7 @@ public class PantallaDatosController implements Initializable {
         //define la tabla como no editable
         tablaEntrenamiento.setEditable(false);
         //añade las columnas creadas
-        tablaEntrenamiento.getColumns().addAll(idCol, horaInicioCol, horaFinCol, fechaCol, descripcionCol, tipoCol);
+        tablaEntrenamiento.getColumns().addAll(horaInicioCol, horaFinCol, fechaCol, descripcionCol, tipoCol);
         //hace que las columnas ocupen todo el espacio reservado para la tabla
         tablaEntrenamiento.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -179,24 +186,24 @@ public class PantallaDatosController implements Initializable {
         tablaItinerario.getItems().clear();
 //
 //        //crea las nuevas columnas
-        TableColumn idCol = new TableColumn("Id Itinerario");
-        idCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, Integer>("p_itinerario"));
+
         TableColumn nombreCol = new TableColumn("Nombre");
         nombreCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, String>("nombre"));
         TableColumn dificultadCol = new TableColumn("Dificultad");
         dificultadCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, String>("dificultad"));
         TableColumn localizacionCol = new TableColumn("Localización");
         localizacionCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, String>("localizacion"));
+        TableColumn fechaCol = new TableColumn("Fecha");
+        fechaCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, String>("fecha"));
         TableColumn tipoCol = new TableColumn("Tipo");
         tipoCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, String>("tipoStr"));
-        TableColumn fotoCol = new TableColumn("Foto");
-        fotoCol.setCellValueFactory(new PropertyValueFactory<Entrenamiento, String>("foto"));
+
 //        
 //
         //define la tabla como no editable
         tablaItinerario.setEditable(false);
         //añade las columnas creadas
-        tablaItinerario.getColumns().addAll(idCol, nombreCol, dificultadCol, localizacionCol, tipoCol, fotoCol);
+        tablaItinerario.getColumns().addAll(nombreCol, dificultadCol, fechaCol, localizacionCol, tipoCol);
         //hace que las columnas ocupen todo el espacio reservado para la tabla
         tablaItinerario.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -305,13 +312,20 @@ public class PantallaDatosController implements Initializable {
         tablaItinerario.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-                
-                    paneItinerario.setVisible(true);
-                    textLoca.getTextbox().setText(((Itinerario)(tablaItinerario.getSelectionModel().getSelectedItem())).getLocalizacion());
-                    textNombre.setText(((Itinerario)(tablaItinerario.getSelectionModel().getSelectedItem())).getNombre());
-                    
-                    
-                
+
+                paneItinerario.setVisible(true);
+                Itinerario i = (Itinerario) tablaItinerario.getSelectionModel().getSelectedItem();
+                textLoca.getTextbox().setText(i.getLocalizacion());
+                textNombre.setText(i.getNombre());
+                comboTipoItinerario.getSelectionModel().select(i.getTipoStr());
+                comboDificultad.getSelectionModel().select(i.getDificultad());
+                ((TextField) ((DatePicker) gridPaneItinerario.getChildren().get(0)).getChildren().get(0)).setText(sdf.format(i.getFecha()));
+                String p = (i.getFoto());
+                Image img = new Image(p);
+                imageView.setImage(img);
+
+
+
             }
         });
 
@@ -321,9 +335,18 @@ public class PantallaDatosController implements Initializable {
         tablaEntrenamiento.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-                
-                    paneEntrenamiento.setVisible(true);
-                
+
+                paneEntrenamiento.setVisible(true);
+                Entrenamiento e = (Entrenamiento) tablaEntrenamiento.getSelectionModel().getSelectedItem();
+               ((TextField) ((DatePicker) gridPaneEntrenamiento.getChildren().get(0)).getChildren().get(0)).setText(sdf.format(e.getFecha()));
+               comboHoraInicio.getSelectionModel().select(sdfhor.format(e.getHora_inicio()));
+               comboMinInicio.getSelectionModel().select(sdfmin.format(e.getHora_inicio()));
+               comboHoraFinal.getSelectionModel().select(sdfhor.format(e.getHora_fin()));
+               comboMinFinal.getSelectionModel().select(sdfmin.format(e.getHora_fin()));
+               comboTipoEntrenamiento.getSelectionModel().select(e.getTipoStr());
+               textAreaDescripcion.setText(e.getDescripcion());
+               
+
             }
         });
 

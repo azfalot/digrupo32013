@@ -159,7 +159,7 @@
                 <Pane fx:id="paneItinerario" layoutX="367.0" layoutY="0.0" prefHeight="365.0" prefWidth="258.0">
                   <children>
                     <ImageView fx:id="imageView" fitHeight="109.49990844726562" fitWidth="145.9998779296875" layoutX="56.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" />
-                    <Button id="Examinar" layoutX="57.0" layoutY="302.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="145.9998779296875" text="Examinar..." />
+                    <Button id="Examinar" fx:id="botonExaminar" layoutX="57.0" layoutY="302.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="145.9998779296875" text="Examinar..." />
                     <Button id="botones" layoutX="82.0" layoutY="330.0" mnemonicParsing="false" prefWidth="97.0" text="Modificar">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
