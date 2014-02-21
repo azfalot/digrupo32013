@@ -100,6 +100,7 @@ public class PantallaDatosController implements Initializable {
         this.m = m;
         formatTablaEntrenamiento();
         formatTablaItinerario();
+        refreshTabla();
         setDatePickerItinerario();
         setDatePickerEntrenamiento();
         setCombosEntrenamiento();
@@ -138,6 +139,16 @@ public class PantallaDatosController implements Initializable {
 //        for (Obra obra : metodos.getObras()) {
 //            tabla.getItems().add(obra);
 //        }
+        for (Iterator it = m.getEntrenamientos().iterator(); it.hasNext();) {
+            Entrenamiento e = (Entrenamiento) it.next();
+            tablaEntrenamiento.getItems().add(e);
+
+        }
+        for (Iterator it = m.getItinerarios().iterator(); it.hasNext();) {
+            Itinerario i = (Itinerario) it.next();
+            tablaItinerario.getItems().add(i);
+
+        }
     }
 
     private void formatTablaEntrenamiento() {
@@ -169,11 +180,7 @@ public class PantallaDatosController implements Initializable {
         //rellena la tabla con los datos
         tablaEntrenamiento.getItems().clear();
 
-        for (Iterator it = m.getEntrenamientos().iterator(); it.hasNext();) {
-            Entrenamiento e = (Entrenamiento) it.next();
-            tablaEntrenamiento.getItems().add(e);
-
-        }
+        
     }
 
     private void formatTablaItinerario() {
@@ -206,11 +213,7 @@ public class PantallaDatosController implements Initializable {
         //rellena la tabla con los datos
         tablaItinerario.getItems().clear();
 
-        for (Iterator it = m.getItinerarios().iterator(); it.hasNext();) {
-            Itinerario i = (Itinerario) it.next();
-            tablaItinerario.getItems().add(i);
-
-        }
+        
     }
 
     private void setDatePickerEntrenamiento() {
