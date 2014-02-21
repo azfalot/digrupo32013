@@ -8,22 +8,19 @@ package interfaz;
 import datos.conexionbd.POJOS.Entrenamiento;
 import datos.conexionbd.POJOS.Itinerario;
 import eu.schudt.javafx.controls.calendar.DatePicker;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -88,7 +85,8 @@ public class PantallaDatosController implements Initializable {
     @FXML
     Pane paneItinerario;
     private AutoFillTextBox textLoca;
-    private DatePicker datePicker;
+    private DatePicker datePickerEntrenamiento;
+    private DatePicker datePickerItinerario;
     Methods m;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     SimpleDateFormat sdfmin = new SimpleDateFormat("mm");
@@ -220,15 +218,15 @@ public class PantallaDatosController implements Initializable {
          * Este metodo asigna el componente calendario al gridpane
          * Aparecera un textfield donde haciendo click se desplegara el calendario
          */
-        datePicker = new DatePicker(new Locale(m.write("language"), m.write("language0")));
-        datePicker.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
-        datePicker.setPromptText("-- / -- / ----");
-        datePicker.getCalendarView().todayButtonTextProperty().set(m.write("today"));
-        datePicker.getCalendarView().setShowWeeks(false);
-        datePicker.getStylesheets().add("interfaz/util/DatePicker.css");
-        gridPaneEntrenamiento.add(datePicker, 0, 0);
-        ((TextField) datePicker.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
-        ((TextField) datePicker.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+        datePickerEntrenamiento = new DatePicker(new Locale(m.write("language"), m.write("language0")));
+        datePickerEntrenamiento.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
+        datePickerEntrenamiento.setPromptText("-- / -- / ----");
+        datePickerEntrenamiento.getCalendarView().todayButtonTextProperty().set(m.write("today"));
+        datePickerEntrenamiento.getCalendarView().setShowWeeks(false);
+        datePickerEntrenamiento.getStylesheets().add("interfaz/util/DatePicker.css");
+        gridPaneEntrenamiento.add(datePickerEntrenamiento, 0, 0);
+        ((TextField) datePickerEntrenamiento.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePickerEntrenamiento.getChildren().get(0)).setEditable(false);//el textfield no sera editable
     }
 
     private void setDatePickerItinerario() {
@@ -236,15 +234,15 @@ public class PantallaDatosController implements Initializable {
          * Este metodo asigna el componente calendario al gridpane
          * Aparecera un textfield donde haciendo click se desplegara el calendario
          */
-        datePicker = new DatePicker(new Locale(m.write("language"), m.write("language0")));
-        datePicker.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
-        datePicker.setPromptText("-- / -- / ----");
-        datePicker.getCalendarView().todayButtonTextProperty().set(m.write("today"));
-        datePicker.getCalendarView().setShowWeeks(false);
-        datePicker.getStylesheets().add("interfaz/util/DatePicker.css");
-        gridPaneItinerario.add(datePicker, 0, 0);
-        ((TextField) datePicker.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
-        ((TextField) datePicker.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+        datePickerItinerario = new DatePicker(new Locale(m.write("language"), m.write("language0")));
+        datePickerItinerario.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
+        datePickerItinerario.setPromptText("-- / -- / ----");
+        datePickerItinerario.getCalendarView().todayButtonTextProperty().set(m.write("today"));
+        datePickerItinerario.getCalendarView().setShowWeeks(false);
+        datePickerItinerario.getStylesheets().add("interfaz/util/DatePicker.css");
+        gridPaneItinerario.add(datePickerItinerario, 0, 0);
+        ((TextField) datePickerItinerario.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePickerItinerario.getChildren().get(0)).setEditable(false);//el textfield no sera editable
     }
 
     private void setCombosEntrenamiento() {
@@ -310,17 +308,17 @@ public class PantallaDatosController implements Initializable {
         tablaItinerario.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-
                 paneItinerario.setVisible(true);
                 Itinerario i = (Itinerario) tablaItinerario.getSelectionModel().getSelectedItem();
                 textLoca.getTextbox().setText(i.getLocalizacion());
                 textNombre.setText(i.getNombre());
                 comboTipoItinerario.getSelectionModel().select(i.getTipoStr());
                 comboDificultad.getSelectionModel().select(i.getDificultad());
-                ((TextField) ((DatePicker) gridPaneItinerario.getChildren().get(0)).getChildren().get(0)).setText(sdf.format(i.getFecha()));
+                ((TextField) datePickerItinerario.getChildren().get(0)).setText(sdf.format(i.getFecha()));
                 String p = (i.getFoto());
                 Image img = new Image("file:" + p);
                 imageView.setImage(img);
+                
             }
         });
 
@@ -330,7 +328,7 @@ public class PantallaDatosController implements Initializable {
 
                 paneEntrenamiento.setVisible(true);
                 Entrenamiento e = (Entrenamiento) tablaEntrenamiento.getSelectionModel().getSelectedItem();
-                ((TextField) ((DatePicker) gridPaneEntrenamiento.getChildren().get(0)).getChildren().get(0)).setText(sdf.format(e.getFecha()));
+                ((TextField) datePickerEntrenamiento.getChildren().get(0)).setText(sdf.format(e.getFecha()));
                 comboHoraInicio.getSelectionModel().select(sdfhor.format(e.getHora_inicio()));
                 comboMinInicio.getSelectionModel().select(sdfmin.format(e.getHora_inicio()));
                 comboHoraFinal.getSelectionModel().select(sdfhor.format(e.getHora_fin()));
