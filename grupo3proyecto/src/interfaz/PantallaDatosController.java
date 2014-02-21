@@ -77,6 +77,14 @@ public class PantallaDatosController implements Initializable {
     @FXML
     private GridPane gridPaneAutoFill;
     @FXML
+    private GridPane gridPaneEntrenamientoFiltroInicio;
+    @FXML
+    private GridPane gridPaneEntrenamientoFiltroFin;
+    @FXML
+    private GridPane gridPaneItinerarioFiltroInicio;
+    @FXML
+    private GridPane gridPaneItinerarioFiltroFin;
+    @FXML
     TextField textNombre;
     @FXML
     ImageView imageView;
@@ -91,7 +99,10 @@ public class PantallaDatosController implements Initializable {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     SimpleDateFormat sdfmin = new SimpleDateFormat("mm");
     SimpleDateFormat sdfhor = new SimpleDateFormat("hh");
-
+    private DatePicker datePickerEntrenamientoFiltroInicio;
+    private DatePicker datePickerEntrenamientoFiltroFin;
+    private DatePicker datePickerItinerarioFiltroInicio;
+    private DatePicker datePickerItinerarioFiltroFin;
 
     /*
      * INITIALIZE
@@ -103,6 +114,10 @@ public class PantallaDatosController implements Initializable {
         refreshTabla();
         setDatePickerItinerario();
         setDatePickerEntrenamiento();
+        setDatePickerEntrenamientoFiltroFin();
+        setDatePickerEntrenamientoFiltroInicio();
+        setDatePickerItinerarioFiltroFin();
+        setDatePickerItinerarioFiltroInicio();
         setCombosEntrenamiento();
         setCombosItinerario();
         setOnClick();
@@ -180,7 +195,6 @@ public class PantallaDatosController implements Initializable {
         //rellena la tabla con los datos
         tablaEntrenamiento.getItems().clear();
 
-        
     }
 
     private void formatTablaItinerario() {
@@ -213,7 +227,6 @@ public class PantallaDatosController implements Initializable {
         //rellena la tabla con los datos
         tablaItinerario.getItems().clear();
 
-        
     }
 
     private void setDatePickerEntrenamiento() {
@@ -230,6 +243,66 @@ public class PantallaDatosController implements Initializable {
         gridPaneEntrenamiento.add(datePickerEntrenamiento, 0, 0);
         ((TextField) datePickerEntrenamiento.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
         ((TextField) datePickerEntrenamiento.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+    }
+    private void setDatePickerEntrenamientoFiltroInicio() {
+        /*
+         * Este metodo asigna el componente calendario al gridpane
+         * Aparecera un textfield donde haciendo click se desplegara el calendario
+         */
+        datePickerEntrenamientoFiltroInicio = new DatePicker(new Locale(m.write("language"), m.write("language0")));
+        datePickerEntrenamientoFiltroInicio.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
+        datePickerEntrenamientoFiltroInicio.setPromptText("-- / -- / ----");
+        datePickerEntrenamientoFiltroInicio.getCalendarView().todayButtonTextProperty().set(m.write("today"));
+        datePickerEntrenamientoFiltroInicio.getCalendarView().setShowWeeks(false);
+        datePickerEntrenamientoFiltroInicio.getStylesheets().add("interfaz/util/DatePicker.css");
+        gridPaneEntrenamientoFiltroInicio.add(datePickerEntrenamientoFiltroInicio, 0, 0);
+        ((TextField) datePickerEntrenamientoFiltroInicio.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePickerEntrenamientoFiltroInicio.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+    }
+    private void setDatePickerEntrenamientoFiltroFin() {
+        /*
+         * Este metodo asigna el componente calendario al gridpane
+         * Aparecera un textfield donde haciendo click se desplegara el calendario
+         */
+        datePickerEntrenamientoFiltroFin = new DatePicker(new Locale(m.write("language"), m.write("language0")));
+        datePickerEntrenamientoFiltroFin.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
+        datePickerEntrenamientoFiltroFin.setPromptText("-- / -- / ----");
+        datePickerEntrenamientoFiltroFin.getCalendarView().todayButtonTextProperty().set(m.write("today"));
+        datePickerEntrenamientoFiltroFin.getCalendarView().setShowWeeks(false);
+        datePickerEntrenamientoFiltroFin.getStylesheets().add("interfaz/util/DatePicker.css");
+        gridPaneEntrenamientoFiltroFin.add(datePickerEntrenamiento, 0, 0);
+        ((TextField) datePickerEntrenamientoFiltroFin.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePickerEntrenamientoFiltroFin.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+    }
+    private void setDatePickerItinerarioFiltroInicio() {
+        /*
+         * Este metodo asigna el componente calendario al gridpane
+         * Aparecera un textfield donde haciendo click se desplegara el calendario
+         */
+        datePickerItinerarioFiltroInicio = new DatePicker(new Locale(m.write("language"), m.write("language0")));
+        datePickerItinerarioFiltroInicio.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
+        datePickerItinerarioFiltroInicio.setPromptText("-- / -- / ----");
+        datePickerItinerarioFiltroInicio.getCalendarView().todayButtonTextProperty().set(m.write("today"));
+        datePickerItinerarioFiltroInicio.getCalendarView().setShowWeeks(false);
+        datePickerItinerarioFiltroInicio.getStylesheets().add("interfaz/util/DatePicker.css");
+        gridPaneItinerarioFiltroInicio.add(datePickerEntrenamiento, 0, 0);
+        ((TextField) datePickerItinerarioFiltroInicio.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePickerItinerarioFiltroInicio.getChildren().get(0)).setEditable(false);//el textfield no sera editable
+    }
+    private void setDatePickerItinerarioFiltroFin() {
+        /*
+         * Este metodo asigna el componente calendario al gridpane
+         * Aparecera un textfield donde haciendo click se desplegara el calendario
+         */
+        datePickerItinerarioFiltroFin = new DatePicker(new Locale(m.write("language"), m.write("language0")));
+        datePickerItinerarioFiltroFin.setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
+        datePickerItinerarioFiltroFin.setPromptText("-- / -- / ----");
+        datePickerItinerarioFiltroFin.getCalendarView().todayButtonTextProperty().set(m.write("today"));
+        datePickerItinerarioFiltroFin.getCalendarView().setShowWeeks(false);
+        datePickerItinerarioFiltroFin.getStylesheets().add("interfaz/util/DatePicker.css");
+        gridPaneItinerarioFiltroFin.add(datePickerEntrenamiento, 0, 0);
+        ((TextField) datePickerItinerarioFiltroFin.getChildren().get(0)).setMaxWidth(73);//se ajusta el tamaño del textfield
+        ((TextField) datePickerItinerarioFiltroFin.getChildren().get(0)).setEditable(false);//el textfield no sera editable
     }
 
     private void setDatePickerItinerario() {
@@ -321,7 +394,7 @@ public class PantallaDatosController implements Initializable {
                 String p = (i.getFoto());
                 Image img = new Image("file:" + p);
                 imageView.setImage(img);
-                
+
             }
         });
 
@@ -343,4 +416,13 @@ public class PantallaDatosController implements Initializable {
         });
 
     }
+
+    public void handleFiltrarItinerario() {
+//Sinceramente lo que habia hecho era una chapuza mejor vacio.
+    }
+
+    public void handleFiltrarEntrenamiento() {
+//Sinceramente lo que habia hecho era una chapuza mejor vacio.
+    }
+
 }
