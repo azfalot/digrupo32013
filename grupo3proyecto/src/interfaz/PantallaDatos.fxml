@@ -20,12 +20,12 @@
       <tabs>
         <Tab fx:id="tabEntrenamiento" text="Entrenamientos">
           <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="364.0000999999975" prefWidth="625.0">
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="363.9998779296875" prefWidth="625.0">
               <children>
-                <TableView fx:id="tablaEntrenamiento" prefHeight="365.0" prefWidth="367.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="258.0" AnchorPane.topAnchor="-1.0" />
-                <Pane fx:id="paneEntrenamiento" prefHeight="365.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+                <TableView fx:id="tablaEntrenamiento" prefHeight="333.0" prefWidth="379.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="246.0" AnchorPane.topAnchor="-1.0" />
+                <AnchorPane fx:id="paneEntrenamiento" prefHeight="331.0" prefWidth="250.0" styleClass="anchorPropiedades" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="1.0">
                   <children>
-                    <GridPane id="gridPane" fx:id="gridPaneEntrenamiento" layoutX="87.0" layoutY="30.0" prefWidth="77.0">
+                    <GridPane id="gridPane" fx:id="gridPaneEntrenamiento" layoutX="99.0" layoutY="30.0" prefWidth="77.0">
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       </columnConstraints>
@@ -37,37 +37,37 @@
                         <URL value="@util/DatePicker.css" />
                       </stylesheets>
                     </GridPane>
-                    <ImageView fx:id="ivError" fitHeight="21.0" fitWidth="28.00000160618832" layoutX="192.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="ivError" fitHeight="21.0" fitWidth="28.00000160618832" layoutX="204.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                       <image>
                         <Image url="@../../resources/wrong.png" />
                       </image>
                     </ImageView>
-                    <Label layoutX="152.0" layoutY="56.0" text=":">
+                    <Label layoutX="164.0" layoutY="56.0" text=":">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <Label layoutX="152.0" layoutY="80.0" text=":">
+                    <Label layoutX="164.0" layoutY="80.0" text=":">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <Button id="botones" fx:id="botonModificar" layoutX="147.0" layoutY="330.0" mnemonicParsing="false" prefWidth="97.0" text="Modificar">
+                    <Button id="botones" fx:id="botonModificarEntrenamiento" mnemonicParsing="false" onAction="#handleModificarEntrenamiento" prefWidth="97.0" text="Modificar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="16.0">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Button>
-                    <Label id="texto" layoutX="13.0" layoutY="33.0" prefWidth="77.0" text="Fecha sesion">
+                    <Label id="texto" fx:id="labeleFecha" layoutX="14.0" layoutY="34.0" prefWidth="77.0" text="Fecha sesion">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <Label id="texto" layoutX="13.0" layoutY="58.0" prefWidth="77.0" text="Hora inicio">
+                    <Label id="texto" fx:id="labeleHoraInicio" layoutX="14.0" layoutY="59.0" prefWidth="77.0" text="Hora inicio">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <ComboBox fx:id="comboHoraInicio" layoutX="88.0" layoutY="56.0" minWidth="42.999900000002526" prefHeight="21.0" prefWidth="54.0">
+                    <ComboBox fx:id="comboHoraInicio" layoutX="100.0" layoutY="56.0" minWidth="42.999900000002526" prefHeight="21.0" prefWidth="54.0">
                       <items>
                         <FXCollections fx:factory="observableArrayList">
                           <String fx:value="Item 1" />
@@ -79,7 +79,7 @@
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </ComboBox>
-                    <ComboBox fx:id="comboMinInicio" layoutX="162.0" layoutY="56.0" minWidth="33.0" prefHeight="20.999900000002526" prefWidth="60.0">
+                    <ComboBox fx:id="comboMinInicio" layoutX="174.0" layoutY="56.0" minWidth="33.0" prefHeight="20.999900000002526" prefWidth="60.0">
                       <items>
                         <FXCollections fx:factory="observableArrayList">
                           <String fx:value="Item 1" />
@@ -91,12 +91,12 @@
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </ComboBox>
-                    <Label id="texto" layoutX="13.0" layoutY="83.0" prefWidth="77.0" text="Hora final">
+                    <Label id="texto" fx:id="labeleHoraFinal" layoutX="14.0" layoutY="84.0" prefWidth="77.0" text="Hora final">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <ComboBox fx:id="comboHoraFinal" layoutX="88.0" layoutY="80.0" minWidth="43.0" prefHeight="21.0" prefWidth="54.0">
+                    <ComboBox fx:id="comboHoraFinal" layoutX="100.0" layoutY="80.0" minWidth="43.0" prefHeight="21.0" prefWidth="54.0">
                       <items>
                         <FXCollections fx:factory="observableArrayList">
                           <String fx:value="Item 1" />
@@ -108,7 +108,7 @@
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </ComboBox>
-                    <ComboBox fx:id="comboMinFinal" layoutX="162.0" layoutY="80.0" minWidth="43.0" prefHeight="22.0" prefWidth="60.0">
+                    <ComboBox fx:id="comboMinFinal" layoutX="174.0" layoutY="80.0" minWidth="43.0" prefHeight="22.0" prefWidth="60.0">
                       <items>
                         <FXCollections fx:factory="observableArrayList">
                           <String fx:value="Item 1" />
@@ -120,12 +120,12 @@
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </ComboBox>
-                    <Label id="texto" layoutX="13.0" layoutY="110.0" prefWidth="77.0" text="Tipo">
+                    <Label id="texto" fx:id="labeleTipo" layoutX="14.0" layoutY="111.0" prefWidth="77.0" text="Tipo">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <ComboBox id="Estilos.css" fx:id="comboTipoEntrenamiento" layoutX="87.0" layoutY="105.0" prefHeight="21.0" prefWidth="135.0">
+                    <ComboBox id="Estilos.css" fx:id="comboTipoEntrenamiento" layoutX="99.0" layoutY="109.0" prefHeight="21.0" prefWidth="135.0">
                       <items>
                         <FXCollections fx:factory="observableArrayList">
                           <String fx:value="Item 1" />
@@ -137,36 +137,78 @@
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </ComboBox>
-                    <Label id="texto" layoutX="13.0" layoutY="133.0" prefWidth="77.0" text="Descripción:">
+                    <Label id="texto" fx:id="labeleDescripcion" layoutX="14.0" layoutY="133.0" prefWidth="77.0" text="Descripción:">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <TextArea fx:id="textAreaDescripcion" layoutX="36.0" layoutY="160.0" prefHeight="63.0" prefWidth="186.0" wrapText="true">
+                    <TextArea fx:id="textAreaDescripcion" layoutX="42.0" layoutY="160.0" prefHeight="63.0" prefWidth="192.0" wrapText="true">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </TextArea>
+                    <Button fx:id="botonBorrarEntrenamiento" layoutX="176.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleBorrarEntrenamiento" text="Borrar" />
                   </children>
-                </Pane>
+                </AnchorPane>
+                <ToolBar fx:id="toolBarEntrenamientos" prefWidth="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <items>
+                    <Button fx:id="botonFiltrarEntrenamientos" mnemonicParsing="false" onAction="#handleFiltrarEntrenamientos" text="Filtrar" />
+                    <Label prefWidth="20.0" text="" />
+                    <Label fx:id="labelDesdeEntrenamientos" prefWidth="46.0" text="Desde" />
+                    <GridPane id="gridPane" fx:id="gridPaneEntrenamientoFiltroInicio" prefHeight="22.0" prefWidth="73.0">
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                      <stylesheets>
+                        <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/Ventanas.css" />
+                        <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/util/DatePicker.css" />
+                      </stylesheets>
+                    </GridPane>
+                    <Label fx:id="labelAEntrenamientos" prefWidth="20.0" text="a" />
+                    <GridPane id="gridPane" fx:id="gridPaneEntrenamientoFiltroFin" prefHeight="22.0" prefWidth="73.0">
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                      <stylesheets>
+                        <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/Ventanas.css" />
+                        <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/util/DatePicker.css" />
+                      </stylesheets>
+                    </GridPane>
+                    <Label prefWidth="20.0" text="" />
+                    <ComboBox fx:id="comboTipoEntrenamientos" prefHeight="21.0" prefWidth="100.0">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Item 1" />
+                          <String fx:value="Item 2" />
+                          <String fx:value="Item 3" />
+                        </FXCollections>
+                      </items>
+                    </ComboBox>
+                  </items>
+                </ToolBar>
               </children>
             </AnchorPane>
           </content>
         </Tab>
         <Tab fx:id="tabItinierario" text="Itinerarios">
           <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="625.0">
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="363.9998779296875" prefWidth="625.0">
               <children>
-                <TableView fx:id="tablaItinerario" prefHeight="365.0" prefWidth="367.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="258.0" AnchorPane.topAnchor="0.0" />
-                <Pane fx:id="paneItinerario" prefHeight="365.0" prefWidth="258.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <TableView fx:id="tablaItinerario" prefHeight="332.0" prefWidth="375.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
+                <AnchorPane fx:id="paneItinerario" prefHeight="332.0" prefWidth="250.0" styleClass="anchorPropiedades" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
                   <children>
-                    <Button id="Examinar" fx:id="botonExaminar" layoutX="14.0" layoutY="329.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="115.0" text="Cambiar imagen" />
-                    <Button id="botones" layoutX="147.0" layoutY="330.0" mnemonicParsing="false" prefWidth="97.0" text="Modificar">
+                    <Button id="botones" fx:id="botonModificarItinerario" mnemonicParsing="false" onAction="#handleModificarItinerario" prefWidth="97.0" text="Modificar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="16.0">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Button>
-                    <GridPane id="gridPaneAutoFill" fx:id="gridPaneItinerario" layoutX="112.0" layoutY="249.0" prefHeight="22.0" prefWidth="140.0">
+                    <GridPane id="gridPaneAutoFill" fx:id="gridPaneItinerario" layoutX="96.0" layoutY="242.0" prefHeight="22.0" prefWidth="140.0">
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       </columnConstraints>
@@ -174,8 +216,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       </rowConstraints>
                     </GridPane>
-                    <TextField id="textTitulo" fx:id="textNombre" layoutX="91.0" layoutY="149.0" prefWidth="140.0" />
-                    <ComboBox id="Estilos.css" fx:id="comboTipoItinerario" layoutX="92.0" layoutY="199.0" prefWidth="140.0">
+                    <TextField id="textTitulo" fx:id="textNombre" layoutX="96.0" layoutY="142.0" prefWidth="140.0" />
+                    <ComboBox id="Estilos.css" fx:id="comboTipoItinerario" layoutX="97.0" layoutY="192.0" prefWidth="140.0">
                       <items>
                         <FXCollections fx:factory="observableArrayList">
                           <String fx:value="Item 1" />
@@ -187,7 +229,7 @@
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </ComboBox>
-                    <ComboBox fx:id="comboDificultad" layoutX="92.0" layoutY="224.0" prefHeight="21.0" prefWidth="51.0">
+                    <ComboBox fx:id="comboDificultad" layoutX="97.0" layoutY="217.0" prefHeight="21.0" prefWidth="51.0">
                       <items>
                         <FXCollections fx:factory="observableArrayList">
                           <String fx:value="Item 1" />
@@ -196,28 +238,28 @@
                         </FXCollections>
                       </items>
                     </ComboBox>
-                    <Label id="texto" layoutX="15.0" layoutY="252.0" prefWidth="97.0" text="Fecha resolución">
+                    <Label id="texto" fx:id="labeliFecha" layoutX="14.0" layoutY="245.0" prefWidth="97.0" text="Fecha">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <Label id="texto" layoutX="15.0" layoutY="152.0" prefWidth="77.0" text="Nombre:">
+                    <Label id="texto" fx:id="labeliNombre" layoutX="14.0" layoutY="145.0" prefWidth="77.0" text="Nombre:">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <Label id="texto" layoutX="15.0" layoutY="177.0" prefWidth="76.9998779296875" text="Localización:">
+                    <Label id="texto" fx:id="labeliLoc" layoutX="14.0" layoutY="170.0" prefWidth="76.9998779296875" text="Localización:">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <Label id="texto" layoutX="15.0" layoutY="202.0" prefWidth="77.0" text="Tipo">
+                    <Label id="texto" fx:id="labeliTipo" layoutX="14.0" layoutY="195.0" prefWidth="77.0" text="Tipo">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
                       </stylesheets>
                     </Label>
-                    <Label id="labelDificultad" layoutX="15.0" layoutY="227.0" prefWidth="76.9998779296875" text="Dificultad" />
-                    <GridPane fx:id="gridPaneAutoFill" layoutX="91.0" layoutY="174.0" prefHeight="22.0" prefWidth="140.0">
+                    <Label id="labelDificultad" fx:id="labeliDificultad" layoutX="14.0" layoutY="220.0" prefWidth="76.9998779296875" text="Dificultad" />
+                    <GridPane fx:id="gridPaneAutoFill" layoutX="96.0" layoutY="167.0" prefHeight="22.0" prefWidth="140.00009999999747">
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       </columnConstraints>
@@ -225,15 +267,67 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       </rowConstraints>
                     </GridPane>
-                    <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="109.49990844726562" layoutX="55.0" layoutY="21.0" strokeType="INSIDE" width="147.9998779296875">
+                    <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#dfdfdf" height="109.49990844726562" layoutX="51.0" layoutY="22.0" strokeType="INSIDE" width="147.9998779296875">
                       <stroke>
                         <Color blue="0.750" green="0.750" red="0.750" fx:id="x1" />
                       </stroke>
                     </Rectangle>
-                    <Label fx:id="labelSinImagen" layoutX="99.0" layoutY="68.0" text="Sin imagen" textFill="$x1" />
-                    <ImageView fx:id="imageView" fitHeight="109.49990844726562" fitWidth="147.9998779296875" layoutX="55.0" layoutY="21.0" pickOnBounds="true" preserveRatio="false" />
+                    <Label fx:id="labelSinImagen" layoutX="95.0" layoutY="69.0" text="Sin imagen" textFill="$x1" />
+                    <ImageView fx:id="imageView" fitHeight="109.49990844726562" fitWidth="147.9998779296875" layoutX="51.0" layoutY="22.0" pickOnBounds="true" preserveRatio="false" />
+                    <Button fx:id="botonBorrarItinerario" layoutX="181.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleBorrarItinerario" text="Borrar" />
                   </children>
-                </Pane>
+                </AnchorPane>
+                <ToolBar fx:id="toolBarItinerarios" prefHeight="32.0" prefWidth="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <items>
+                    <Button fx:id="botonFiltrarItinerarios" mnemonicParsing="false" onAction="#handleFiltrarItinerarios" text="Filtrar" />
+                    <Label prefWidth="20.0" text="" />
+                    <Label fx:id="labelDesdeItinerarios" prefWidth="46.0" text="Desde" />
+                    <GridPane id="gridPane" fx:id="gridPaneItinerarioFiltroInicio" prefHeight="22.0" prefWidth="73.0">
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                      <stylesheets>
+                        <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/Ventanas.css" />
+                        <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/util/DatePicker.css" />
+                      </stylesheets>
+                    </GridPane>
+                    <Label fx:id="labelAItinerarios" prefWidth="20.0" text="a" />
+                    <GridPane id="gridPane" fx:id="gridPaneItinerarioFiltroFin" prefHeight="22.0" prefWidth="73.0">
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                      <stylesheets>
+                        <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/Ventanas.css" />
+                        <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/util/DatePicker.css" />
+                      </stylesheets>
+                    </GridPane>
+                    <Label prefWidth="20.0" text="" />
+                    <ComboBox fx:id="comboTipoItinerarios" prefHeight="21.0" prefWidth="100.0">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Item 1" />
+                          <String fx:value="Item 2" />
+                          <String fx:value="Item 3" />
+                        </FXCollections>
+                      </items>
+                    </ComboBox>
+                    <ComboBox fx:id="comboDificultadItinerarios" minWidth="46.0" prefHeight="21.0" prefWidth="100.0">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Item 1" />
+                          <String fx:value="Item 2" />
+                          <String fx:value="Item 3" />
+                        </FXCollections>
+                      </items>
+                    </ComboBox>
+                  </items>
+                </ToolBar>
               </children>
             </AnchorPane>
           </content>

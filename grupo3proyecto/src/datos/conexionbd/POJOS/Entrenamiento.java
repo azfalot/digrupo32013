@@ -16,17 +16,23 @@ import logica.Queries;
  */
 public class Entrenamiento {
 
-    private int p_entrenamiento;
-    private int a_escaladores;
+    private final int p_entrenamiento;
+    private final int a_escaladores;
     private Date hora_inicio, hora_fin, fecha;
     private int tipo;
     private String descripcion;
-    private String tipoStr;
     
-    private Queries q = new Queries();//instancia necesaria para hacer updates
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//formato de fechas
-    private SimpleDateFormat fhora = new SimpleDateFormat("hh:mm:ss");//formato de horas
-    private Methods m=Methods.getInstance();
+    private String tipoStr;
+    private String dateStr;
+    private String hora_inicioStr;
+    private String hora_finStr;
+    
+    private final Queries q = new Queries();//instancia necesaria para hacer updates
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//formato de fechas
+    private final SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");//formato de fechas
+    private final SimpleDateFormat fhora = new SimpleDateFormat("hh:mm:ss");//formato de horas
+    private final SimpleDateFormat fhora2 = new SimpleDateFormat("hh:mm");//formato de horas
+    private final Methods m=Methods.getInstance();
     
     /*
     * CONSTRUCTOR
@@ -40,16 +46,22 @@ public class Entrenamiento {
         this.fecha = fecha;
         this.tipo = tipo;
         this.descripcion = descripcion;
-        switch(tipo){
-            case 0:tipoStr=m.write("fisico");break;
-            case 1:tipoStr=m.write("rocodromo");break;
-            case 2:tipoStr=m.write("roca");break;
-        }
     }
     
     /*
-    * GETTERS
-    */
+     * GETTERS
+     */
+    public String getDateStr() {
+        return sdf2.format(fecha);
+    }
+
+    public String getHora_inicioStr() {
+        return fhora2.format(hora_inicio);
+    }
+
+    public String getHora_finStr() {
+        return fhora2.format(hora_fin);
+    }
 
     public int getP_entrenamiento() {
         return p_entrenamiento;
@@ -72,7 +84,12 @@ public class Entrenamiento {
     }
 
     public String getTipoStr() {
-        return tipoStr;
+        switch(tipo){
+            case 0:return m.write("fisico");
+            case 1:return m.write("roca");
+            case 2:return m.write("rocodromo");
+        }
+        return null;
     }
     
     public String getDescripcion() {
@@ -100,22 +117,7 @@ public class Entrenamiento {
     public void setTipo(int tipo) {
         this.tipo = tipo;
         q.modificarRegistro("sesion_entrenamientos", this.p_entrenamiento, "tipo", String.valueOf(tipo));
-        switch(tipo){
-            case 0:tipoStr=m.write("fisico");break;
-            case 1:tipoStr=m.write("rocodromo");break;
-            case 2:tipoStr=m.write("roca");break;
-        }
     }
-
-    public void setTipoStr(String tipoStr) {
-        /*
-        * NO USAR ESTE SETTER
-        */
-        this.tipoStr = tipoStr;
-    }
-    
-    
-    
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;

@@ -18,7 +18,14 @@
 		<description>Descripción</description>
 		<image_files>Archivos de imagen</image_files>
 		<bitmap>Mapa de bits</bitmap>
-		
+	
+	<!-- DATA -->
+		<tipos>Tipo</tipos>
+		<dificultad>Dificultad</dificultad>
+		<clean>Limpiar filtros</clean>
+		<filtrar>Filtrar</filtrar>
+		<modificar>Modificar</modificar>
+	
 	<!--LOGIN WINDOW-->
 		<login>Login</login>
 		<remember>Recuérdame</remember>

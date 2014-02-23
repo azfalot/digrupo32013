@@ -39,7 +39,13 @@ import logica.Methods;
  * @author Grupo 3
  */
 public class PantallaConfiguracionController implements Initializable {
-
+    
+    @FXML
+    Button botonAdd;
+    @FXML
+    Button botonNuevoUsuario;
+    @FXML
+    TextField tfNuevoUsuario;
     @FXML
     TabPane tabPane;
     @FXML
@@ -133,12 +139,14 @@ public class PantallaConfiguracionController implements Initializable {
         labelA.setText(m.write("to"));
         labelPeriodo.setText(m.write("periodo")+":");
         labelDesde.setText(m.write("from"));
+        botonNuevoUsuario.setText(m.write("new_user"));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setPaneSizes();
-
+        tfNuevoUsuario.setVisible(false);
+        botonAdd.setVisible(false);
     }
 
     private void setPaneSizes() {
@@ -204,6 +212,21 @@ public class PantallaConfiguracionController implements Initializable {
      * HANDLES    
      */
     @FXML
+    private void handleNuevoUsuario() {
+        tfNuevoUsuario.setVisible(true);
+        botonAdd.setVisible(true);
+    }
+    @FXML
+    private void handleAdd() {
+        if(!"".equals(tfNuevoUsuario.getText())){
+            m.altaUsuario(tfNuevoUsuario.getText());
+            tfNuevoUsuario.setVisible(false);
+            botonAdd.setVisible(false);
+            refreshTabla();
+        }
+    }
+    
+    @FXML
     private void handleCerrar() {
 
         w.close();
@@ -226,7 +249,11 @@ public class PantallaConfiguracionController implements Initializable {
         if (!"".equals(tfUsuario.getText())) {
             m.setUserName(tfUsuario.getText());
         }
-        m.setUserDefault(checkDefault.isSelected());
+        if(checkDefault.isSelected()){
+            m.setUserDefault(true);
+        }else if(!checkDefault.isSelected() && m.getDefaultUser()==m.getUserId()){
+            m.setDefaultUser(0);
+        }
         //fechas de calculo de rendimiento
         m.setPeriodoInicio(datePickerInicio.getSelectedDate());
         m.setPeriodoFin(datePickerFin.getSelectedDate());

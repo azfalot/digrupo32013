@@ -1,10 +1,11 @@
-    package logica;
+package logica;
 
 import datos.conexionbd.POJOS.Usuario;
 import datos.config.Config;
 import datos.strings.Language;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,51 +19,55 @@ public class Methods {
      * Clase que conecta datos con interfaz. Se ha programado con un patron singleton de diseño.
      */
 
-    private static final Methods instance= new Methods();;
+    private static final Methods instance = new Methods();
+    ;
     private Config cfg;
     private Language lang;
     private final Queries q = new Queries();
     private Usuario user = new Usuario();
-    
+
     /*
-    * CONSTRUCTOR
-    */
+     * CONSTRUCTOR
+     */
     private Methods() {
         getConfig();//configura los valores iniciales
-        
+
     }
 
     public static Methods getInstance() {
         return instance;
     }
-    
+
     /*
      * CALCULO DE RENDIMIENTO
      */
-    
-    public double calculaRendimiento(Date fechaInicial, Date fechaFinal){
-        double rendimiento=0;
-        double horasEntrenamiento=q.getHorasEntrenamiento(getUserId(), fechaInicial, fechaFinal);
-        int itinerarios=q.getCantidadItinerarios(getUserId(), fechaInicial, fechaFinal);
-        if(horasEntrenamiento>=10){
-            rendimiento+=5;
-        }else{
-            rendimiento+=horasEntrenamiento*0.5;
+    public double calculaRendimiento(Date fechaInicial, Date fechaFinal) {
+        if (fechaFinal.getTime()>new Date().getTime()) {
+            fechaFinal=new Date();
         }
-        if(itinerarios>=20){
-            rendimiento+=5;
-        }else{
-            rendimiento+=itinerarios*0.25;
-        }
-        return rendimiento;
+        Calendar cini=Calendar.getInstance();
+        Calendar cfin=Calendar.getInstance();
+        
+        cini.setTime(fechaInicial);
+        cfin.setTime(fechaFinal);
+
+        ArrayList<Semana> semanas=new ArrayList();
+        
+        int semanaInicio=cini.getWeekYear();
+        int semanaFin=cfin.getWeekYear();
+        
+        
+        
+        return 0.0;     
     }
-    public double calculaRendimiento(){
-        return calculaRendimiento(getPeriodoInicio(),getPeriodoFin());
+
+    public double calculaRendimiento() {
+        return calculaRendimiento(getPeriodoInicio(), getPeriodoFin());
     }
-    
+
     /*
-    * GETTERS Y SETTERS PARA EL USUARIO
-    */
+     * GETTERS Y SETTERS PARA EL USUARIO
+     */
     public int getUserId() {
         return user.getId();
     }
@@ -74,31 +79,34 @@ public class Methods {
     public String getUserName() {
         return user.getNombre();
     }
-    public Date getPeriodoInicio(){
+
+    public Date getPeriodoInicio() {
         return user.getPeriodoInicio();
     }
-    public Date getPeriodoFin(){
+
+    public Date getPeriodoFin() {
         return user.getPeriodoFin();
     }
-    
-    public void setPeriodoInicio(Date periodoInicio){
+
+    public void setPeriodoInicio(Date periodoInicio) {
         user.setPeriodoInicio(periodoInicio);
     }
-    public void setPeriodoFin(Date PeriodoFin){
+
+    public void setPeriodoFin(Date PeriodoFin) {
         user.setPeriodoFin(PeriodoFin);
     }
-    
-    public void setUserName(String nombre){
+
+    public void setUserName(String nombre) {
         user.setNombre(nombre);
     }
-    
-    public void setUserWallpaper(File wallpaper){
-        user.setWallpaper(q.copyPicture(wallpaper,"images" + File.separator+"wp-"+ getUserId()).getAbsolutePath());
+
+    public void setUserWallpaper(File wallpaper) {
+        user.setWallpaper(q.copyPicture(wallpaper, "images" + File.separator + "wp-" + getUserId()).getAbsolutePath());
     }
 
     /*
-    * OPERACIONES CON LA CONFIGURACION config.cfg
-    */
+     * OPERACIONES CON LA CONFIGURACION config.cfg
+     */
     public void setUser(Usuario user, boolean makeDefault) {
         /*
          * Permite seleccionar un usuario y ponerlo como por defecto o no
@@ -110,25 +118,33 @@ public class Methods {
             cfg.setDefaultUser(0);
         }
     }
-    
-    public void setUserDefault(boolean makeDefault){
+
+    public void setUserDefault(boolean makeDefault) {
         if (makeDefault) {
             cfg.setDefaultUser(user.getId());
         }
     }
-    
-    public void setLanguage(String language){
+
+    public void setLanguage(String language) {
         cfg.setLanguage(language);
     }
-    
-    public String getLanguage(){
+
+    public String getLanguage() {
         return cfg.getLanguage();
     }
-    
-    public boolean isUserDefault(){
-        return cfg.getDefaultUser()==getUserId();
+
+    public boolean isUserDefault() {
+        return cfg.getDefaultUser() == getUserId();
     }
-    
+
+    public int getDefaultUser() {
+        return cfg.getDefaultUser();
+    }
+
+    public void setDefaultUser(int user) {
+        cfg.setDefaultUser(user);
+    }
+
     private void getConfig() {
         /*
          * Obtener configuración del archivo config.cfg, se ejecutara al principio
@@ -139,19 +155,17 @@ public class Methods {
             this.user = getUsuario(cfg.getDefaultUser());
         }
     }
-    
-    
-    /*
-    * UTILIDADES
-    */
 
+    /*
+     * UTILIDADES
+     */
     public String write(String text) {
         /*
          * Metodo que conecta la interfaz con los archivos de idioma
          */
         return lang.write(text);
     }
-    
+
     public ObservableList getDificultades() {
         //lista de dificultades
         ObservableList data = FXCollections.observableArrayList();
@@ -226,29 +240,29 @@ public class Methods {
     public void altaItinerario(String nombre, String dificultad, String localizacion, int tipo, String foto, Date fecha) {
         q.altaItinerario(nombre, dificultad, localizacion, tipo, new File(foto), fecha, getUserId());
     }
-    
-    public ArrayList getEntrenamientos(){
+
+    public ArrayList getEntrenamientos() {
         return q.getEntrenamientos(getUserId());
     }
-    
-    public ArrayList getItinerarios(){
+
+    public ArrayList getItinerarios() {
         return q.getItinerarios(getUserId());
     }
-    
-    public void deleteEntrenamiento(int p_sesion_entrenamientos){
+
+    public void deleteEntrenamiento(int p_sesion_entrenamientos) {
         q.deleteEntrenamiento(p_sesion_entrenamientos);
     }
-    
-    public void deleteItinerario(int p_itinerario){
+
+    public void deleteItinerario(int p_itinerario) {
         q.deleteItinerario(p_itinerario);
     }
-    
-    public void deleteUsuario(int p_escaladores){
+
+    public void deleteUsuario(int p_escaladores) {
         q.deleteUsuario(p_escaladores);
     }
-    
-    public ArrayList<Usuario> getUsuarios(){
+
+    public ArrayList<Usuario> getUsuarios() {
         return q.getUsuarios();
     }
-    
+
 }

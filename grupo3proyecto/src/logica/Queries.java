@@ -102,7 +102,7 @@ public class Queries {
          * asignada.
          * Si devuelve 0 es que el nombre ya esta cogido
          */
-
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         //comprueba que el nombre esta libre
         for (String n : (ArrayList<String>) getNombreUsuarios()) {
             if (n.equals(nombre)) {
@@ -112,7 +112,7 @@ public class Queries {
         int id = 1;
         while (true) {
             try {
-                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER) VALUES (" + id + ",'" + nombre + "','" + "images" + File.separator + "defaultwallpaper.png" + "')");
+                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER,PERIODO_INICIO,PERIODO_FIN) VALUES (" + id + ",'" + nombre + "','" + "images" + File.separator + "defaultwallpaper.png" +"','"+sdf.format(new Date())+"','"+sdf.format(new Date())+ "')");
                 break;
             } catch (SQLException ex) {
                 id++;

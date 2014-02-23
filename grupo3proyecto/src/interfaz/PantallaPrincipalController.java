@@ -124,6 +124,8 @@ public class PantallaPrincipalController implements Initializable {
         setToolBarProperty();
         botonModal.setVisible(false);
         translate();
+        
+        calculaRendimiento();
     }
 
     private void translate() {
@@ -143,7 +145,11 @@ public class PantallaPrincipalController implements Initializable {
         setClock();
         setIcons();
     }
-
+    
+    private void calculaRendimiento(){
+        tfRendimiento.setText(df.format(m.calculaRendimiento()));
+    }
+    
     /*
      * HANDLES
      */
@@ -284,7 +290,7 @@ public class PantallaPrincipalController implements Initializable {
                 if (!stage.isFullScreen()) {
                     ivBotonFullScreen.setImage(new Image(getClass().getResourceAsStream("resources/fullscreen.png")));
                 }
-                //tfRendimiento.setText(df.format(m.calculaRendimiento()));
+                
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -347,6 +353,7 @@ public class PantallaPrincipalController implements Initializable {
         //Se definen las propiedades de la ventana
         w.setTitle(title);
         w.setPrefSize(width, height);
+        w.setMinSize(width, height);
         //se coloca la ventana en el centro del escritorio
         w.setLayoutX((desktop.getWidth() / 2) - (width / 2));
         w.setLayoutY((desktop.getHeight() / 2) - (height / 2));

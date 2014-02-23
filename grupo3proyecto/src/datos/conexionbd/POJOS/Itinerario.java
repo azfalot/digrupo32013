@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package datos.conexionbd.POJOS;
 
 import java.text.SimpleDateFormat;
@@ -16,25 +15,29 @@ import logica.Queries;
  * @author Grupo 3
  */
 public class Itinerario {
-    private int p_itinerario;
+
+    private final int p_itinerario;
     private String nombre;
     private String dificultad;
     private String localizacion;
     private int tipo;
     private String foto;
+
     private String tipoStr;
-    
-    private int p_esc_it;
-    private int a_escaladores;
+    private String fechaStr;
+
+    private final int p_esc_it;
+    private final int a_escaladores;
     private Date fecha;
-    
-    private Queries q=new Queries();
-    private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-    private Methods m=Methods.getInstance();
-    
+
+    private final Queries q = new Queries();
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private final SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");//formato de fechas
+    private final Methods m = Methods.getInstance();
+
     /*
-    * CONSTRUCTOR
-    */
+     * CONSTRUCTOR
+     */
     public Itinerario(int p_itinerario, String nombre, String dificultad, String localizacion, int tipo, String foto, int p_esc_it, int a_escaladores, Date fecha) {
         this.p_itinerario = p_itinerario;
         this.nombre = nombre;
@@ -45,15 +48,15 @@ public class Itinerario {
         this.p_esc_it = p_esc_it;
         this.a_escaladores = a_escaladores;
         this.fecha = fecha;
-        switch(tipo){
-            case 0:tipoStr=m.write("via");break;
-            case 1:tipoStr=m.write("boulder");break;
-        }
+
     }
-    
+
     /*
-    * GETTERS
-    */
+     * GETTERS
+     */
+    public String getFechaStr() {
+        return sdf2.format(fecha);
+    }
 
     public int getP_itinerario() {
         return p_itinerario;
@@ -72,7 +75,13 @@ public class Itinerario {
     }
 
     public String getTipoStr() {
-        return tipoStr;
+        switch (tipo) {
+            case 0:
+                return m.write("via");
+            case 1:
+                return m.write("boulder");
+        }
+        return null;
     }
 
     public String getFoto() {
@@ -94,57 +103,43 @@ public class Itinerario {
     public SimpleDateFormat getSdf() {
         return sdf;
     }
-    
+
     /*
      * SETTERS
      */
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
-        q.modificarRegistro("itinerario", this.p_itinerario, "nombre", "'"+nombre+"'");
+        q.modificarRegistro("itinerario", this.p_itinerario, "nombre", "'" + nombre + "'");
     }
 
     public void setDificultad(String dificultad) {
         this.dificultad = dificultad;
-        q.modificarRegistro("itinerario", this.p_itinerario, "dificultad", "'"+dificultad+"'");
+        q.modificarRegistro("itinerario", this.p_itinerario, "dificultad", "'" + dificultad + "'");
     }
 
     public void setLocalizacion(String localizacion) {
         this.localizacion = localizacion;
-        q.modificarRegistro("itinerario", this.p_itinerario, "localizacion", "'"+localizacion+"'");
+        q.modificarRegistro("itinerario", this.p_itinerario, "localizacion", "'" + localizacion + "'");
     }
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
         q.modificarRegistro("itinerario", this.p_itinerario, "tipo", String.valueOf(tipo));
-        switch(tipo){
-            case 0:tipoStr=m.write("via");break;
-            case 1:tipoStr=m.write("boulder");break;
-        }
     }
-    
-    public void setTipoStr(String tipoStr) {
-        /*
-        * NO USAR ESTE SETTER
-        */
-        this.tipoStr = tipoStr;
-    }
-    
+
     public void setFoto(String foto) {
         this.foto = foto;
-        q.modificarRegistro("itinerario", this.p_itinerario, "foto", "'"+foto+"'");
+        q.modificarRegistro("itinerario", this.p_itinerario, "foto", "'" + foto + "'");
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-        q.modificarRegistro("esc_it", this.p_esc_it, "fecha", "'"+sdf.format(fecha)+"'");
-    }  
-    
-    
+        q.modificarRegistro("esc_it", this.p_esc_it, "fecha", "'" + sdf.format(fecha) + "'");
+    }
+
     /*
-    * EQUALS
-    */
-    
+     * EQUALS
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -153,9 +148,9 @@ public class Itinerario {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        if(((Itinerario)obj).getP_itinerario()==this.p_itinerario){
+        if (((Itinerario) obj).getP_itinerario() == this.p_itinerario) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
