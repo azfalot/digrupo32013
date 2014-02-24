@@ -137,7 +137,7 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <Button layoutX="171.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" text="Generar Informe" />
+                <Button fx:id="btnGenerar5" layoutX="171.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" text="Generar Informe" />
                 <Label layoutX="18.0" layoutY="44.0" prefHeight="42.0" prefWidth="451.9998779296875" text="Informe con todos los itinerarios realizados por un escalador entre estas dos fechas:" />
                 <ComboBox fx:id="comboDificultad" layoutX="237.0" layoutY="111.0" prefHeight="21.0" prefWidth="120.0">
                   <items>
