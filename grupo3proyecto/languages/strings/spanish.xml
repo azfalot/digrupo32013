@@ -3,7 +3,7 @@
 
 	<!--LANGUAGE you can get them from this list: http://www.oracle.com/technetwork/java/javase/locales-137662.html -->
 		<language>es</language>
-		<language0></language0>
+		<language0/>
 		
 	<!--COMMON-->
 		<acept>Aceptar</acept>
@@ -25,6 +25,8 @@
 		<clean>Limpiar filtros</clean>
 		<filtrar>Filtrar</filtrar>
 		<modificar>Modificar</modificar>
+		<entrenamientos>Entrenamientos</entrenamientos>
+		<itinerarios>Itinerarios</itinerarios>
 	
 	<!--LOGIN WINDOW-->
 		<login>Login</login>

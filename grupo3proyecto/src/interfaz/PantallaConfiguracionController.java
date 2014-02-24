@@ -39,7 +39,7 @@ import logica.Methods;
  * @author Grupo 3
  */
 public class PantallaConfiguracionController implements Initializable {
-    
+
     @FXML
     Button botonAdd;
     @FXML
@@ -137,7 +137,7 @@ public class PantallaConfiguracionController implements Initializable {
         labelIdioma.setText(m.write("l_idioma") + ":");
         labelIdioma2.setText("(" + m.write("l_idioma2") + ")");
         labelA.setText(m.write("to"));
-        labelPeriodo.setText(m.write("periodo")+":");
+        labelPeriodo.setText(m.write("periodo") + ":");
         labelDesde.setText(m.write("from"));
         botonNuevoUsuario.setText(m.write("new_user"));
     }
@@ -191,6 +191,7 @@ public class PantallaConfiguracionController implements Initializable {
         ((TextField) datePickerInicio.getChildren().get(0)).setEditable(false);//el textfield no sera editable
         ((TextField) datePickerInicio.getChildren().get(0)).setText(sdf.format(m.getPeriodoInicio()));
     }
+
     private void setDatePickerFin() {
         /*
          * Este metodo asigna el componente calendario al gridpaneFin
@@ -216,16 +217,17 @@ public class PantallaConfiguracionController implements Initializable {
         tfNuevoUsuario.setVisible(true);
         botonAdd.setVisible(true);
     }
+
     @FXML
     private void handleAdd() {
-        if(!"".equals(tfNuevoUsuario.getText())){
+        if (!"".equals(tfNuevoUsuario.getText())) {
             m.altaUsuario(tfNuevoUsuario.getText());
             tfNuevoUsuario.setVisible(false);
             botonAdd.setVisible(false);
             refreshTabla();
         }
     }
-    
+
     @FXML
     private void handleCerrar() {
 
@@ -249,9 +251,9 @@ public class PantallaConfiguracionController implements Initializable {
         if (!"".equals(tfUsuario.getText())) {
             m.setUserName(tfUsuario.getText());
         }
-        if(checkDefault.isSelected()){
+        if (checkDefault.isSelected()) {
             m.setUserDefault(true);
-        }else if(!checkDefault.isSelected() && m.getDefaultUser()==m.getUserId()){
+        } else if (!checkDefault.isSelected() && m.getDefaultUser() == m.getUserId()) {
             m.setDefaultUser(0);
         }
         //fechas de calculo de rendimiento
@@ -261,32 +263,36 @@ public class PantallaConfiguracionController implements Initializable {
 
     @FXML
     private void handleUsuariosBorrar() {
-        ModalListener mAceptar = new ModalListener() {
-            @Override
-            public void onAction() {
-                try {
-                    m.deleteUsuario(((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem()).getId());
-                    refreshTabla();
-                } catch (Throwable e) {
+        if (tablaUsuarios.getSelectionModel().getSelectedItem() != null) {
+            ModalListener mAceptar = new ModalListener() {
+                @Override
+                public void onAction() {
+                    try {
+                        m.deleteUsuario(((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem()).getId());
+                        refreshTabla();
+                    } catch (Throwable e) {
+                    }
                 }
-            }
-        };
-        ppc.throwModalWindow(m.write("attention"), m.write("sec1"), mAceptar);
+            };
+            ppc.throwModalWindow(m.write("attention"), m.write("sec1"), mAceptar);
+        }
     }
 
     @FXML
     private void handleUsuariosCambiarUsuario() {
-        ModalListener mAceptar = new ModalListener() {
-            @Override
-            public void onAction() {
-                try {
-                    m.setUser((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem(), false);
-                    e.goToPantallaPrincipal();
-                } catch (Throwable e) {
+        if (tablaUsuarios.getSelectionModel().getSelectedItem() != null) {
+            ModalListener mAceptar = new ModalListener() {
+                @Override
+                public void onAction() {
+                    try {
+                        m.setUser((Usuario) tablaUsuarios.getSelectionModel().getSelectedItem(), false);
+                        e.goToPantallaPrincipal();
+                    } catch (Throwable e) {
+                    }
                 }
-            }
-        };
-        ppc.throwModalWindow(m.write("att1"), m.write("sec2"), mAceptar);
+            };
+            ppc.throwModalWindow(m.write("att1"), m.write("sec2"), mAceptar);
+        }
     }
 
     @FXML

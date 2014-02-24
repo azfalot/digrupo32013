@@ -31,7 +31,7 @@ public class Entrenamiento {
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//formato de fechas
     private final SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");//formato de fechas
     private final SimpleDateFormat fhora = new SimpleDateFormat("hh:mm:ss");//formato de horas
-    private final SimpleDateFormat fhora2 = new SimpleDateFormat("hh:mm");//formato de horas
+    private final SimpleDateFormat fhora2 = new SimpleDateFormat("HH:mm");//formato de horas
     private final Methods m=Methods.getInstance();
     
     /*

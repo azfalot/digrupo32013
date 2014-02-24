@@ -20,7 +20,6 @@ public class Methods {
      */
 
     private static final Methods instance = new Methods();
-    ;
     private Config cfg;
     private Language lang;
     private final Queries q = new Queries();
@@ -31,7 +30,6 @@ public class Methods {
      */
     private Methods() {
         getConfig();//configura los valores iniciales
-
     }
 
     public static Methods getInstance() {
@@ -42,7 +40,16 @@ public class Methods {
      * CALCULO DE RENDIMIENTO
      */
     public double calculaRendimiento(Date fechaInicial, Date fechaFinal) {
+        if(fechaFinal.getTime()<fechaInicial.getTime()){
+            //si la fecha final es anterior retorna 0
+            return 0.0;
+        }
         if (fechaFinal.getTime() > new Date().getTime()) {
+            /*
+            * para ir calculado el rendimiento dia a dia se tendra en cuenta que
+            * si estamos en medio del periodo a fin de cuentas no se contaran los
+            * dias que aun no han llegado.
+            */
             fechaFinal = new Date();
         }
 
@@ -55,33 +62,82 @@ public class Methods {
         ArrayList<Semana> semanas = new ArrayList();
 
         int semanaInicio = cini.get(Calendar.WEEK_OF_YEAR);
-        int semanaFin = cfin.get(Calendar.WEEK_OF_YEAR);  
+        int semanaFin = cfin.get(Calendar.WEEK_OF_YEAR);
+        int ultima = semanaFin;
 
+        //primero se calcula el rendimiento durante los años completos
+        int dif = cfin.get(Calendar.YEAR) - cini.get(Calendar.YEAR);
+        if (dif > 1) {
+            for (int i = 1; i < dif; i++) {
+                int year = cini.get(Calendar.YEAR) + i;
+                for (int semana = 1; semana <= 52; semana++) {
+                    Calendar dia1 = Calendar.getInstance();
+                    Calendar dia7 = Calendar.getInstance();
+                    dia1.set(Calendar.YEAR, year);
+                    dia1.set(Calendar.WEEK_OF_YEAR, semana);
+                    dia1.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                    dia7.set(Calendar.YEAR, year);
+                    dia7.set(Calendar.WEEK_OF_YEAR, semana);
+                    dia7.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+                    Semana s = new Semana();
+                    s.addHoras(q.getHorasEntrenamiento(getUserId(), dia1.getTime(), dia7.getTime()));
+                    s.addItinerarios(q.getCantidadItinerarios(getUserId(), dia1.getTime(), dia7.getTime()));
+                    semanas.add(s);
+                }
+            }
+        }
+        //despues el del año final
+        if (cfin.get(Calendar.YEAR) != cini.get(Calendar.YEAR)) {
+            int year = cfin.get(Calendar.YEAR);
+            for (int semana = 1; semana <= semanaFin; semana++) {
+                Calendar dia1 = Calendar.getInstance();
+                Calendar dia7 = Calendar.getInstance();
+                dia1.set(Calendar.YEAR, year);
+                dia1.set(Calendar.WEEK_OF_YEAR, semana);
+                dia1.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                dia7.set(Calendar.YEAR, year);
+                dia7.set(Calendar.WEEK_OF_YEAR, semana);
+                dia7.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+                Semana s = new Semana();
+                if (semana != semanaFin) {
+                    s.addHoras(q.getHorasEntrenamiento(getUserId(), dia1.getTime(), dia7.getTime()));
+                    s.addItinerarios(q.getCantidadItinerarios(getUserId(), dia1.getTime(), dia7.getTime()));
+                } else {
+                    s.addHoras(q.getHorasEntrenamiento(getUserId(), dia1.getTime(), getPeriodoFin()));
+                    s.addItinerarios(q.getCantidadItinerarios(getUserId(), dia1.getTime(), getPeriodoFin()));
+                }
+                semanas.add(s);
+            }
+        }
+        //y despues el del año inicial
         int year = cini.get(Calendar.YEAR);
-        for (int semana = semanaInicio; semana <= semanaFin; semana++) {
+        for (int semana = semanaInicio; semana <= ultima; semana++) {
             Calendar dia1 = Calendar.getInstance();
             Calendar dia7 = Calendar.getInstance();
             dia1.set(Calendar.YEAR, year);
             dia1.set(Calendar.WEEK_OF_YEAR, semana);
-            dia1.set(Calendar.WEEK_OF_YEAR, Calendar.MONDAY);
+            dia1.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
             dia7.set(Calendar.YEAR, year);
             dia7.set(Calendar.WEEK_OF_YEAR, semana);
-            dia7.set(Calendar.WEEK_OF_YEAR, Calendar.SUNDAY);
+            dia7.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
             Semana s = new Semana();
-            System.out.println(q.getHorasEntrenamiento(getUserId(), dia1.getTime(), dia7.getTime()));
-            System.out.println(q.getCantidadItinerarios(getUserId(), dia1.getTime(), dia7.getTime()));
-            s.addHoras(q.getHorasEntrenamiento(getUserId(), dia1.getTime(), dia7.getTime()));
-            s.addItinerarios(q.getCantidadItinerarios(getUserId(), dia1.getTime(), dia7.getTime()));
+            if (semana != semanaInicio) {
+                s.addHoras(q.getHorasEntrenamiento(getUserId(), dia1.getTime(), dia7.getTime()));
+                s.addItinerarios(q.getCantidadItinerarios(getUserId(), dia1.getTime(), dia7.getTime()));
+            } else {
+                s.addHoras(q.getHorasEntrenamiento(getUserId(), getPeriodoInicio(), dia7.getTime()));
+                s.addItinerarios(q.getCantidadItinerarios(getUserId(), getPeriodoInicio(), dia7.getTime()));
+            }
             semanas.add(s);
         }
-        
+
+        //ahora se calculan las medias
         double horasMedias = 0;
         double itinerariosMedios = 0;
         for (Semana s : semanas) {
             horasMedias += s.getHorasEnt();
             itinerariosMedios += s.getItinerarios();
         }
-        System.out.println(semanas.size());
         horasMedias = horasMedias / semanas.size();
         itinerariosMedios = itinerariosMedios / semanas.size();
 
@@ -101,6 +157,8 @@ public class Methods {
     }
 
     public double calculaRendimiento() {
+        //este metodo sera el llamado
+        //calcula el rendimiento tomando las fechas del periodo indicado
         return calculaRendimiento(getPeriodoInicio(), getPeriodoFin());
     }
 

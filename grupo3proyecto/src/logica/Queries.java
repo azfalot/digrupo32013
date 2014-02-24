@@ -44,7 +44,7 @@ public class Queries {
             out.close();
         } catch (IOException e) {
         }
-        return destino;
+        return new File(destino.getAbsolutePath());
     }
 
     /*

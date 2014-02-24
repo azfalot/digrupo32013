@@ -23,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,7 +45,10 @@ import np.com.ngopal.control.AutoFillTextBox;
  * @author Grupo 3
  */
 public class PantallaDatosController implements Initializable {
-    
+    @FXML
+    private Tab tabEntrenamiento;
+    @FXML
+    private Tab tabItinerario;
     @FXML
     private Label labeleFecha;
     @FXML
@@ -224,7 +228,8 @@ public class PantallaDatosController implements Initializable {
         labeleHoraFinal.setText(m.write("l_horafin")+":");
         labeleHoraInicio.setText(m.write("l_horainicio")+":");
         labeleTipo.setText(m.write("l_type")+":");
-        
+        //tabEntrenamiento.setText(m.write("entrenamientos"));
+        //tabItinerario.setText(m.write("itinerarios"));
     }
     
     /*
@@ -489,7 +494,7 @@ public class PantallaDatosController implements Initializable {
         comboTipoItinerarios.getSelectionModel().selectFirst();
 
         comboDificultadItinerarios.getItems().clear();
-        comboDificultadItinerarios.getItems().add(m.write("dificultad"));
+        comboDificultadItinerarios.getItems().add("> "+m.write("dificultad"));
         comboDificultadItinerarios.getItems().addAll(m.getDificultades());
         comboDificultadItinerarios.getSelectionModel().selectFirst();
     }
@@ -594,7 +599,7 @@ public class PantallaDatosController implements Initializable {
         if (!"".equals(((TextField) datePickerItinerarioFiltroFin.getChildren().get(0)).getText())) {
             newItinerarios = new ArrayList();
             for (Itinerario i : itinerarios) {
-                if (i.getFecha().getTime() >= datePickerItinerarioFiltroFin.getSelectedDate().getTime()) {
+                if (i.getFecha().getTime() <= datePickerItinerarioFiltroFin.getSelectedDate().getTime()) {
                     newItinerarios.add(i);
                 }
             }
@@ -612,7 +617,7 @@ public class PantallaDatosController implements Initializable {
         if (comboDificultadItinerarios.getSelectionModel().getSelectedIndex() != 0) {
             newItinerarios = new ArrayList();
             for (Itinerario i : itinerarios) {
-                if (comboDificultadItinerarios.getSelectionModel().getSelectedItem() == i.getDificultad()) {
+                if (comboDificultadItinerarios.getSelectionModel().getSelectedIndex()-1 <= m.getDificultades().indexOf(i.getDificultad())) {
                     newItinerarios.add(i);
                 }
             }

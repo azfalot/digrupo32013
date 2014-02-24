@@ -176,12 +176,11 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoPerfil() {
-        
+        System.out.println(m.getWallpaper());
     }
 
     @FXML
     private void handleIconoConfiguracion() {
-        //SIN TERMINAR
         MyWindow w = new MyWindow();
         PantallaConfiguracionController wConfiguracion = (PantallaConfiguracionController) addWindow("PantallaConfiguracion.fxml", m.write("config"), 275, 260, false, getClass().getResourceAsStream("resources/settings.png"), w);
         wConfiguracion.builder(m, w, this, e);
@@ -283,7 +282,7 @@ public class PantallaPrincipalController implements Initializable {
                 if (!stage.isFullScreen()) {
                     ivBotonFullScreen.setImage(new Image(getClass().getResourceAsStream("resources/fullscreen.png")));
                 }
-                
+                calculaRendimiento();//se calcula el rendimiento cada segundo
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -410,7 +409,7 @@ public class PantallaPrincipalController implements Initializable {
         return fxmlLoader.getController();
     }
 
-    public Initializable addModalWindow(String title, Window w) {
+    private Initializable addModalWindow(String title, Window w) {
         /*
          * Crea una ventana modal
          */
