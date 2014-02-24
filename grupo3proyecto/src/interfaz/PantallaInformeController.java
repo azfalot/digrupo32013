@@ -213,13 +213,8 @@ public void builder(Methods m) {
         //Se selecciona el primer valor por defecto
         comboDificultad.getSelectionModel().select(0);
   }
-  private void setCombosItinerario() {
-        /*
-         * Este metodo rellena los ComboBox
-         */
-
-        
-        
-        
+  @FXML
+  private void handlebtn1() {    
+ 
     }
 }

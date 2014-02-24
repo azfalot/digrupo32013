@@ -183,7 +183,7 @@ public class PantallaPrincipalController implements Initializable {
     private void handleIconoPerfil() {
 //        System.out.println(m.getWallpaper());
         MyWindow w = new MyWindow();
-        PantallaInformeController wInforme = (PantallaInformeController) addWindow("PantallaInforme.fxml","Generador de informes",600,369 ,false , getClass().getResourceAsStream("resources/perfil.png"), w);
+        PantallaInformeController wInforme = (PantallaInformeController) addWindow("PantallaInforme.fxml","Generador de informes",510,403 ,false , getClass().getResourceAsStream("resources/perfil.png"), w);
     wInforme.builder(m);
     }
 
