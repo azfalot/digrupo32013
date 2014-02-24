@@ -228,8 +228,8 @@ public class PantallaDatosController implements Initializable {
         labeleHoraFinal.setText(m.write("l_horafin")+":");
         labeleHoraInicio.setText(m.write("l_horainicio")+":");
         labeleTipo.setText(m.write("l_type")+":");
-        //tabEntrenamiento.setText(m.write("entrenamientos"));
-        //tabItinerario.setText(m.write("itinerarios"));
+        tabEntrenamiento.setText(m.write("entrenamientos"));
+        tabItinerario.setText(m.write("itinerarios"));
     }
     
     /*

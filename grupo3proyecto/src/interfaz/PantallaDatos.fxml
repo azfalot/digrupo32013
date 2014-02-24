@@ -196,7 +196,7 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab fx:id="tabItinierario" text="Itinerarios">
+        <Tab fx:id="tabItinerario" text="Itinerarios">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="363.9998779296875" prefWidth="625.0">
               <children>
