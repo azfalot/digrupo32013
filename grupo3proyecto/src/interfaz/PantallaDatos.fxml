@@ -167,7 +167,7 @@
                         <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/util/DatePicker.css" />
                       </stylesheets>
                     </GridPane>
-                    <Label fx:id="labelAEntrenamientos" prefWidth="20.0" text="a" textAlignment="CENTER" />
+                    <Label fx:id="labelAEntrenamientos" prefWidth="13.0" text="a" textAlignment="CENTER" />
                     <GridPane id="gridPane" fx:id="gridPaneEntrenamientoFiltroFin" prefHeight="22.0" prefWidth="73.0">
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -294,7 +294,7 @@
                         <URL value="file:/D:/Mis%20documentos/NetBeans%20Projects/digrupo32013/digrupo32013/grupo3proyecto/src/interfaz/util/DatePicker.css" />
                       </stylesheets>
                     </GridPane>
-                    <Label fx:id="labelAItinerarios" prefWidth="20.0" text="a" textAlignment="CENTER" wrapText="false" />
+                    <Label fx:id="labelAItinerarios" prefWidth="13.0" text="a" textAlignment="CENTER" wrapText="false" />
                     <GridPane id="gridPane" fx:id="gridPaneItinerarioFiltroFin" prefHeight="22.0" prefWidth="73.0">
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

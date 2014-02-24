@@ -145,12 +145,12 @@ public class Methods {
         if (horasMedias >= 10) {
             rendimiento += 5;
         } else {
-            rendimiento += 0.5 * horasMedias;
+            rendimiento += 0.5 * (int)horasMedias;
         }
         if (itinerariosMedios >= 20) {
             rendimiento += 5;
         } else {
-            rendimiento += 0.25 * itinerariosMedios;
+            rendimiento += 0.25 * (int)itinerariosMedios;
         }
 
         return rendimiento;

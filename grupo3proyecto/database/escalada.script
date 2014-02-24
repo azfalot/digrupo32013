@@ -7,7 +7,7 @@ CREATE USER SA PASSWORD ""
 GRANT DBA TO SA
 SET WRITE_DELAY 10
 SET SCHEMA PUBLIC
-INSERT INTO ESCALADORES VALUES(1,'RAFA NORIEGA','C:\Users\USUARIO\Documents\NetBeansProjects\digrupo32013\grupo3proyecto\images\wp-1.jpg','2012-10-01','2012-10-19')
+INSERT INTO ESCALADORES VALUES(1,'RAFA NORIEGA','D:\Mis documentos\NetBeans Projects\digrupo32013\digrupo32013\grupo3proyecto\images\wp-1.jpg','2012-10-01','2012-10-19')
 INSERT INTO ESCALADORES VALUES(2,'ANGEL GARCIA','C:\Users\USUARIO\Documents\NetBeansProjects\digrupo32013\grupo3proyecto\images\wp-2.jpg','2012-10-01','2013-01-01')
 INSERT INTO ESCALADORES VALUES(3,'pruebawall','C:\Users\USUARIO\Documents\NetBeansProjects\digrupo32013\grupo3proyecto\images\wp-3.jpg','2014-02-24','2014-02-24')
 INSERT INTO ITINERARIO VALUES(0,'asdf','1','asdf',1,'images\it-0')

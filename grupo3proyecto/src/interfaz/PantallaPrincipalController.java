@@ -120,11 +120,16 @@ public class PantallaPrincipalController implements Initializable {
         this.m = m;
         this.e = e;
         setDesktop();
-        iconoPerfil.setText(m.getUserName());
+        //si tiene espacios solo pondra el nombre
+        if (m.getUserName().contains(" ")) {
+            iconoPerfil.setText(m.getUserName().substring(0, m.getUserName().indexOf(" ")));
+        } else {
+            iconoPerfil.setText(m.getUserName());
+        }
         setToolBarProperty();
         botonModal.setVisible(false);
         translate();
-        
+
         //calculaRendimiento();
     }
 
@@ -145,11 +150,11 @@ public class PantallaPrincipalController implements Initializable {
         setClock();
         setIcons();
     }
-    
-    private void calculaRendimiento(){
+
+    private void calculaRendimiento() {
         tfRendimiento.setText(df.format(m.calculaRendimiento()));
     }
-    
+
     /*
      * HANDLES
      */
@@ -188,13 +193,7 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoAyuda() {
-        //SIN HACER
 
-        //prueba de obtencion de entrenamientos
-        ArrayList<Itinerario> e = m.getItinerarios();
-        for (Itinerario i : e) {
-            System.out.println(i.getA_escaladores() + " " + i.getP_itinerario());
-        }
     }
 
     @FXML
