@@ -125,7 +125,7 @@ public class PantallaPrincipalController implements Initializable {
         botonModal.setVisible(false);
         translate();
         
-        calculaRendimiento();
+        //calculaRendimiento();
     }
 
     private void translate() {
@@ -176,14 +176,7 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoPerfil() {
-        /*
-         * Mostrara una pagina para generar los informes de las estadisticas
-         */
-        //SIN HACER -  muestra datos de usuario en consola
-        System.out.println(m.getUserId());
-        System.out.println(m.getUserName());
-        System.out.println(m.getLanguage());
-        //toolBar.setDisable(true);
+        
     }
 
     @FXML

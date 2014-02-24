@@ -42,23 +42,62 @@ public class Methods {
      * CALCULO DE RENDIMIENTO
      */
     public double calculaRendimiento(Date fechaInicial, Date fechaFinal) {
-        if (fechaFinal.getTime()>new Date().getTime()) {
-            fechaFinal=new Date();
+        if (fechaFinal.getTime() > new Date().getTime()) {
+            fechaFinal = new Date();
         }
-        Calendar cini=Calendar.getInstance();
-        Calendar cfin=Calendar.getInstance();
-        
+
+        Calendar cini = Calendar.getInstance();
+        Calendar cfin = Calendar.getInstance();
+
         cini.setTime(fechaInicial);
         cfin.setTime(fechaFinal);
 
-        ArrayList<Semana> semanas=new ArrayList();
+        ArrayList<Semana> semanas = new ArrayList();
+
+        int semanaInicio = cini.get(Calendar.WEEK_OF_YEAR);
+        int semanaFin = cfin.get(Calendar.WEEK_OF_YEAR);  
+
+        int year = cini.get(Calendar.YEAR);
+        for (int semana = semanaInicio; semana <= semanaFin; semana++) {
+            Calendar dia1 = Calendar.getInstance();
+            Calendar dia7 = Calendar.getInstance();
+            dia1.set(Calendar.YEAR, year);
+            dia1.set(Calendar.WEEK_OF_YEAR, semana);
+            dia1.set(Calendar.WEEK_OF_YEAR, Calendar.MONDAY);
+            dia7.set(Calendar.YEAR, year);
+            dia7.set(Calendar.WEEK_OF_YEAR, semana);
+            dia7.set(Calendar.WEEK_OF_YEAR, Calendar.SUNDAY);
+            Semana s = new Semana();
+            System.out.println(q.getHorasEntrenamiento(getUserId(), dia1.getTime(), dia7.getTime()));
+            System.out.println(q.getCantidadItinerarios(getUserId(), dia1.getTime(), dia7.getTime()));
+            s.addHoras(q.getHorasEntrenamiento(getUserId(), dia1.getTime(), dia7.getTime()));
+            s.addItinerarios(q.getCantidadItinerarios(getUserId(), dia1.getTime(), dia7.getTime()));
+            semanas.add(s);
+        }
         
-        int semanaInicio=cini.getWeekYear();
-        int semanaFin=cfin.getWeekYear();
-        
-        
-        
-        return 0.0;     
+        double horasMedias = 0;
+        double itinerariosMedios = 0;
+        for (Semana s : semanas) {
+            horasMedias += s.getHorasEnt();
+            itinerariosMedios += s.getItinerarios();
+        }
+        System.out.println(semanas.size());
+        horasMedias = horasMedias / semanas.size();
+        itinerariosMedios = itinerariosMedios / semanas.size();
+
+        double rendimiento = 0;
+        if (horasMedias >= 10) {
+            rendimiento += 5;
+        } else {
+            rendimiento += 0.5 * horasMedias;
+        }
+        if (itinerariosMedios >= 20) {
+            rendimiento += 5;
+        } else {
+            rendimiento += 0.25 * itinerariosMedios;
+        }
+
+        return rendimiento;
     }
 
     public double calculaRendimiento() {
