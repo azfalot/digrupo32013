@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,7 +25,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import logica.Methods;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -267,13 +264,7 @@ public class PantallaInformeController implements Initializable {
     }
 
     private void setCombos() {
-        comboTipoEntrenamiento.getItems().clear();
-        comboTipoEntrenamiento.getItems().addAll(
-                m.write("fisico"),
-                m.write("roca"),
-                m.write("rocodromo"));
-        comboTipoEntrenamiento.getSelectionModel().select(0);
-
+        
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
         comboAno.getItems().clear();
@@ -303,19 +294,17 @@ public class PantallaInformeController implements Initializable {
     @FXML
     private void handleBtnGenerar1() {
         Map parametros = new HashMap();
-        parametros.put("fechain", datePicker1Informe1.getSelectedDate());
-        parametros.put("fechafin", datePicker2Informe1.getSelectedDate());
+        parametros.put("claveescalador", m.getUserId());
+        parametros.put("fechainicio", datePicker1Informe1.getSelectedDate());
+        parametros.put("fechafinal", datePicker2Informe1.getSelectedDate());
 
         File file = saveFile();
 
         if (file != null) {
-            System.out.println("pasa1");
             JasperPrint print;
             try {
                 print = JasperFillManager.fillReport("reports" + File.separator + "report1.jasper", parametros, m.getConnection());
-                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath()+".pdf");
-                System.out.println("pasa2");
-                System.out.println(file.getAbsolutePath());
+                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
             } catch (JRException ex) {
             }
         }
@@ -325,7 +314,9 @@ public class PantallaInformeController implements Initializable {
     @FXML
     private void handleBtnGenerar2() {
         Map parametros = new HashMap();
-        parametros.put("", "");
+        parametros.put("claveescalador", m.getUserId());
+        parametros.put("fechainicio", datePicker1Informe2.getSelectedDate());
+        parametros.put("fechafinal", datePicker2Informe2.getSelectedDate());
 
         File file = saveFile();
 
@@ -359,15 +350,14 @@ public class PantallaInformeController implements Initializable {
     @FXML
     private void handleBtnGenerar4() {
         Map parametros = new HashMap();
-        parametros.put("", "");
-
+        parametros.put("","");
+        
         File file = saveFile();
-
         if (file != null) {
             JasperPrint print;
             try {
                 print = JasperFillManager.fillReport("reports" + File.separator + "report4.jasper", parametros, m.getConnection());
-                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath()+".pdf");
             } catch (JRException ex) {
             }
         }
