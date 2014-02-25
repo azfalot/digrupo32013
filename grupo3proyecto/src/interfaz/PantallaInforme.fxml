@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="402.0" prefWidth="469.9999000000025" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaInformeController">
+<AnchorPane id="AnchorPane" prefHeight="282.0" prefWidth="343.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaz.PantallaInformeController">
   <children>
-    <TabPane layoutX="0.0" layoutY="0.0" prefHeight="403.0" prefWidth="510.0" tabClosingPolicy="UNAVAILABLE">
+    <TabPane fx:id="tabPane" prefHeight="403.0" prefWidth="510.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
-        <Tab text="Informe 1">
+        <Tab fx:id="tab1" text="Informe 1">
           <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="369.0000999999975" prefWidth="600.0000999999975">
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="470.0">
               <children>
-                <Button fx:id="btnGenerar1" layoutX="171.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" text="Generar Informe" />
-                <Label layoutX="18.0" layoutY="44.0" prefHeight="42.0" prefWidth="437.9998779296875" text="Informe con todos los itinerarios realizados por un escalador entre estas dos fechas:" />
-                <GridPane fx:id="gridPane1Informe1" layoutX="237.0" layoutY="111.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="242.00009155273438" layoutX="7.0" layoutY="7.0" strokeType="INSIDE" width="329.0">
+                  <stroke>
+                    <Color blue="0.749" green="0.749" red="0.749" fx:id="x1" />
+                  </stroke>
+                </Rectangle>
+                <Button fx:id="btnGenerar1" layoutX="114.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleBtnGenerar1" prefHeight="23.0" prefWidth="116.0" text="Generar Informe" />
+                <Label fx:id="label1" layoutX="18.0" layoutY="44.0" prefHeight="16.0" prefWidth="311.0" text="Itinerarios realizados entre dos fechas:" />
+                <GridPane fx:id="gridPane1Informe1" layoutX="172.0" layoutY="95.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -25,9 +33,9 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                 </GridPane>
-                <Label layoutX="118.0" layoutY="114.0" prefWidth="116.0" text="Fecha inicio:" />
-                <Label layoutX="118.0" layoutY="166.0" prefWidth="88.9998779296875" text="Fecha fin:" />
-                <GridPane id="gridPane1Informe1" fx:id="gridPane2Informe1" layoutX="237.0" layoutY="166.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
+                <Label fx:id="labelFI1" layoutX="53.0" layoutY="98.0" prefWidth="116.0" text="Fecha inicio:" />
+                <Label fx:id="labelFF1" layoutX="53.0" layoutY="150.0" prefWidth="88.9998779296875" text="Fecha fin:" />
+                <GridPane id="gridPane1Informe1" fx:id="gridPane2Informe1" layoutX="172.0" layoutY="150.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -39,13 +47,13 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab text="Informe 2">
+        <Tab fx:id="tab2" text="Informe 2">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <Button fx:id="btnGenerar2" layoutX="171.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" text="Generar Informe" />
-                <Label layoutX="18.0" layoutY="44.0" prefHeight="42.0" prefWidth="437.9998779296875" text="Informe con las sesiones de entrenamiento realizadas entre dos fechasconcretas a elegir." />
-                <GridPane id="gridPane1Informe1" fx:id="gridPane1Informe2" layoutX="237.0" layoutY="111.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="242.00009155273438" layoutX="7.0" layoutY="7.0" stroke="$x1" strokeType="INSIDE" width="329.0" />
+                <Label fx:id="label2" layoutX="18.0" layoutY="44.0" prefHeight="16.0" prefWidth="308.0" text="Itinerarios realizados entre dos fechas:" />
+                <GridPane id="gridPane1Informe1" fx:id="gridPane1Informe2" layoutX="172.0" layoutY="95.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -53,7 +61,7 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                 </GridPane>
-                <GridPane id="gridPane2Informe1" fx:id="gridPane2Informe2" layoutX="237.0" layoutY="166.0" minHeight="23.0" prefHeight="23.0" prefWidth="114.0">
+                <GridPane id="gridPane2Informe1" fx:id="gridPane2Informe2" layoutX="172.0" layoutY="150.0" minHeight="23.0" prefHeight="23.0" prefWidth="114.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -61,47 +69,52 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                 </GridPane>
-                <Label layoutX="118.0" layoutY="114.0" prefWidth="106.0" text="Fecha inicio:" />
-                <Label layoutX="118.0" layoutY="166.0" prefWidth="89.0" text="Fecha fin:" />
+                <Label fx:id="labelFI2" layoutX="53.0" layoutY="98.0" prefWidth="106.0" text="Fecha inicio:" />
+                <Label fx:id="labelFF2" layoutX="53.0" layoutY="150.0" prefWidth="89.0" text="Fecha fin:" />
+                <Button fx:id="btnGenerar2" layoutX="114.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleBtnGenerar2" prefHeight="23.0" prefWidth="116.0" text="Generar Informe" />
               </children>
             </AnchorPane>
           </content>
         </Tab>
-        <Tab fx:id="btnGenerar3" text="Informe 3">
+        <Tab fx:id="tab3" text="Informe 3">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="420.0000999999975">
               <children>
-                <Button layoutX="171.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" text="Generar Informe" />
-                <Label layoutX="18.0" layoutY="44.0" prefHeight="42.0" prefWidth="437.9998779296875" text="Gráfico con el volumen de entrenamiento semanal (en horas), para un mes deun año concreto." />
-                <Label layoutX="118.0" layoutY="114.0" prefWidth="49.0" text="Mes" />
-                <Label layoutX="118.0" layoutY="166.0" prefWidth="49.0" text="Año" />
-                <GridPane id="gridPane1Informe1" fx:id="gridPane1Informe3" layoutX="237.0" layoutY="111.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
-                  <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  </columnConstraints>
-                  <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  </rowConstraints>
-                </GridPane>
-                <GridPane id="gridPane1Informe1" fx:id="gridPane2Informe3" layoutX="237.0" layoutY="166.0" minHeight="23.0" prefHeight="23.0" prefWidth="118.0">
-                  <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  </columnConstraints>
-                  <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  </rowConstraints>
-                </GridPane>
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="242.00009155273438" layoutX="7.0" layoutY="7.0" stroke="$x1" strokeType="INSIDE" width="329.0" />
+                <Button fx:id="btnGenerar3" layoutX="114.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleBtnGenerar3" prefHeight="23.0" prefWidth="116.0" text="Generar Informe" />
+                <Label fx:id="label3" layoutX="18.0" layoutY="44.0" prefHeight="16.0" prefWidth="308.0" text="Gráfico de entrenamiento semanal para un mes:" />
+                <ComboBox fx:id="comboAno" layoutX="159.0" layoutY="85.0" prefHeight="21.0" prefWidth="102.0">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Item 1" />
+                      <String fx:value="Item 2" />
+                      <String fx:value="Item 3" />
+                    </FXCollections>
+                  </items>
+                </ComboBox>
+                <ComboBox fx:id="comboMes" layoutX="159.0" layoutY="129.0" prefHeight="21.0" prefWidth="102.0">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Item 1" />
+                      <String fx:value="Item 2" />
+                      <String fx:value="Item 3" />
+                    </FXCollections>
+                  </items>
+                </ComboBox>
+                <Label fx:id="labelAno" layoutX="86.0" layoutY="87.0" prefWidth="60.0" text="Año:" />
+                <Label fx:id="labelMes" layoutX="86.0" layoutY="132.0" prefWidth="60.0" text="Mes:" />
               </children>
             </AnchorPane>
           </content>
         </Tab>
-        <Tab fx:id="btnGenerar4" text="Informe 4">
+        <Tab fx:id="tab4" text="Informe 4">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="420.0000999999975">
               <children>
-                <Button layoutX="171.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" text="Generar Informe" />
-                <Label layoutX="18.0" layoutY="44.0" prefHeight="42.0" prefWidth="437.9998779296875" text="Entrenamientos por tipo entre 2 fechas" />
-                <GridPane id="gridPane1Informe1" fx:id="gridPane1Informe4" layoutX="237.0" layoutY="111.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="242.00009155273438" layoutX="7.0" layoutY="7.0" stroke="$x1" strokeType="INSIDE" width="329.0" />
+                <Button fx:id="btnGenerar4" layoutX="114.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleBtnGenerar4" prefHeight="23.0" prefWidth="116.0" text="Generar Informe" />
+                <Label fx:id="label4" layoutX="18.0" layoutY="44.0" prefHeight="16.0" prefWidth="308.0" text="Entrenamientos por tipo entre 2 fechas:" />
+                <GridPane id="gridPane1Informe1" fx:id="gridPane1Informe4" layoutX="172.0" layoutY="74.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -109,7 +122,7 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                 </GridPane>
-                <GridPane id="gridPane2Informe1" fx:id="gridPane2Informe4" layoutX="237.0" layoutY="166.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
+                <GridPane id="gridPane2Informe1" fx:id="gridPane2Informe4" layoutX="172.0" layoutY="103.0" minHeight="23.0" prefHeight="23.0" prefWidth="106.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -117,10 +130,10 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                 </GridPane>
-                <Label layoutX="118.0" layoutY="114.0" prefWidth="106.0" text="Fecha inicio:" />
-                <Label layoutX="118.0" layoutY="166.0" prefWidth="88.9998779296875" text="Fecha fin:" />
-                <Label layoutX="118.0" layoutY="218.0" prefWidth="42.0" text="Tipo:" />
-                <ComboBox id="comboTipo" fx:id="comboTipoEntrenamiento" layoutX="198.0" layoutY="218.0" prefHeight="21.0" prefWidth="142.0">
+                <Label fx:id="labelFI4" layoutX="65.0" layoutY="77.0" prefWidth="106.0" text="Fecha inicio:" />
+                <Label fx:id="labelFF4" layoutX="65.0" layoutY="106.0" prefWidth="88.9998779296875" text="Fecha fin:" />
+                <Label fx:id="labelTipo" layoutX="65.0" layoutY="136.0" prefWidth="42.0" text="Tipo:" />
+                <ComboBox id="comboTipo" fx:id="comboTipoEntrenamiento" layoutX="172.0" layoutY="133.0" prefHeight="22.999908447265625" prefWidth="106.0">
                   <items>
                     <FXCollections fx:factory="observableArrayList">
                       <String fx:value="Item 1" />
@@ -133,22 +146,13 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab fx:id="btnGenerar5" text="Informe 5">
+        <Tab fx:id="tab5" text="Informe 5">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <Button fx:id="btnGenerar5" layoutX="171.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" text="Generar Informe" />
-                <Label layoutX="18.0" layoutY="44.0" prefHeight="42.0" prefWidth="451.9998779296875" text="Informe con todos los itinerarios realizados por un escalador entre estas dos fechas:" />
-                <ComboBox fx:id="comboDificultad" layoutX="237.0" layoutY="111.0" prefHeight="21.0" prefWidth="120.0">
-                  <items>
-                    <FXCollections fx:factory="observableArrayList">
-                      <String fx:value="Item 1" />
-                      <String fx:value="Item 2" />
-                      <String fx:value="Item 3" />
-                    </FXCollections>
-                  </items>
-                </ComboBox>
-                <Label layoutX="118.0" layoutY="114.0" prefWidth="86.0" text="Dificultad" />
+                <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="242.00009155273438" layoutX="7.0" layoutY="7.0" stroke="#bfbfbf" strokeType="INSIDE" width="329.0" />
+                <Button fx:id="btnGenerar5" layoutX="114.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleBtnGenerar5" prefHeight="23.0" prefWidth="116.0" text="Generar Informe" />
+                <Label fx:id="label5" layoutX="18.0" layoutY="44.0" prefHeight="16.0" prefWidth="308.0" text="Gráfico de itinerarios por dificultad:" />
               </children>
             </AnchorPane>
           </content>
@@ -156,4 +160,7 @@
       </tabs>
     </TabPane>
   </children>
+  <stylesheets>
+    <URL value="@Ventanas.css" />
+  </stylesheets>
 </AnchorPane>

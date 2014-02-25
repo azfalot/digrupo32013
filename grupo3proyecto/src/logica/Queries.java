@@ -27,6 +27,10 @@ public class Queries {
 
     private final Datos bd = Datos.getInstance();
 
+    public Datos getBd() {
+        return bd;
+    }
+    
     File copyPicture(File origen, String newName) {
         /*
          * Metodo que copia una imagen al directorio de imagenes

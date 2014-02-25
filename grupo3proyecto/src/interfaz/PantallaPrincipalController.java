@@ -7,6 +7,7 @@ import interfaz.util.MyMinimizeIcon;
 import interfaz.util.MyWindow;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -181,10 +182,9 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoPerfil() {
-//        System.out.println(m.getWallpaper());
         MyWindow w = new MyWindow();
-        PantallaInformeController wInforme = (PantallaInformeController) addWindow("PantallaInforme.fxml","Generador de informes",510,403 ,false , getClass().getResourceAsStream("resources/perfil.png"), w);
-    wInforme.builder(m);
+        PantallaInformeController wInforme = (PantallaInformeController) addWindow("PantallaInforme.fxml",m.write("generate"), 343, 282, false, getClass().getResourceAsStream("resources/perfil.png"), w);
+        wInforme.builder(m);
     }
 
     @FXML
@@ -297,15 +297,19 @@ public class PantallaPrincipalController implements Initializable {
          * Este metodo se lanza en el builder ya que necesita acceder a m(Methods)
          */
         try {
-            Image image = new Image("file:" + m.getWallpaper());
-            wallpaper.setImage(image);
+            File img = new File(m.getWallpaper());
+            if (img.exists()) {
+                Image image = new Image("file:" + m.getWallpaper());
+                wallpaper.setImage(image);
+            } else {
+                wallpaper.setImage(new Image(getClass().getResourceAsStream("resources/defaultwallpaper.png")));
+            }
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             wallpaper.setFitWidth(screenSize.getWidth() + 1);
             wallpaper.setFitHeight(screenSize.getHeight());
             wallpaper.setPreserveRatio(false);
             wallpaper.setCache(false);
         } catch (Throwable e) {
-            //Se captura el error por si no se reconoce la pantalla, algo asi paso en el mac de angel
         }
 
     }

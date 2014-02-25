@@ -24,7 +24,7 @@ public class Escalada extends Application {
     private Stage mainStage;
     private Stage loginStage;
     private Methods m;
-    static final String applicationName = "Escalator 3000"; //nombre de la aplicacion
+    static final String applicationName = "Magnesio"; //nombre de la aplicacion
     private PantallaLoginController wLogin;//ventana de login, sera necesaria para que sea actualizada tras dar de alta un usuario
     private PantallaPrincipalController wPrincipal;
 

@@ -18,6 +18,32 @@
 		<description>Descripción</description>
 		<image_files>Archivos de imagen</image_files>
 		<bitmap>Mapa de bits</bitmap>
+		
+	<!-- INFORMES -->
+		<enero>Enero</enero>
+		<febrero>Febrero</febrero>
+		<marzo>Marzo</marzo>
+		<abril>Abril</abril>
+		<mayo>Mayo</mayo>
+		<junio>Junio</junio>
+		<julio>Julio</julio>
+		<agosto>Agosto</agosto>
+		<septiembre>Septiembre</septiembre>
+		<octubre>Octubre</octubre>
+		<noviembre>Noviembre</noviembre>
+		<diciembre>Diciembre</diciembre>
+		<gen>Generar Informe</gen>
+		<report>Informe</report>
+		<fecha1>Fecha inicio</fecha1>
+		<fecha2>Fecha fin</fecha2>
+		<label1>Itinerarios realizados entre dos fechas</label1>
+		<label2>Itinerarios realizados entre dos fechas</label2>
+		<label3>Gráfico de entrenamiento semanal para un mes</label3>
+		<label4>Entrenamientos por tipo entre dos fechas</label4>
+		<label5>Gráfico de itinerarios por dificultad</label5>
+		<ano>Año</ano>
+		<mes>Mes</mes>
+		
 	
 	<!-- DATA -->
 		<tipos>Tipo</tipos>
@@ -58,6 +84,7 @@
 		<consulta>Consulta</consulta>
 		<alta_entrenamiento>Alta entrenamiento</alta_entrenamiento>
 		<alta_itinerario>Alta itinerario</alta_itinerario>
+		<generate>Estadísticas</generate>
 		<config>Configuración</config>
 		<l_rend>Rendimiento</l_rend>
 		<close_window>Cerrar ventana</close_window>

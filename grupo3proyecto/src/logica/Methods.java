@@ -4,6 +4,7 @@ import datos.conexionbd.POJOS.Usuario;
 import datos.config.Config;
 import datos.strings.Language;
 import java.io.File;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -296,6 +297,10 @@ public class Methods {
         data.add("9b");
         data.add("9b+");
         return data;
+    }
+    
+    public Connection getConnection(){
+        return q.getBd().getConnection();
     }
 
     /*
