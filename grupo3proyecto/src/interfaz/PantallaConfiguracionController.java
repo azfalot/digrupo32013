@@ -155,7 +155,11 @@ public class PantallaConfiguracionController implements Initializable {
     }
 
     private void setImages() {
-        ivDesktop.setImage(new Image("file:" + m.getWallpaper()));
+        if ("".equals(m.getWallpaper())) {
+            ivDesktop.setImage(new Image(getClass().getResourceAsStream("resources/defaultwallpaper.png")));
+        } else {
+            ivDesktop.setImage(new Image("file:" + m.getWallpaper()));
+        }
     }
 
     private void setComboIdioma() {
@@ -230,7 +234,6 @@ public class PantallaConfiguracionController implements Initializable {
 
     @FXML
     private void handleCerrar() {
-
         w.close();
     }
 

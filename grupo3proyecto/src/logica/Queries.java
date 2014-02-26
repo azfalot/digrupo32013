@@ -30,7 +30,7 @@ public class Queries {
     public Datos getBd() {
         return bd;
     }
-    
+
     File copyPicture(File origen, String newName) {
         /*
          * Metodo que copia una imagen al directorio de imagenes
@@ -106,7 +106,7 @@ public class Queries {
          * asignada.
          * Si devuelve 0 es que el nombre ya esta cogido
          */
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         //comprueba que el nombre esta libre
         for (String n : (ArrayList<String>) getNombreUsuarios()) {
             if (n.equals(nombre)) {
@@ -116,7 +116,9 @@ public class Queries {
         int id = 1;
         while (true) {
             try {
-                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER,PERIODO_INICIO,PERIODO_FIN) VALUES (" + id + ",'" + nombre + "','" + "images" + File.separator + "defaultwallpaper.png" +"','"+sdf.format(new Date())+"','"+sdf.format(new Date())+ "')");
+                //bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER,PERIODO_INICIO,PERIODO_FIN) VALUES (" + id + ",'" + nombre + "','" + "images" + File.separator + "defaultwallpaper.png" +"','"+sdf.format(new Date())+"','"+sdf.format(new Date())+ "')");
+                bd.update("INSERT INTO ESCALADORES(P_ESCALADORES,NOMBRE,WALLPAPER,PERIODO_INICIO,PERIODO_FIN) VALUES (" + id + ",'" + nombre + "','','" + sdf.format(new Date()) + "','" + sdf.format(new Date()) + "')");
+
                 break;
             } catch (SQLException ex) {
                 id++;
@@ -252,16 +254,16 @@ public class Queries {
         } catch (SQLException ex) {
         }
     }
-    
-    public Itinerario getItinerario(int p_itinerario){
-        ResultSet rs = bd.consulta("select i.*,e.* from itinerario i,esc_it e where i.p_itinerario=e.a_itinerario and i.p_itinerario="+p_itinerario);
-        try{
-            return new Itinerario(rs.getInt("p_itinerario"),rs.getString("nombre"),rs.getString("dificultad"),rs.getString("localizacion"),rs.getInt("tipo"),rs.getString("foto"),rs.getInt("p_esc_it"),rs.getInt("a_escaladores"),rs.getDate("fecha")); 
+
+    public Itinerario getItinerario(int p_itinerario) {
+        ResultSet rs = bd.consulta("select i.*,e.* from itinerario i,esc_it e where i.p_itinerario=e.a_itinerario and i.p_itinerario=" + p_itinerario);
+        try {
+            return new Itinerario(rs.getInt("p_itinerario"), rs.getString("nombre"), rs.getString("dificultad"), rs.getString("localizacion"), rs.getInt("tipo"), rs.getString("foto"), rs.getInt("p_esc_it"), rs.getInt("a_escaladores"), rs.getDate("fecha"));
         } catch (SQLException ex) {
         }
         return null;
     }
-    
+
     public void deleteItinerario(int p_itinerario) {
         //Borra un itinerario pasandole el id
         try {

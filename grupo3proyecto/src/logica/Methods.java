@@ -213,7 +213,7 @@ public class Methods {
         if (makeDefault) {
             cfg.setDefaultUser(user.getId());
         } else {
-            cfg.setDefaultUser(0);
+            //cfg.setDefaultUser(0);
         }
     }
 

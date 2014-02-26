@@ -25,6 +25,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
@@ -196,7 +197,7 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoAyuda() {
-
+        System.out.println(m.getWallpaper());
     }
 
     @FXML
@@ -298,7 +299,7 @@ public class PantallaPrincipalController implements Initializable {
          */
         try {
             File img = new File(m.getWallpaper());
-            if (img.exists()) {
+            if (img.exists() && !"".equals(m.getWallpaper())) {
                 Image image = new Image("file:" + m.getWallpaper());
                 wallpaper.setImage(image);
             } else {
@@ -390,6 +391,8 @@ public class PantallaPrincipalController implements Initializable {
             }
         });
         button.setFocusTraversable(false);
+        button.setPrefWidth(170);
+        button.setAlignment(Pos.TOP_LEFT);
         //Se crea un menu con la opcion de cerrar la ventana y el boton
         ContextMenu cm = new ContextMenu();
         MenuItem mi = new MenuItem(m.write("close_window"), new ImageView(new Image(getClass().getResourceAsStream("resources/barclose.png"))));

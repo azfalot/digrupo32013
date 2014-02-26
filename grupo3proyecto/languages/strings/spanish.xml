@@ -3,7 +3,7 @@
 
 	<!--LANGUAGE you can get them from this list: http://www.oracle.com/technetwork/java/javase/locales-137662.html -->
 		<language>es</language>
-		<language0/>
+		<language0></language0>
 		
 	<!--COMMON-->
 		<acept>Aceptar</acept>
@@ -37,7 +37,7 @@
 		<fecha1>Fecha inicio</fecha1>
 		<fecha2>Fecha fin</fecha2>
 		<label1>Itinerarios realizados entre dos fechas</label1>
-		<label2>Itinerarios realizados entre dos fechas</label2>
+		<label2>Entrenamientos realizados entre dos fechas</label2>
 		<label3>Gráfico de entrenamiento semanal para un mes</label3>
 		<label4>Entrenamientos por tipo entre dos fechas</label4>
 		<label5>Gráfico de itinerarios por dificultad</label5>

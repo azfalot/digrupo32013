@@ -304,7 +304,11 @@ public class PantallaInformeController implements Initializable {
             JasperPrint print;
             try {
                 print = JasperFillManager.fillReport("reports" + File.separator + "report1.jasper", parametros, m.getConnection());
-                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                if(file.getAbsolutePath().endsWith(".pdf")){
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                }else{
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath()+".pdf");
+                }
             } catch (JRException ex) {
             }
         }
@@ -324,7 +328,11 @@ public class PantallaInformeController implements Initializable {
             JasperPrint print;
             try {
                 print = JasperFillManager.fillReport("reports" + File.separator + "report2.jasper", parametros, m.getConnection());
-                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                if(file.getAbsolutePath().endsWith(".pdf")){
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                }else{
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath()+".pdf");
+                }
             } catch (JRException ex) {
             }
         }
@@ -341,7 +349,11 @@ public class PantallaInformeController implements Initializable {
             JasperPrint print;
             try {
                 print = JasperFillManager.fillReport("reports" + File.separator + "report3.jasper", parametros, m.getConnection());
-                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                if(file.getAbsolutePath().endsWith(".pdf")){
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                }else{
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath()+".pdf");
+                }
             } catch (JRException ex) {
             }
         }
@@ -357,7 +369,11 @@ public class PantallaInformeController implements Initializable {
             JasperPrint print;
             try {
                 print = JasperFillManager.fillReport("reports" + File.separator + "report4.jasper", parametros, m.getConnection());
-                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath()+".pdf");
+                if(file.getAbsolutePath().endsWith(".pdf")){
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                }else{
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath()+".pdf");
+                }
             } catch (JRException ex) {
             }
         }
@@ -365,12 +381,18 @@ public class PantallaInformeController implements Initializable {
 
     @FXML
     private void handleBtnGenerar5() {
+        Map parametros = new HashMap();
+        parametros.put("claveescalador",m.getUserId());
         File file = saveFile();
         if (file != null) {
             JasperPrint print;
             try {
-                print = JasperFillManager.fillReport("reports" + File.separator + "report5.jasper",new HashMap(), m.getConnection());
-                JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                print = JasperFillManager.fillReport("reports" + File.separator + "report5.jasper",parametros, m.getConnection());
+                if(file.getAbsolutePath().endsWith(".pdf")){
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath());
+                }else{
+                    JasperExportManager.exportReportToPdfFile(print, file.getAbsolutePath()+".pdf");
+                }
             } catch (JRException ex) {
             }
         }
