@@ -39,6 +39,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import jfxtras.labs.scene.control.window.CloseIcon;
 import jfxtras.labs.scene.control.window.Window;
 import logica.Methods;
@@ -131,6 +133,7 @@ public class PantallaPrincipalController implements Initializable {
         setToolBarProperty();
         botonModal.setVisible(false);
         translate();
+        
 
         //calculaRendimiento();
     }
@@ -197,7 +200,24 @@ public class PantallaPrincipalController implements Initializable {
 
     @FXML
     private void handleIconoAyuda() {
-        System.out.println(m.getWallpaper());
+        try 
+        {
+            // Carga el fichero de ayuda
+            File fichero = new File("help"+File.separator+"help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            // Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            // Pone ayuda a item de menu al pulsarlo y a F1 en ventana
+            // principal y secundaria.
+            hb.setDisplayed(true);
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
     }
 
     @FXML

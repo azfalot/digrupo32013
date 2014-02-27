@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<spanish>
+
+	<!--LANGUAGE you can get them from this list: http://www.oracle.com/technetwork/java/javase/locales-137662.html -->
+		<language>es</language>
+		<language0></language0>
+		
+	<!--COMMON-->
+		<acept>Aceptar</acept>
+		<cancel>Cancelar</cancel>
+		<close>Cerrar</close>
+		<apply>Aplicar</apply>
+		<name>Nombre</name>
+		<erase>Borrar</erase>
+		<new>Nuevo</new>
+		<today>Hoy</today>
+		<date>Fecha</date>
+		<description>Descripción</description>
+		<image_files>Archivos de imagen</image_files>
+		<bitmap>Mapa de bits</bitmap>
+		
+	<!-- INFORMES -->
+		<enero>Enero</enero>
+		<febrero>Febrero</febrero>
+		<marzo>Marzo</marzo>
+		<abril>Abril</abril>
+		<mayo>Mayo</mayo>
+		<junio>Junio</junio>
+		<julio>Julio</julio>
+		<agosto>Agosto</agosto>
+		<septiembre>Septiembre</septiembre>
+		<octubre>Octubre</octubre>
+		<noviembre>Noviembre</noviembre>
+		<diciembre>Diciembre</diciembre>
+		<gen>Generar Informe</gen>
+		<report>Informe</report>
+		<fecha1>Fecha inicio</fecha1>
+		<fecha2>Fecha fin</fecha2>
+		<label1>Itinerarios realizados entre dos fechas</label1>
+		<label2>Entrenamientos realizados entre dos fechas</label2>
+		<label3>Gráfico de entrenamiento semanal para un mes</label3>
+		<label4>Entrenamientos por tipo entre dos fechas</label4>
+		<label5>Gráfico de itinerarios por dificultad</label5>
+		<ano>Año</ano>
+		<mes>Mes</mes>
+		
+	
+	<!-- DATA -->
+		<tipos>Tipo</tipos>
+		<dificultad>Dificultad</dificultad>
+		<clean>Limpiar filtros</clean>
+		<filtrar>Filtrar</filtrar>
+		<modificar>Modificar</modificar>
+		<entrenamientos>Entrenamientos</entrenamientos>
+		<itinerarios>Itinerarios</itinerarios>
+	
+	<!--LOGIN WINDOW-->
+		<login>Login</login>
+		<remember>Recuérdame</remember>
+		<new_user>Nuevo usuario</new_user>
+		<tt_remember>Marque esta casilla si desea que este usuario sea cargado automáticamente al arrancar el programa</tt_remember>
+		<tt_combo_user>Lista de usuarios registrados</tt_combo_user>
+		<tt_new_user>Agrega un nuevo usuario</tt_new_user>
+		
+    <!--NEW USER WINDOW-->
+		<create_user>Crear usuario</create_user>
+		<welcome>Bienvenido a</welcome>
+		<set_name>Introduzca nombre</set_name>
+		<inst1>Debe crear un usuario</inst1>
+		<inst2>para continuar</inst2>
+		<err_user_exists>El usuario ya existe</err_user_exists>
+		<tt_tfNombre>Nombre para el nuevo usuario</tt_tfNombre>
+	
+	
+	<!-- MAIN WINDOW -->
+		<i_datos>Datos</i_datos>
+		<i_entrenamiento>Entrenamiento</i_entrenamiento>
+		<i_itinerario>Itinerario</i_itinerario>
+		<i_configuracion>Configuración</i_configuracion>
+		<i_ayuda>Ayuda</i_ayuda>
+		<i_acerca>Acerca de ...</i_acerca>
+		<tt_disconect>Desconectar</tt_disconect>
+		<tt_fullscreen>Activar/desactivar pantalla completa</tt_fullscreen>
+		<consulta>Consulta</consulta>
+		<alta_entrenamiento>Alta entrenamiento</alta_entrenamiento>
+		<alta_itinerario>Alta itinerario</alta_itinerario>
+		<generate>Estadísticas</generate>
+		<config>Configuración</config>
+		<l_rend>Rendimiento</l_rend>
+		<close_window>Cerrar ventana</close_window>
+		<close_all_windows>Cerrar todas las ventanas</close_all_windows>
+		<exit_message>¿Está seguro?</exit_message>
+		<exit>Salir</exit>
+	
+	<!-- CONFIG WINDOW -->
+		<t_general>General</t_general>
+		<t_apariencia>Apariencia</t_apariencia>
+		<t_usuarios>Usuarios</t_usuarios>
+		<t_idioma>Idioma</t_idioma>
+		<l_usuario>Usuario</l_usuario>
+		<cb_default>Usuario por defecto</cb_default>
+		<l_fondo>Fondo de escritorio</l_fondo>
+		<b_cambiarfondo>Cambiar fondo...</b_cambiarfondo>
+		<users>Usuarios</users>
+		<b_cambiarusuario>Cambiar usuario</b_cambiarusuario>
+		<l_idioma>Idioma</l_idioma>
+		<l_idioma2>Se necesita reiniciar la aplicación para aplicar</l_idioma2>
+		<attention>¡Atención!</attention>
+		<att1>Cerrar sesión</att1>
+		<sec1>Se borrará el usuario</sec1>
+		<sec2>¿Cerrar sesión?</sec2>
+		<periodo>Periodo de entrenamiento</periodo>
+		<to>a</to>
+		<from>Desde</from>
+		
+	<!-- ENTRENAMIENTO -->
+		<fisico>Físico</fisico>
+		<roca>Roca</roca>
+		<rocodromo>Rocódromo</rocodromo>
+		<l_date_session>Fecha sesión</l_date_session>
+		<l_horainicio>Hora inicio</l_horainicio>
+		<l_horafin>Hora fin</l_horafin>
+		<l_type>Tipo</l_type>
+	
+	<!-- ITINERARIO -->
+		<via>Vía de escalada</via>
+		<boulder>Boulder</boulder>
+		<loc>Localización</loc>
+		<l_tipo>Tipo</l_tipo>
+		<l_dificultad>Dificultad</l_dificultad>
+		<l_fecharesolucion>Fecha resolución</l_fecharesolucion>
+		<l_fotografia>Fotografía (opcional)</l_fotografia>
+		<b_examinar>Examinar ...</b_examinar>
+		<l_sin_imagen>Sin Imagen</l_sin_imagen>
+		
+	<!-- ACERCA -->
+		<group>Grupo 3</group>
+		<acerca>Acerca de ...</acerca>
+		
+	
+		
+</spanish>

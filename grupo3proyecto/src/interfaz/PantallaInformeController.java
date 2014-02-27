@@ -341,7 +341,9 @@ public class PantallaInformeController implements Initializable {
     @FXML
     private void handleBtnGenerar3() {
         Map parametros = new HashMap();
-        parametros.put("", "");
+        parametros.put("anno", Integer.valueOf(comboAno.getSelectionModel().getSelectedItem().toString()));
+        parametros.put("mes", comboMes.getSelectionModel().getSelectedIndex()+1);
+        parametros.put("user", m.getUserId());
 
         File file = saveFile();
 
@@ -362,7 +364,9 @@ public class PantallaInformeController implements Initializable {
     @FXML
     private void handleBtnGenerar4() {
         Map parametros = new HashMap();
-        parametros.put("","");
+        parametros.put("fechafin",datePicker1Informe4.getSelectedDate());
+        parametros.put("fechain",datePicker2Informe4.getSelectedDate());
+        parametros.put("user",m.getUserId());
         
         File file = saveFile();
         if (file != null) {

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<installation version="1.0">
+    <info>
+        <appname>Magnesio</appname>
+        <appversion>1.0</appversion>
+        <authors>
+			<author name="Daniel Plaza"/>
+			<author name="Angel Garcia"/>
+			<author name="Jonathan Zorrilla"/>
+			<author name="Rafael Noriega"/>
+			<author name="Manuel Alvarez"/>
+            <author name="Carlos Otero"/>
+        </authors>
+    </info>
+	
+    <guiprefs width="640" height="480" resizable="yes"/>
+
+    <locale>
+		<langpack iso3="spa"/>
+        <langpack iso3="eng"/>
+    </locale>
+
+    <resources>
+		<!-- Texto mostrado en el panel LicencePanel -->
+        <res id="LicencePanel.licence_spa" src="Licencia.txt"/>
+		<res id="LicencePanel.licence_eng" src="License.txt"/>
+		<!-- Texto mostrado en el panel InfoPanel -->
+        <res id="InfoPanel.info_spa" src="Leeme.txt"/>
+        <res id="InfoPanel.info_eng" src="Readme.txt"/>
+
+		<!-- Archivos que definen los accesos directos. El primero para Windows, el segundo para Linux -->
+		<res id="shortcutSpec.xml" src="shortcutSpec.xml"/> 
+        <res id="Unix_shortcutSpec.xml" src="Unix_shortcutSpec.xml"/>
+
+		<!-- Definición de las rutas por defecto -->
+		<res id="TargetPanel.dir.windows" src="windowsdir.txt"/>
+		<res id="TargetPanel.dir.unix" src="unixdir.txt"/>
+		<res id="icono.png" src="icono.png"/>
+    </resources>
+
+    <!-- Para poder crear accesos directos desde el escritorio en Windows-->
+    <native type="izpack" name="ShellLink.dll" />
+	<native type="izpack" name="ShellLink_x64.dll" />
+
+    <panels>
+	<!-- Panel en el que se muestra el nombre de la aplicación, información de contacto, etc -->
+        <panel classname="HelloPanel"/>
+	<!-- En este panel podemos mostrar un archivo de texto con información general de la aplicación -->
+        <panel classname="InfoPanel"/>
+	<!-- Panel que pregunta al usuario si acepta o no las condiciones de la licencia -->
+        <panel classname="LicencePanel"/>
+	<!-- Con este panel, dejamos al usuario elegir donde se quiere instalar la aplicación -->
+        <panel classname="TargetPanel"/>
+	<!-- Este panel permite al usuario elegir que partes de la aplicación se van a instalar -->
+        <panel classname="PacksPanel"/>
+	<!-- Este panel permite al usuario ver el progreso de la instalación de la aplicación. -->
+        <panel classname="InstallPanel"/>
+	<!-- Pregunta al usuario que accesos directos desea crear-->
+        <panel classname="ShortcutPanel"/>
+	<!-- Este panel muestra una pantalla de despedida indicando que la instalación ha acabado con éxito -->
+        <panel classname="FinishPanel"/>
+    </panels>
+
+    <packs>
+	<!-- Archivos base de instalación, los marcamos como de obligatoria instalación -->
+        <pack name="database" required="yes">
+            <description>Archivos relacionados con la base de datos</description>
+            <file src="database" targetdir="$INSTALL_PATH"/>
+        </pack>
+		
+        <pack name="images" required="yes">
+            <description>Contiene todas als imagenes usadas en la aplicacion</description>
+            <file src="images" targetdir="$INSTALL_PATH"/>
+        </pack>
+		
+        <pack name="languages" required="yes">
+            <description>Archivos de Idioma</description>
+            <file src="languages" targetdir="$INSTALL_PATH"/>
+        </pack>
+		
+		<pack name="lib" required="yes">
+            <description>Librerias necesarias para Magnesio</description>
+            <file src="lib" targetdir="$INSTALL_PATH"/>
+        </pack>
+		
+		<pack name="reports" required="yes">
+            <description>Informes</description>
+            <file src="reports" targetdir="$INSTALL_PATH"/>
+        </pack>
+		
+		<pack name="Configuracion" required="yes">
+            <description>Configuracion de Magnesio</description>
+            <file src="config.cfg" targetdir="$INSTALL_PATH"/>
+        </pack>
+		
+		<pack name="Magnesio APP" required="yes">
+            <description>Magnesion JAR</description>
+            <file src="Magnesio.jar" targetdir="$INSTALL_PATH"/>
+        </pack>
+    </packs>
+
+</installation>

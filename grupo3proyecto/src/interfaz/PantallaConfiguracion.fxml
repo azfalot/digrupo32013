@@ -93,8 +93,8 @@
               <children>
                 <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="188.0" layoutX="11.0" layoutY="10.0" stroke="$x2" strokeType="INSIDE" width="254.0" />
                 <Label fx:id="labelIdioma2" layoutX="33.0" layoutY="70.0" styleClass="nota" text="(Se necesita reiniciar la aplicación para aplicar)" />
-                <Label fx:id="labelIdioma" layoutX="33.0" layoutY="41.0" prefWidth="51.0" text="Idioma:" />
-                <ComboBox fx:id="comboIdioma" layoutX="84.0" layoutY="39.0" prefHeight="21.0" prefWidth="149.0">
+                <Label fx:id="labelIdioma" layoutX="33.0" layoutY="41.0" prefWidth="76.0" text="Idioma:" />
+                <ComboBox fx:id="comboIdioma" layoutX="109.0" layoutY="39.0" prefHeight="21.0" prefWidth="124.0">
                   <items>
                     <FXCollections fx:factory="observableArrayList">
                       <String fx:value="Item 1" />

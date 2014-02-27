@@ -1,0 +1,9 @@
+<index version="1.0">
+    <indexitem text="Escritorio" target="principal" />
+    <indexitem text="Login" target="login" />
+	<indexitem text="configuracion" target="configuracion" />
+	<indexitem text="Consulta datos" target="datos" />	
+	<indexitem text="Alta itinerario" target="altaItinerario" />
+	<indexitem text="Alta entrenamiento" target="altaEntrenamiento" />
+	<indexitem text="Estadisticas" target="perfilUsuario" />
+</index>

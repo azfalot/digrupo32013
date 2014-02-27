@@ -1,0 +1,10 @@
+<toc version="1.0">
+   <tocitem text="Escritorio" target="principal">
+	<tocitem text="Login" target="login" />
+	<tocitem text="Alta itinerario" target="altaItinerario" />
+	<tocitem text="Alta entrenamiento" target="altaEntrenamiento" />
+	<tocitem text="Consulta datos" target="datos" />
+	<tocitem text="configuracion" target="configuracion" />
+	<tocitem text="Estadisticas" target="perfilUsuario" />
+   </tocitem> 
+</toc>

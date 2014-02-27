@@ -3,6 +3,7 @@ package interfaz;
 import java.io.File;
 import java.net.URL;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import logica.Methods;
 
 /**
@@ -31,7 +33,19 @@ public class Escalada extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.mainStage = stage;
+        mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                System.exit(0);
+            }
+        });
         loginStage = new Stage();
+        loginStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                System.exit(0);
+            }
+        });
         m = Methods.getInstance();
         if (m.getUserId() == 0) {
             /*
