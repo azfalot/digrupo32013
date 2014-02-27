@@ -4,13 +4,14 @@
         <appname>Magnesio</appname>
         <appversion>1.0</appversion>
         <authors>
-			<author name="Daniel Plaza"/>
-			<author name="Angel Garcia"/>
-			<author name="Jonathan Zorrilla"/>
-			<author name="Rafael Noriega"/>
-			<author name="Manuel Alvarez"/>
-            <author name="Carlos Otero"/>
+			<author name="Daniel Plaza" email="dplaza@grupo3.es"/>
+			<author name="Angel Garcia" email="agarcia@grupo3.es"/>
+			<author name="Jonathan Zorrilla" email="jzorrilla@grupo3.es"/>
+			<author name="Rafael Noriega" email="rnoriega@grupo3.es"/>
+			<author name="Manuel Alvarez" email="malvarez@grupo3.es"/>
+            <author name="Carlos Otero" email="cotero@grupo3.es"/>
         </authors>
+		<url>https://github.com/pabloaglinares/digrupo32013</url>
     </info>
 	
     <guiprefs width="640" height="480" resizable="yes"/>
@@ -30,12 +31,9 @@
 
 		<!-- Archivos que definen los accesos directos. El primero para Windows, el segundo para Linux -->
 		<res id="shortcutSpec.xml" src="shortcutSpec.xml"/> 
-        <res id="Unix_shortcutSpec.xml" src="Unix_shortcutSpec.xml"/>
 
 		<!-- Definición de las rutas por defecto -->
 		<res id="TargetPanel.dir.windows" src="windowsdir.txt"/>
-		<res id="TargetPanel.dir.unix" src="unixdir.txt"/>
-		<res id="icono.png" src="icono.png"/>
     </resources>
 
     <!-- Para poder crear accesos directos desde el escritorio en Windows-->
@@ -69,8 +67,15 @@
         </pack>
 		
         <pack name="images" required="yes">
-            <description>Contiene todas als imagenes usadas en la aplicacion</description>
+            <description>Contiene todas las imagenes usadas en la aplicacion</description>
             <file src="images" targetdir="$INSTALL_PATH"/>
+			<file src="icono.ico" targetdir="$INSTALL_PATH"/>
+			<file src="desinstalador.ico" targetdir="$INSTALL_PATH"/>
+        </pack>
+		
+		<pack name="help" required="yes">
+            <description>Ayuda de la aplicacion</description>
+            <file src="help" targetdir="$INSTALL_PATH"/>
         </pack>
 		
         <pack name="languages" required="yes">

@@ -4,10 +4,10 @@
   <programGroup defaultName="Magnesio" location="applications"/>       
       <shortcut  
         name="Magnesio"  
-        target="$INSTALL_PATH/Principal."
+        target="$INSTALL_PATH/Magnesio.jar"
 		commandLine=""
 		workingDirectory="$INSTALL_PATH"
-        iconFile="$INSTALL_PATH/icon.png"   
+        iconFile="$INSTALL_PATH/icono.ico"   
         iconIndex="0"  
         programGroup="yes"  
         desktop="yes"  
@@ -18,10 +18,10 @@
       <shortcut  
         name="Desinstalar"  
         target="$INSTALL_PATH/Uninstaller/Uninstaller.jar"  
-        iconFile="$INSTALL_PATH/desinstalar.png"   
+        iconFile="$INSTALL_PATH/desinstalador.ico"   
         iconIndex="0"  
         programGroup="yes"  
-        desktop="no"  
+        desktop="yes"  
         applications="yes"  
         startMenu="yes"  
         startup="no">   
