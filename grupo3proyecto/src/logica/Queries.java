@@ -191,7 +191,7 @@ public class Queries {
                 bd.update(""
                         + "INSERT INTO ITINERARIO"
                         + " (P_ITINERARIO,NOMBRE,DIFICULTAD,LOCALIZACION,TIPO,FOTO)"
-                        + " VALUES ( " + idItinerario + ", '" + nombre + "', '" + dificultad + "', '" + localizacion + "'," + tipo + " ,'" + imgName + "')");
+                        + " VALUES ( " + idItinerario + ", '" + nombre + "', '" + dificultad + "', '" + localizacion + "'," + tipo + " ,'" + imgName+".jpg" + "')");
                 break;
             } catch (SQLException ex) {
                 idItinerario++;
