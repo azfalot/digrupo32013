@@ -8,12 +8,17 @@ package interfaz;
 import datos.conexionbd.POJOS.Entrenamiento;
 import datos.conexionbd.POJOS.Itinerario;
 import eu.schudt.javafx.controls.calendar.DatePicker;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -506,18 +511,32 @@ public class PantallaDatosController implements Initializable {
             @Override
             public void handle(MouseEvent t) {
                 try {
-                    paneItinerario.setDisable(false);
-                    Itinerario i = (Itinerario) tablaItinerario.getSelectionModel().getSelectedItem();
-                    textLoca.getTextbox().setText(i.getLocalizacion());
-                    textNombre.setText(i.getNombre());
-                    comboTipoItinerario.getSelectionModel().select(i.getTipoStr());
-                    comboDificultad.getSelectionModel().select(i.getDificultad());
-                    ((TextField) datePickerItinerario.getChildren().get(0)).setText(sdf.format(i.getFecha()));
-                    String p = (i.getFoto());
-                    Image img = new Image("file:" + p);
-                    imageView.setImage(img);
-                } catch (NullPointerException e) {
-                    paneItinerario.setDisable(true);
+                    Robot robot = new Robot();
+                    textLoca.requestFocus();
+                    
+                    robot.keyPress(KeyEvent.VK_DOWN);
+                    robot.keyRelease(KeyEvent.VK_DOWN);
+                    robot.keyPress(KeyEvent.VK_ENTER);
+                    robot.keyRelease(KeyEvent.VK_ENTER);
+                
+                    robot.keyPress(KeyEvent.VK_TAB);
+                    robot.keyRelease(KeyEvent.VK_TAB);
+                    try {
+                        paneItinerario.setDisable(false);
+                        Itinerario i = (Itinerario) tablaItinerario.getSelectionModel().getSelectedItem();
+                        textLoca.getTextbox().setText(i.getLocalizacion());
+                        textNombre.setText(i.getNombre());
+                        comboTipoItinerario.getSelectionModel().select(i.getTipoStr());
+                        comboDificultad.getSelectionModel().select(i.getDificultad());
+                        ((TextField) datePickerItinerario.getChildren().get(0)).setText(sdf.format(i.getFecha()));
+                        String p = (i.getFoto());
+                        Image img = new Image("file:" + p);
+                        imageView.setImage(img);
+                    } catch (NullPointerException e) {
+                        paneItinerario.setDisable(true);
+                    }
+                } catch (AWTException ex) {
+                    Logger.getLogger(PantallaDatosController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

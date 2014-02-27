@@ -203,12 +203,7 @@
                 <TableView fx:id="tablaItinerario" prefHeight="332.0" prefWidth="375.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
                 <AnchorPane fx:id="paneItinerario" prefHeight="332.0" prefWidth="250.0" styleClass="anchorPropiedades" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
                   <children>
-                    <Button id="botones" fx:id="botonModificarItinerario" mnemonicParsing="false" onAction="#handleModificarItinerario" prefWidth="97.0" text="Modificar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="16.0">
-                      <stylesheets>
-                        <URL value="@Ventanas.css" />
-                      </stylesheets>
-                    </Button>
-                    <GridPane id="gridPaneAutoFill" fx:id="gridPaneItinerario" layoutX="96.0" layoutY="242.0" prefHeight="22.0" prefWidth="140.0">
+                    <GridPane fx:id="gridPaneAutoFill" layoutX="96.0" layoutY="167.0" prefHeight="22.0" prefWidth="140.00009999999747">
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       </columnConstraints>
@@ -238,6 +233,20 @@
                         </FXCollections>
                       </items>
                     </ComboBox>
+                    <GridPane id="gridPaneAutoFill" fx:id="gridPaneItinerario" layoutX="96.0" layoutY="242.0" prefHeight="22.0" prefWidth="140.0">
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                    <Button fx:id="botonBorrarItinerario" layoutX="181.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleBorrarItinerario" text="Borrar" />
+                    <Button id="botones" fx:id="botonModificarItinerario" mnemonicParsing="false" onAction="#handleModificarItinerario" prefWidth="97.0" text="Modificar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="16.0">
+                      <stylesheets>
+                        <URL value="@Ventanas.css" />
+                      </stylesheets>
+                    </Button>
                     <Label id="texto" fx:id="labeliFecha" layoutX="14.0" layoutY="245.0" prefWidth="97.0" text="Fecha">
                       <stylesheets>
                         <URL value="@Ventanas.css" />
@@ -259,14 +268,6 @@
                       </stylesheets>
                     </Label>
                     <Label id="labelDificultad" fx:id="labeliDificultad" layoutX="14.0" layoutY="220.0" prefWidth="76.9998779296875" text="Dificultad" />
-                    <GridPane fx:id="gridPaneAutoFill" layoutX="96.0" layoutY="167.0" prefHeight="22.0" prefWidth="140.00009999999747">
-                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      </columnConstraints>
-                      <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      </rowConstraints>
-                    </GridPane>
                     <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#dfdfdf" height="109.49990844726562" layoutX="51.0" layoutY="22.0" strokeType="INSIDE" width="147.9998779296875">
                       <stroke>
                         <Color blue="0.750" green="0.750" red="0.750" fx:id="x1" />
@@ -274,7 +275,6 @@
                     </Rectangle>
                     <Label fx:id="labelSinImagen" layoutX="95.0" layoutY="69.0" text="Sin imagen" textFill="$x1" />
                     <ImageView fx:id="imageView" fitHeight="109.49990844726562" fitWidth="147.9998779296875" layoutX="51.0" layoutY="22.0" pickOnBounds="true" preserveRatio="false" />
-                    <Button fx:id="botonBorrarItinerario" layoutX="181.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleBorrarItinerario" text="Borrar" />
                   </children>
                 </AnchorPane>
                 <ToolBar fx:id="toolBarItinerarios" prefHeight="32.0" prefWidth="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
